@@ -1,8 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
-import { logoImage } from '@/config/assets';
+import Logo from '@/components/Logo';
 
 const navItems = [
     { name: 'Accueil', href: '/' },
@@ -15,7 +14,7 @@ export default function Nav(){
     return(
         <>
         <nav>
-            <Image src={logoImage} alt="Logo NailShine" width={100} height={70} className="nav-logo" />
+            <Logo />
             <div className="nav-links">
                 {navItems.map((item) => (
                     <Link key={item.href} href={item.href} className="nav-link">

@@ -1,7 +1,7 @@
 export default function Page() {
 	return(
     <>
-      <p>Test</p>
+      <div className="slide" id="home"></div>
     </>
   )
 }
