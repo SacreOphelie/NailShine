@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Logo from '@/components/Logo';
+import '@/styles/nav.scss';
 
 const navItems = [
     { name: 'Accueil', href: '/' },
