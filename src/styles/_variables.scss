@@ -1,0 +1,80 @@
+// Typo \\
+
+@font-face {
+    font-family: 'Kindred'; 
+    src: url('/typo/Kindred-Youth.otf') format('opentype');
+}
+@font-face {
+    font-family: 'Chicle'; 
+    src: url('/typo/Chicle-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Roboto'; 
+    src: url('/typo/Roboto-Regular.ttf') format('truetype');
+}
+
+@mixin titre($taille: 80px) {
+  font-family: 'Kindred', sans-serif;
+  font-size: $taille;
+}
+
+@mixin sous-titre($taille: 40px) {
+  font-family: 'Chicle', sans-serif;
+  font-size: $taille;
+}
+
+@mixin text($taille: 16px, $epaisseur: normal) {
+  font-family: 'Roboto', sans-serif;
+  font-size: $taille;
+  font-weight: $epaisseur;
+}
+
+@mixin button($taille: 20px) {
+  font-family: 'Chicle', sans-serif;
+  font-size: $taille;
+}
+
+@mixin text-chicle($taille: 16px) {
+  font-family: 'Chicle', sans-serif;
+  font-size: $taille;
+}
+
+// Couleurs \\
+
+$color-darker:#8E0055;
+$color-dark:#D35377;
+$color-middle:#FF97B7;
+$color-light:#FFCCDB;
+$color-white:#FFFFFF;
+$color-shadow:#8e00557c;
+$text-darker:#8E0055;
+$text-white:#FFFFFF;
+$bg-image: url('../public/images/fonds/fond_homepage.png');
+
+@mixin shadow($y: 5px, $blur:25px){
+    color: $color-shadow;
+    box-shadow: 0 $y $blur $color-shadow;
+}
+
+// Border et radius \\
+
+@mixin border($color: $color-white, $width : 5px){
+    border: $width solid $color;
+}
+$border-radius-small: 5px;
+$border-radius-medium: 15px;
+$border-radius-large: 25px;
+$border-radius-max: 100%;
+
+// Marges et espacements \\
+
+$padding-button:8px 18px;
+$padding-nav:15px 50px;
+
+$margin-small:25px;
+$margin-medium:50px;
+$margin-large:75px;
+$margin-xlarge:100px;
+
+
+

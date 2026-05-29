@@ -1,0 +1,31 @@
+@use '_variables.scss' as *;
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+nav{
+    width:1400px;
+    padding:$padding-nav;
+    margin:0 auto;
+    display:flex;
+    height:fit-content;
+    align-items:center;
+    justify-content:space-between;
+    background-color:$color-dark;
+    @include shadow;
+    @include border;
+    border-radius:$border-radius-large;
+    position:fixed;
+    top:25px;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.nav-logo{
+    object-fit:contain;
+}
+
