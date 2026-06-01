@@ -1,0 +1,14 @@
+#home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .container{
+        width:1400px;
+        margin:0 auto;
+        .left{
+            img{
+                object-fit:contain;
+            }
+        }
+    }
+}
