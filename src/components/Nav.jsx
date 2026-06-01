@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import Logo from '@/components/Logo';
 import '@/styles/nav.scss';
@@ -12,28 +13,32 @@ const navItems = [
 ]
 
 export default function Nav(){
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     return(
         <>
         <nav>
-            <Logo />
-            <div className="nav-links">
-                {navItems.map((item) => (
-                    <Link key={item.href} href={item.href} className="nav-link">
-                        {item.name}
-                    </Link>
-                ))}
-            </div>
-            <div className="nav-burger">
-                <span></span>
-                <span></span>
-                <span></span>
-                <div className="container-menu">
+            <div className="nav-container">
+                <Logo />
+                <div className="nav-links">
                     {navItems.map((item) => (
                         <Link key={item.href} href={item.href} className="nav-link">
                             {item.name}
                         </Link>
                     ))}
                 </div>
+                <div className={`nav-burger${isMenuOpen ? ' is-open' : ''}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div className={`container-menu${isMenuOpen ? ' is-open' : ''}`}>
+                {navItems.map((item) => (
+                    <Link key={item.href} href={item.href} className="nav-link">
+                        {item.name}
+                    </Link>
+                ))}
             </div>
         </nav>
         </>
