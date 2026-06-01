@@ -19,7 +19,7 @@ export default function Nav(){
         <>
         <nav>
             <div className="nav-container">
-                <Logo />
+                <Logo onClick={() => setIsMenuOpen(false)} />
                 <div className="nav-links">
                     {navItems.map((item) => (
                         <Link key={item.href} href={item.href} className="nav-link">
@@ -35,7 +35,7 @@ export default function Nav(){
             </div>
             <div className={`container-menu${isMenuOpen ? ' is-open' : ''}`}>
                 {navItems.map((item) => (
-                    <Link key={item.href} href={item.href} className="nav-link">
+                    <Link key={item.href} href={item.href} className="nav-link" onClick={() => setIsMenuOpen(false)}>
                         {item.name}
                     </Link>
                 ))}
