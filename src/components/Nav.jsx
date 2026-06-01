@@ -23,6 +23,11 @@ export default function Nav(){
                     </Link>
                 ))}
             </div>
+            <div className="nav-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </nav>
         </>
     )

@@ -38,5 +38,32 @@ nav{
             text-decoration:none;
             @include text-chicle(24px);
         }
+
+    }
+    .nav-burger{
+        display:none;
+        width:75px;
+        height:fit-content;
+        flex-direction:column;
+        gap:$gap-small;
+        padding:$padding-small;
+        cursor:pointer;
+        span{
+            width:100%;
+            border-radius:25px;
+            height:5px;
+            background-color:$color-white;
+        }
+    }
+    @media(max-width:1500px){
+        width:90%;
+        margin: 0 auto;
+        padding:15px 25px;
+        .nav-links{
+            display:none;
+        }
+        .nav-burger{
+            display:flex;
+        }
     }
 }
