@@ -27,6 +27,13 @@ export default function Nav(){
                 <span></span>
                 <span></span>
                 <span></span>
+                <div className="container-menu">
+                    {navItems.map((item) => (
+                        <Link key={item.href} href={item.href} className="nav-link">
+                            {item.name}
+                        </Link>
+                    ))}
+                </div>
             </div>
         </nav>
         </>
