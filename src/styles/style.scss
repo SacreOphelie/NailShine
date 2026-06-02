@@ -15,4 +15,28 @@
     background-attachment:fixed;
 }
 
+.button{
+    display: inline-block;
+    padding:$padding-button;
+    background-color:$color-dark;
+    color:$text-white;
+    @include button;
+    @include border($color-white, 2px);
+    border-radius:$border-radius-small;
+    transform:translateY(0);
+    transition:
+        background-color 0.3s ease, 
+        color 0.3s ease, 
+        transform 0.3s linear;
+    &:hover{
+        background-color:$color-middle;
+        color:$text-darker;
+        transform:translateY(-5px);
+    }
+}
+
+.illu{
+    position:absolute;
+}
+
 

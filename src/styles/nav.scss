@@ -108,7 +108,7 @@ nav{
             @include border($width:2px);
         }
         color:$text-white;
-        text-decoration:none;
+        
         @include text-chicle(24px);
     }
     @media(max-width:1500px){

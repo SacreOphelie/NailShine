@@ -16,28 +16,39 @@
 @mixin titre($taille: 80px) {
   font-family: 'Kindred', sans-serif;
   font-size: $taille;
+  text-decoration:none;
+  font-weight: normal;
 }
 
 @mixin sous-titre($taille: 40px) {
   font-family: 'Chicle', sans-serif;
   font-size: $taille;
+  text-decoration:none;
 }
 
-@mixin text($taille: 16px, $epaisseur: normal) {
+@mixin text($taille: 16px, $epaisseur: normal, $color: $text-darker, $align: justify) {
   font-family: 'Roboto', sans-serif;
   font-size: $taille;
   font-weight: $epaisseur;
+  text-decoration:none;
+  color: $color;
+  text-align: $align;
 }
 
-@mixin button($taille: 20px) {
+@mixin button($taille: 24px) {
   font-family: 'Chicle', sans-serif;
   font-size: $taille;
+  letter-spacing: 5%;
+  font-weight: lighter;
+  text-decoration:none;
 }
 
 @mixin text-chicle($taille: 16px) {
   font-family: 'Chicle', sans-serif;
   font-size: $taille;
   letter-spacing: 5%;
+  font-weight: lighter;
+  text-decoration:none;
 }
 
 // Couleurs \\
@@ -76,6 +87,7 @@ $padding-small:10px;
 $padding-medium:25px;
 $padding-large:50px;
 $padding-xlarge:100px;
+$padding-top:250px;
 
 $margin-small:25px;
 $margin-medium:50px;
@@ -86,5 +98,45 @@ $gap-small:10px;
 $gap-medium:25px;
 $gap-large:50px;
 
+// Animation \\
 
+@mixin animation($name: rotation_1, $duration: 2.5s, $timing-function: infinite, $iteration-count: linear){
+    animation: $name $duration $timing-function $iteration-count;
+}
+
+@keyframes rotation_1 {
+    0% {
+        transform: rotate(35deg);
+    }
+    25% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(-35deg);
+    }
+    75% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(35deg);
+    }
+}
+
+@keyframes rotation_2 {
+    0% {
+        transform: rotate(-35deg);
+    }
+    25% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(35deg);
+    }
+    75% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-35deg);
+    }
+}
 

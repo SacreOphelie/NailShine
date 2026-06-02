@@ -1,13 +1,59 @@
 #home{
     display: flex;
-    align-items: center;
-    justify-content: center;
+    padding-top:$padding-top;
     .container{
         width:1400px;
         margin:0 auto;
+        display:flex;
+        gap:$gap-large;
+        height:fit-content;
         .left{
+            position:relative;
             img{
                 object-fit:contain;
+            }
+            #cadre{
+                width:400px;
+                height:500px;
+            }
+            #noeud{
+                top:50px;
+                right:25px;
+                @include animation;
+            }
+            #vernis{
+                bottom:0px;
+                left:10px;
+                @include animation($name:rotation_2);
+            }
+
+        }
+        .right{
+            display:flex;
+            flex-direction:column;
+            gap:$gap-medium;
+            h1{
+                @include titre($taille:124px);
+                color:$text-darker;
+            }
+            .info{
+                display:flex;
+                gap:$gap-small;
+                align-items:center;
+                img{
+                    object-fit:contain;
+                }
+            }
+            p{
+                @include text($taille:24px);
+                a{
+                    @include text($taille:24px, $epaisseur:bold);
+                }
+            }
+            .container-btn{
+                display:flex;
+                gap:$gap-medium;
+                padding-top:$padding-small;
             }
         }
     }
