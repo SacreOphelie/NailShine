@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 
 import Button from "@/components/Buttons/Button";
@@ -10,23 +11,25 @@ export default function Page() {
 
 	return(
     <>
-      <div className="slide" id="home">
+      <div className="slide" id="accueil">
           <div className="container">
             <div className="left">
-              <Image src="/images/prothesiste/Cadre-1.png" alt="Prothésiste ongulaire" width={400} height={500} id="cadre" priority />
-              <Image src="/images/illustrations/Noeud.png" alt="Noeud" id="noeud" className="illu" width={75} height={75} />
-              <Image src="/images/illustrations/Vernis.png" alt="Vernis" id="vernis" className="illu" width={75} height={125} />
+              <img src="/images/prothesiste/Cadre-1.png" alt="Prothésiste ongulaire"id="cadre" />
+              <img src="/images/illustrations/Noeud.png" alt="Noeud" id="noeud" className="illu"/>
+              <img src="/images/illustrations/Vernis.png" alt="Vernis" id="vernis" className="illu"/>
             </div>
             <div className="right">
-              <h1>Prothésiste ongulaire</h1>
+              <h1>Prothésiste ongulaire
+                <img src="/images/illustrations/etoile.png" alt="Étoile" id="etoile" className="illu" />
+              </h1>
               <div className="container-info">
                 <div className="info">
-                  <Image src="/icones/diplome.png" alt="Diplôme" width={45} height={45} />
+                  <img src="/icones/diplome.png" alt="Diplôme"/>
                   <p className="bolder"><strong>{experience} ans</strong></p>
                   
                 </div>
                 <div className="info">
-                  <Image src="/icones/location.png" alt="Localisation" width={38} height={37} />
+                  <img src="/icones/location.png" alt="Localisation"/>
                   <p className="bolder"><strong>{adresse}</strong></p>
                 </div>
               </div>
@@ -40,6 +43,8 @@ export default function Page() {
               </div>
             </div>
           </div>
+      </div>
+      <div className="slide" id="techniques">
       </div>
     </>
   )

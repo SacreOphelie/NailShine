@@ -1,4 +1,4 @@
-#home{
+#accueil{
     display: flex;
     padding-top:$padding-top;
     padding-bottom:$padding-bottom;
@@ -18,14 +18,16 @@
             }
             #cadre{
                 width:400px;
-                height:500px;
             }
             #noeud{
+                width:75px;
                 top:50px;
                 right:25px;
                 @include animation;
             }
             #vernis{
+                width:75px;
+                height:125px;
                 bottom:0px;
                 left:10px;
                 @include animation($name:rotation_2);
@@ -39,6 +41,14 @@
             h1{
                 @include titre($taille:124px);
                 color:$text-darker;
+                position:relative;
+                width:fit-content;
+                #etoile{
+                    position:absolute;
+                    top:0px;
+                    right:-50px;
+                    width:75px;
+                }
             }
             .info{
                 display:flex;
@@ -46,6 +56,7 @@
                 align-items:center;
                 img{
                     object-fit:contain;
+                    width:45px;
                 }
             }
             p{
@@ -63,14 +74,25 @@
         @media(max-width: 1500px){
             width:90%;
             margin: 0 auto;
+            .right{
+                h1{
+                    #etoile{
+                        top:-5px;
+                        right:-40px;
+                        width:65px;
+                    }
+                }
+            }
         }
         @media(max-width: 1310px){
             flex-direction:column;
             align-items:center;
             .right{
+                align-items:center;
                 h1{
                     text-align:center;
                 }
+                
                 p{
                     text-align:center !important;
                 }
@@ -84,6 +106,11 @@
         }
         @media(max-width: 810px){
             .right{
+                h1{
+                    #etoile{
+                        display:none;
+                    }
+                }
                 .container-btn{
                     flex-direction:column;
                     align-items:center;
@@ -111,5 +138,17 @@
                 }
             }
         }
+    }
+}
+
+#techniques{
+    background-image:url('/images/fonds/fond_techniques.png');
+    position: relative;
+    #top-technique{
+        position:absolute;
+        top: -125px;
+        right:0px;
+        width:100%;
+        object-fit:contain;
     }
 }
