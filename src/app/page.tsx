@@ -1,5 +1,5 @@
 import Image from "next/image";
-import '@/styles/home.scss';
+
 import Button from "@/components/Buttons/Button";
 import { contact } from "@/config/contact";
 
@@ -13,7 +13,7 @@ export default function Page() {
       <div className="slide" id="home">
           <div className="container">
             <div className="left">
-              <Image src="/images/prothesiste/Cadre-1.png" alt="Prothésiste ongulaire" width={400} height={500} id="cadre" />
+              <Image src="/images/prothesiste/Cadre-1.png" alt="Prothésiste ongulaire" width={400} height={500} id="cadre" priority />
               <Image src="/images/illustrations/Noeud.png" alt="Noeud" id="noeud" className="illu" width={75} height={75} />
               <Image src="/images/illustrations/Vernis.png" alt="Vernis" id="vernis" className="illu" width={75} height={125} />
             </div>

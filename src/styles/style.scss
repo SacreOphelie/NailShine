@@ -17,6 +17,8 @@
 
 .button{
     display: inline-block;
+    width:fit-content;
+    height:fit-content;
     padding:$padding-button;
     background-color:$color-dark;
     color:$text-white;

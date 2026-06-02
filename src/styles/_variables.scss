@@ -13,11 +13,22 @@
     src: url('/typo/Roboto-Regular.ttf') format('truetype');
 }
 
-@mixin titre($taille: 80px) {
+@mixin titre($taille: 100px) {
   font-family: 'Kindred', sans-serif;
   font-size: $taille;
   text-decoration:none;
   font-weight: normal;
+  line-height: 1;
+  @media (max-width: 1500px) {
+        font-size: $taille - 32px;
+   }
+  @media (max-width: 810px) {
+        font-size: $taille - 56px;
+    }
+  @media (max-width: 520px) {
+        font-size: $taille - 68px;
+    }
+  
 }
 
 @mixin sous-titre($taille: 40px) {
@@ -26,13 +37,20 @@
   text-decoration:none;
 }
 
-@mixin text($taille: 16px, $epaisseur: normal, $color: $text-darker, $align: justify) {
+@mixin text($taille: 20px, $epaisseur: normal, $color: $text-darker, $align: justify) {
   font-family: 'Roboto', sans-serif;
   font-size: $taille;
   font-weight: $epaisseur;
   text-decoration:none;
   color: $color;
   text-align: $align;
+    @media (max-width: 810px) {
+        font-size: $taille - 4px;
+    }
+    @media (max-width: 520px) {
+        font-size: 16px;
+    }
+
 }
 
 @mixin button($taille: 24px) {
@@ -41,9 +59,13 @@
   letter-spacing: 5%;
   font-weight: lighter;
   text-decoration:none;
+  text-align: center;
+    @media (max-width: 520px) {
+        font-size: $taille - 4px;
+    }
 }
 
-@mixin text-chicle($taille: 16px) {
+@mixin text-chicle($taille: 20px) {
   font-family: 'Chicle', sans-serif;
   font-size: $taille;
   letter-spacing: 5%;
