@@ -32,8 +32,9 @@
 @mixin sous-titre($taille: 24px) {
   font-family: 'Chicle', sans-serif;
   font-size: $taille;
-  text-decoration:none;
   letter-spacing: 5%;
+  font-weight: lighter;
+  text-decoration:none;
     @media (max-width: 520px) {
         font-size: 20px;
     }
@@ -47,7 +48,8 @@
   color: $color;
   text-align: $align;
     @media (max-width: 810px) {
-        font-size: $taille - 4px;
+        $responsive-size: if($taille == 24px, $taille - 4px, $taille);
+        font-size: $responsive-size;
     }
     @media (max-width: 520px) {
         font-size: 16px;

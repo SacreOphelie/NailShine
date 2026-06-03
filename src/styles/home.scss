@@ -56,6 +56,9 @@
                     object-fit:contain;
                     width:45px;
                 }
+                #location{
+                    width:40px;
+                }
             }
             p{
                 @include text($taille:24px);
@@ -131,6 +134,13 @@
                     bottom:-10px;
                 }
             }
+            .right{
+                .info{
+                    img{
+                        width:30px;
+                    }
+                }
+            }
         }
     }
 }
@@ -165,6 +175,7 @@
             display:flex;
             gap:$gap-medium;
             overflow-x: scroll;
+            padding:$padding-medium;
             .card{
                 @include shadow;
                 @include border;
@@ -175,21 +186,71 @@
                 display:flex;
                 justify-content:flex-end;
                 flex-direction:column;
-                .technique{
+                background-size:cover;
+                background-position:center center;
+                background-repeat:no-repeat;
+                 .technique{
                     width:100%;
+                    @include shadow($y:-5px);
                     height:fit-content;
                     display:flex;
                     flex-direction:column;
                     gap:$gap-small;
+                    background-color:$color-dark;
+                    border-radius:$border-radius-large;
+                    padding:$padding-small;
+                    max-height:50px;
+                    overflow:hidden;
+                    transition:
+                        max-height 0.35s ease;
                     h4{
                         @include sous-titre;
                         color:$text-white;
                         text-align:center;
                     }
                     p{
-                        @include text;
+                        @include text($taille:16px);
                         color:$text-white;
                         text-align:center;
+                        transform:translateY(10px);
+                        transition:transform 2s ease;
+                    }
+                }
+                .technique{
+                    width:100%;
+                    @include shadow($y:-5px);
+                    height:fit-content;
+                    display:flex;
+                    flex-direction:column;
+                    gap:$gap-small;
+                    background-color:$color-dark;
+                    border-radius:$border-radius-large;
+                    padding:$padding-small;
+                    max-height:50px;
+                    overflow:hidden;
+                    transition:
+                        max-height 0.35s ease;
+                    h4{
+                        @include sous-titre;
+                        color:$text-white;
+                        text-align:center;
+                    }
+                    p{
+                        @include text($taille:16px);
+                        color:$text-white;
+                        text-align:center;
+                        transform:translateY(10px);
+                        transition:transform 2s ease;
+                    }
+                }
+                &:hover{
+                    .technique{
+                        max-height:100%;
+                        transition: max-height 0.5s linear;
+                        p{
+                            transform:translateY(0);
+                            transition:transform 0.5s ease;
+                        }
                     }
                 }
             }

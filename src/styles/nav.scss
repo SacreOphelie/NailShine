@@ -92,7 +92,7 @@ nav{
     }
     .container-menu.is-open{
         max-height: 100%;
-        padding:100px 0px;
+        padding:$padding-xlarge 0px;
         opacity:1;
         visibility:visible;
         transition:
@@ -125,6 +125,11 @@ nav{
         }
         .nav-burger{
             display:flex;
+        }
+    }
+    @media(max-height:600px){
+        .container-menu.is-open{
+            padding:$padding-large 0px;
         }
     }
 }

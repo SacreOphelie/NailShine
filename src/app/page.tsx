@@ -1,13 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
+import {supabase} from "@/config/supabase";
 
 import Button from "@/components/Buttons/Button";
 import { contact } from "@/config/contact";
 
-export default function Page() {
+export default async function Page() {
   const anneeDebut = 2022;
   const experience = new Date().getFullYear() - anneeDebut + 1;
   const adresse = "Tubize 1480, Belgique";
+
+  // Supabase : récupérer les données de la table "techniques"
+  const {data: techniques, error} = await supabase
+    .from('techniques')
+    .select('*');
+  if (error) {
+    console.error("Erreur lors de la récupération des techniques :", error);
+  }
 
 	return(
     <>
@@ -24,13 +33,12 @@ export default function Page() {
               </h1>
               <div className="container-info">
                 <div className="info">
-                  <img src="/icones/diplome.png" alt="Diplôme"/>
-                  <p className="bolder"><strong>{experience} ans</strong></p>
-                  
+                  <img src="/icones/location.png" alt="Localisation" id="location" />
+                  <p className="bolder"><strong>{adresse}</strong></p>
                 </div>
                 <div className="info">
-                  <img src="/icones/location.png" alt="Localisation"/>
-                  <p className="bolder"><strong>{adresse}</strong></p>
+                  <img src="/icones/diplome.png" alt="Diplôme"/>
+                  <p className="bolder"><strong>{experience} ans</strong></p>
                 </div>
               </div>
               <p>
@@ -51,12 +59,14 @@ export default function Page() {
         <div className="wrapper container">
             <h2>Techniques</h2>
             <div className="slider">
-              <div className="card">
-                <div className="technique">
-                  <h4>Test</h4>
-                  <p>Lorem Ipsum</p>
+              {techniques?.map(technique => (
+                <div className="card" key={technique.id} style={{backgroundImage: `url(${technique.image_url})`}}>
+                  <div className="technique">
+                    <h4>{technique.nom}</h4>
+                    <p>{technique.description}</p>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
         </div>
       </div>

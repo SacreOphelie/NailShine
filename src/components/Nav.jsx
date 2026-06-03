@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Logo from '@/components/Logo';
 import '@/styles/nav.scss';
@@ -14,6 +14,20 @@ const navItems = [
 
 export default function Nav(){
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    // Ferme le menu si la fenêtre est redimensionnée au-delà de 1500px
+    useEffect(() => {
+        const closeMenuOnDesktop = () => {
+            if (window.innerWidth > 1500) {
+                setIsMenuOpen(false);
+            }
+        };
+
+        closeMenuOnDesktop();
+        window.addEventListener('resize', closeMenuOnDesktop);
+
+        return () => window.removeEventListener('resize', closeMenuOnDesktop);
+    }, []);
 
     return(
         <>
