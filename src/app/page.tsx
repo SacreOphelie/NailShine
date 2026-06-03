@@ -37,7 +37,7 @@ export default async function Page() {
                   <p className="bolder"><strong>{adresse}</strong></p>
                 </div>
                 <div className="info">
-                  <img src="/icones/diplome.png" alt="Diplôme"/>
+                  <img src="/icones/diplome.png" alt="Diplôme" id="diplome" />
                   <p className="bolder"><strong>{experience} ans</strong></p>
                 </div>
               </div>

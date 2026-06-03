@@ -48,16 +48,24 @@
                     width:75px;
                 }
             }
-            .info{
-                display:flex;
+            .container-info{
                 gap:$gap-small;
-                align-items:center;
-                img{
-                    object-fit:contain;
-                    width:45px;
-                }
-                #location{
-                    width:40px;
+                display:flex;
+                flex-direction:column;
+                .info{
+                    display:flex;
+                    gap:$gap-small;
+                    align-items:flex-end;
+                    img{
+                        object-fit:contain;
+                        width:45px;
+                    }
+                    #diplome{
+                        transform: translateY(8px);
+                    }
+                    #location{
+                        width:35px;
+                    }
                 }
             }
             p{
@@ -87,7 +95,6 @@
             flex-direction:column;
             align-items:center;
             .right{
-                align-items:center;
                 h1{
                     text-align:center;
                     #etoile{
@@ -138,6 +145,9 @@
                 .info{
                     img{
                         width:30px;
+                    }
+                    #location{
+                        width:25px;
                     }
                 }
             }
