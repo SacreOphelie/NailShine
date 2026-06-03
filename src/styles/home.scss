@@ -1,14 +1,12 @@
 #accueil{
     display: flex;
     padding-top:$padding-top;
-    padding-bottom:$padding-bottom;
+    padding-bottom:100px;
+    min-height:fit-content;
     .container{
-        width:1400px;
-        margin:0 auto;
         display:flex;
         gap:$gap-large;
         height:fit-content;
-        
         .left{
             width:fit-content;
             height:fit-content;
@@ -17,7 +15,7 @@
                 object-fit:contain;
             }
             #cadre{
-                width:400px;
+                width:365px;
             }
             #noeud{
                 width:75px;
@@ -72,8 +70,6 @@
             }
         }
         @media(max-width: 1500px){
-            width:90%;
-            margin: 0 auto;
             .right{
                 h1{
                     #etoile{
@@ -91,6 +87,9 @@
                 align-items:center;
                 h1{
                     text-align:center;
+                    #etoile{
+                        display:none;
+                    }
                 }
                 
                 p{
@@ -106,14 +105,10 @@
         }
         @media(max-width: 810px){
             .right{
-                h1{
-                    #etoile{
-                        display:none;
-                    }
-                }
                 .container-btn{
                     flex-direction:column;
                     align-items:center;
+                    width:100%;
                     .button{
                         width:100%;
                     }
@@ -123,32 +118,81 @@
         @media(max-width:400px){
             .left{
                 #cadre{
-                    width:350px;
-                    height:400px;
+                    width:300px;
                 }
                 #noeud{
-                    width:50px;
-                    height:50px;
-                    right:30px;
+                    width:60px;
+                    right:20px;
+                    top:25px;
                 }
                 #vernis{
                     width:50px;
-                    height:100px;
-                    left:25px;
+                    left:10px;
+                    bottom:-10px;
                 }
             }
         }
     }
 }
 
+#top-techniques{
+    display:block;
+    margin-bottom: -5px;
+    overflow:visible;
+    position:relative;
+    z-index:$index-null;
+    path{
+        fill:$color-dark;
+        @include drop-shadow;
+    }
+}
 #techniques{
-    background-image:url('/images/fonds/fond_techniques.png');
-    position: relative;
-    #top-technique{
-        position:absolute;
-        top: -125px;
-        right:0px;
-        width:100%;
-        object-fit:contain;
+    background-color:$color-dark;
+    position:relative;
+    z-index:$index-low;
+    min-height:fit-content;
+    padding-top:$padding-medium;
+    padding-bottom:$padding-xlarge;
+    .container{
+        display:flex;
+        flex-direction:column;
+        gap:$gap-large;
+        h2{
+            @include titre;
+            color:$text-white;
+        }
+        .slider{
+            display:flex;
+            gap:$gap-medium;
+            overflow-x: scroll;
+            .card{
+                @include shadow;
+                @include border;
+                border-radius:$border-radius-large;
+                background-color:$color-light;
+                min-height:250px;
+                width:400px;
+                display:flex;
+                justify-content:flex-end;
+                flex-direction:column;
+                .technique{
+                    width:100%;
+                    height:fit-content;
+                    display:flex;
+                    flex-direction:column;
+                    gap:$gap-small;
+                    h4{
+                        @include sous-titre;
+                        color:$text-white;
+                        text-align:center;
+                    }
+                    p{
+                        @include text;
+                        color:$text-white;
+                        text-align:center;
+                    }
+                }
+            }
+        }
     }
 }

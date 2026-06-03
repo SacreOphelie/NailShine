@@ -19,22 +19,24 @@
   text-decoration:none;
   font-weight: normal;
   line-height: 1;
+  text-wrap: wrap;
   @media (max-width: 1500px) {
-        font-size: $taille - 32px;
+        font-size: $taille - 24px;
    }
-  @media (max-width: 810px) {
-        font-size: $taille - 56px;
-    }
   @media (max-width: 520px) {
-        font-size: $taille - 68px;
+        font-size: $taille - 52px;
     }
   
 }
 
-@mixin sous-titre($taille: 40px) {
+@mixin sous-titre($taille: 24px) {
   font-family: 'Chicle', sans-serif;
   font-size: $taille;
   text-decoration:none;
+  letter-spacing: 5%;
+    @media (max-width: 520px) {
+        font-size: 20px;
+    }
 }
 
 @mixin text($taille: 20px, $epaisseur: normal, $color: $text-darker, $align: justify) {
@@ -89,6 +91,10 @@ $bg-image: url('../../public/images/fonds/fond_homepage.png');
     color: $color-shadow;
     box-shadow: 0 $y $blur $color-shadow;
 }
+@mixin drop-shadow($y: 5px, $blur:20px){
+    color: $color-shadow;
+    filter: drop-shadow(0px -5px 15px $color-shadow);
+}
 
 // Border et radius \\
 
@@ -110,7 +116,7 @@ $padding-medium:25px;
 $padding-large:50px;
 $padding-xlarge:100px;
 $padding-top:275px;
-$padding-bottom:250px;
+$padding-bottom:200px;
 
 $margin-small:25px;
 $margin-medium:50px;
@@ -163,3 +169,9 @@ $gap-large:50px;
     }
 }
 
+// Z-index \\
+
+$index-null: 0;
+$index-low: 1;
+$index-medium:2;
+$index-high:3;

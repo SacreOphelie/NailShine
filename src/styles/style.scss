@@ -17,7 +17,14 @@ body{
     min-height:100vh;
     background-size:cover;
     background-position:center center;
-    
+}
+
+.wrapper{
+    width:1400px;
+    margin:0 auto;
+    @media(max-width:1500px){
+        width:90%;
+    }
 }
 
 .button{
@@ -44,6 +51,9 @@ body{
 
 .illu{
     position:absolute;
+    z-index:$index-medium;
 }
+
+
 
 

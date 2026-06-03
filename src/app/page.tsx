@@ -12,7 +12,7 @@ export default function Page() {
 	return(
     <>
       <div className="slide" id="accueil">
-          <div className="container">
+          <div className="container wrapper">
             <div className="left">
               <img src="/images/prothesiste/Cadre-1.png" alt="Prothésiste ongulaire"id="cadre" />
               <img src="/images/illustrations/Noeud.png" alt="Noeud" id="noeud" className="illu"/>
@@ -44,7 +44,21 @@ export default function Page() {
             </div>
           </div>
       </div>
+      <svg id="top-techniques" viewBox="0 0 1919 238.09" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1919,60.89v177.19H0V0c106.64,21.77,213.21,44.72,321.24,59.33,169.38,22.91,340.04,24.01,510.82,25.01,87.5.51,175.4,1.39,262.89,0,224.18-3.57,447.68-29.44,671.87-35.9,40.33-1.16,88.72-3.94,128.29,3.13,8.13,1.45,18.01,3.29,23.9,9.33Z"/>
+      </svg>
       <div className="slide" id="techniques">
+        <div className="wrapper container">
+            <h2>Techniques</h2>
+            <div className="slider">
+              <div className="card">
+                <div className="technique">
+                  <h4>Test</h4>
+                  <p>Lorem Ipsum</p>
+                </div>
+              </div>
+            </div>
+        </div>
       </div>
     </>
   )
