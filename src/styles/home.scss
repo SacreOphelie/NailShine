@@ -61,7 +61,7 @@
                         width:45px;
                     }
                     #diplome{
-                        transform: translateY(8px);
+                        transform: translateY(10px);
                     }
                     #location{
                         width:35px;
@@ -184,15 +184,32 @@
         .slider{
             display:flex;
             gap:$gap-medium;
-            overflow-x: scroll;
+            overflow-x: auto;
             padding:$padding-medium;
+            scrollbar-width:25px;
+            scrollbar-color:$color-darker rgba(255, 192, 203, 0);
+            &::-webkit-scrollbar-track {
+                background: rgba(116, 255, 179, 0);
+                border-radius: 10px;
+            }
+            &::-webkit-scrollbar-thumb {
+                background: white;
+                border-radius: 10px; 
+            }
+            &::-webkit-scrollbar-thumb:hover{
+                background: rgba(255, 0, 0, 0);
+            }
+            user-select: none; 
+            -webkit-user-select: none; /* Pour Safari/Chrome */
+            -moz-user-select: none; /* Pour Firefox */
+
             .card{
                 @include shadow;
                 @include border;
                 border-radius:$border-radius-large;
                 background-color:$color-light;
                 min-height:250px;
-                width:400px;
+                min-width:400px;
                 display:flex;
                 justify-content:flex-end;
                 flex-direction:column;

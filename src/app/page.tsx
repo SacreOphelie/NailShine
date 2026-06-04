@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import {supabase} from "@/config/supabase";
-
 import Button from "@/components/Buttons/Button";
 import { contact } from "@/config/contact";
+import SliderTechniques from "@/components/SliderTechniques";
 
 export default async function Page() {
   const anneeDebut = 2022;
@@ -58,16 +58,7 @@ export default async function Page() {
       <div className="slide" id="techniques">
         <div className="wrapper container">
             <h2>Techniques</h2>
-            <div className="slider">
-              {techniques?.map(technique => (
-                <div className="card" key={technique.id} style={{backgroundImage: `url(${technique.image_url})`}}>
-                  <div className="technique">
-                    <h4>{technique.nom}</h4>
-                    <p>{technique.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <SliderTechniques techniques={techniques} />
         </div>
       </div>
     </>
