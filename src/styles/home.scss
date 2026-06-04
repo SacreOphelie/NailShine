@@ -97,6 +97,7 @@
             .right{
                 h1{
                     text-align:center;
+                    width:100%;
                     #etoile{
                         display:none;
                     }
@@ -171,7 +172,6 @@
     position:relative;
     z-index:$index-low;
     min-height:fit-content;
-    padding-top:$padding-medium;
     padding-bottom:$padding-xlarge;
     .container{
         display:flex;
@@ -186,18 +186,18 @@
             gap:$gap-medium;
             overflow-x: auto;
             padding:$padding-medium;
-            scrollbar-width:25px;
+            scrollbar-width:10px;
             scrollbar-color:$color-darker rgba(255, 192, 203, 0);
             &::-webkit-scrollbar-track {
-                background: rgba(116, 255, 179, 0);
+                background: $color-shadow;
                 border-radius: 10px;
             }
             &::-webkit-scrollbar-thumb {
-                background: white;
+                background: $color-white;
                 border-radius: 10px; 
             }
             &::-webkit-scrollbar-thumb:hover{
-                background: rgba(255, 0, 0, 0);
+                background: $color-shadow;
             }
             user-select: none; 
             -webkit-user-select: none; /* Pour Safari/Chrome */
@@ -279,6 +279,11 @@
                             transition:transform 0.5s ease;
                         }
                     }
+                }
+            }
+            @media(max-width: 520px){
+                .card{
+                    min-width:300px;
                 }
             }
         }
