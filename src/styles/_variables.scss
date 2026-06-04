@@ -13,8 +13,10 @@
     src: url('/typo/Roboto-Regular.ttf') format('truetype');
 }
 
-@mixin titre($taille: 100px) {
+@mixin titre($taille: 100px, $color: $text-darker, $align: left) {
   font-family: 'Kindred', sans-serif;
+  color:$color;
+  text-align: $align;
   font-size: $taille;
   text-decoration:none;
   font-weight: normal;
@@ -32,9 +34,11 @@
   
 }
 
-@mixin sous-titre($taille: 24px) {
+@mixin sous-titre($taille: 24px, $color: $text-white, $align: center) {
   font-family: 'Chicle', sans-serif;
   font-size: $taille;
+  text-align: $align;
+  color: $color;
   letter-spacing: 5%;
   font-weight: lighter;
   text-decoration:none;
