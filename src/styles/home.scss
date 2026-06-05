@@ -172,11 +172,44 @@
     position:relative;
     z-index:$index-low;
     min-height:fit-content;
-    padding-bottom:$padding-xlarge;
+    // padding-bottom:$padding-xlarge;
+    #bottom-techniques{
+        display:block;
+        overflow:visible;
+        position:relative;
+        bottom:0;
+        z-index:$index-medium;
+        path{
+            fill:$color-middle;
+        }
+        
+    }
     .container{
         display:flex;
+        position:relative;
         flex-direction:column;
         gap:$gap-large;
+        padding-bottom:$padding-medium;
+        #rond1_technique{
+            top:-240px;
+            right:-100px;
+            width:120px;
+        }
+        #rond2_technique{
+            top:-170px;
+            right:5px;
+            width:60px;
+        }
+        #etoile1_technique{
+            bottom:-100px;
+            left:-100px;
+            width:120px;
+        }
+        #etoile2_technique{
+            bottom:-100px;
+            left:0px;
+            width:60px;
+        }
         h2{
             @include titre;
             color:$text-white;
@@ -278,8 +311,60 @@
                 }
             }
         }
+        @media(max-width: 1500px){
+            #rond1_technique{
+                top:-150px;
+                right:0px;
+                width:100px;
+            }
+            #rond2_technique{
+                top:-100px;
+                right:90px;
+                width:40px;
+            }
+            #etoile1_technique{
+                bottom:-75px;
+                left:-50px;
+                width:100px;
+            }
+            #etoile2_technique{
+                bottom:-75px;
+                left:25px;
+                width:40px;
+            }
+        }
+        @media(max-width: 810px){
+            #rond1_technique{
+                top:-100px;
+                right:0px;
+                width:75px;
+            }
+            #rond2_technique{
+                top:-50px;
+                right:65px;
+                width:30px;
+            }
+            #etoile1_technique{
+                bottom:-50px;
+                left:-25px;
+                width:75px;
+            }
+            #etoile2_technique{
+                bottom:-50px;
+                left:40px;
+                width:30px;
+            }
+        }
         @media(max-width: 520px){
             padding-top:$padding-medium;
+            #rond1_technique{
+                top:-75px;
+                right:0px;
+            }
+            #rond2_technique{
+                top:-25px;
+                right:60px;
+            }
             .slider{
                 .card{
                     min-width:300px;
@@ -287,4 +372,5 @@
             }
         }
     }
+
 }
