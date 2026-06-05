@@ -69,4 +69,14 @@
             height:70px;
         }
     }
+    @media(max-width:1310px){
+        min-height:350px;
+        min-width:350px;
+        width:350px;
+    }
+    @media(max-width:520px){
+        min-height:300px;
+        min-width:300px;
+        width:300px;
+    }
 }

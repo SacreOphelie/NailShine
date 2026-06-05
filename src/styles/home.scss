@@ -2,6 +2,16 @@ h2{
     @include titre;
     color:$text-white;
 }
+.container{
+    display:flex;
+    position:relative;
+    flex-direction:column;
+    gap:$gap-large;
+    padding-bottom:$padding-medium;
+    @media(max-width:520px){
+        padding-top:$padding-medium;
+    }
+}
 #accueil{
     display: flex;
     padding-top:$padding-top;
@@ -190,11 +200,6 @@ h2{
         
     }
     .container{
-        display:flex;
-        position:relative;
-        flex-direction:column;
-        gap:$gap-large;
-        padding-bottom:$padding-medium;
         #rond1_technique{
             top:-240px;
             right:-100px;
@@ -330,7 +335,6 @@ h2{
             }
         }
         @media(max-width: 520px){
-            padding-top:$padding-medium;
             #rond1_technique{
                 top:-55px;
                 right:-10px;
@@ -363,10 +367,13 @@ h2{
 #realisations{
     background-color:$color-middle;
     .container{
-        display:flex;
-        flex-direction:column;
-        gap:$gap-large;
-        padding-bottom:$padding-medium;
-        
+        .container-rea{
+            padding-top:$padding-medium;
+            display:flex;
+            gap:$gap-medium;
+            flex-wrap:wrap;
+            align-items:center;
+            justify-content:center;
+        }
     }
 }
