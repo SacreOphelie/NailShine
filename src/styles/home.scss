@@ -1,3 +1,7 @@
+h2{
+    @include titre;
+    color:$text-white;
+}
 #accueil{
     display: flex;
     padding-top:$padding-top;
@@ -175,7 +179,7 @@
     // padding-bottom:$padding-xlarge;
     #bottom-techniques{
         display:block;
-        margin-bottom: -5px;
+        transform:translateY(5px);
         overflow:visible;
         position:relative;
         bottom:0;
@@ -210,10 +214,6 @@
             bottom:-100px;
             left:0px;
             width:60px;
-        }
-        h2{
-            @include titre;
-            color:$text-white;
         }
         .slider{
             display:flex;
@@ -250,33 +250,6 @@
                 background-size:cover;
                 background-position:center center;
                 background-repeat:no-repeat;
-                 .technique{
-                    width:100%;
-                    @include shadow($y:-5px);
-                    height:fit-content;
-                    display:flex;
-                    flex-direction:column;
-                    gap:$gap-small;
-                    background-color:$color-dark;
-                    border-radius:$border-radius-large;
-                    padding:$padding-small;
-                    max-height:50px;
-                    overflow:hidden;
-                    transition:
-                        max-height 0.35s ease;
-                    h4{
-                        @include sous-titre;
-                        color:$text-white;
-                        text-align:center;
-                    }
-                    p{
-                        @include text($taille:16px);
-                        color:$text-white;
-                        text-align:center;
-                        transform:translateY(10px);
-                        transition:transform 2s ease;
-                    }
-                }
                 .technique{
                     width:100%;
                     @include shadow($y:-5px);
@@ -364,7 +337,7 @@
                 width:50px;
             }
             #rond2_technique{
-                top:-15px;
+                top:-20px;
                 right:30px;
                 width:25px;
             }
@@ -389,4 +362,11 @@
 
 #realisations{
     background-color:$color-middle;
+    .container{
+        display:flex;
+        flex-direction:column;
+        gap:$gap-large;
+        padding-bottom:$padding-medium;
+        
+    }
 }

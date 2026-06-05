@@ -4,6 +4,8 @@ import {supabase} from "@/config/supabase";
 import Button from "@/components/Buttons/Button";
 import { contact } from "@/config/contact";
 import SliderTechniques from "@/components/SliderTechniques";
+import '@/styles/home.scss';
+import CardRea from "@/components/Realisations/CardRea";
 
 export default async function Page() {
   const anneeDebut = 2022;
@@ -69,7 +71,12 @@ export default async function Page() {
         </svg>
       </div>
       <div className="slide" id="realisations">
-
+        <div className="wrapper container">
+            <h2>Réalisations</h2>
+            <div className="container-rea">
+              <CardRea />
+            </div>
+        </div>
       </div>
     </>
   )

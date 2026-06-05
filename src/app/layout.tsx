@@ -1,7 +1,7 @@
 import Nav from "@/components/Nav";
 import { logoIcon } from "@/config/assets";
 import "@/styles/style.scss";
-import '@/styles/home.scss';
+
 
 export const metadata = {
   title: "NailShine",
