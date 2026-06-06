@@ -1,0 +1,56 @@
+.cardAvis{
+    width:350px;
+    height:300px;
+    position:relative;
+    svg{
+        overflow:visible;
+        width:100%;
+        position:absolute;
+        top:0;
+        left:0;
+        z-index:$index-null;
+        path{
+            fill:$color-light;
+        }
+        .path{
+           @include drop-shadow;
+        }
+        .border-path{
+            fill:$color-white;
+        }
+    }
+    .container-text{
+        position:relative;
+        height:100%;
+        z-index:$index-medium;
+        display:flex;
+        flex-direction:column;
+        padding:0 $padding-large;
+        padding-top:$padding-large;
+        align-items:center;
+        justify-content:center;
+        gap:$gap-medium;
+        .quote-icon{
+            @include titre($color:$text-darker);  
+            height:fit-content;
+            line-height:0;
+        }
+        .header{
+            display:flex;
+            justify-content:space-between;
+            width:100%;
+            align-items:flex-end;
+            .nom{
+                @include text-chicle($taille:24px,$color:$text-darker);
+            }
+        }
+        .content{
+            @include text-chicle($color:$text-darker, $align:justify);
+        } 
+        .footer{
+            display:flex;
+            justify-content:flex-end;
+            width:100%;
+        }
+    }
+}

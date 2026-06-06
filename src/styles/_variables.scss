@@ -76,13 +76,14 @@
     }
 }
 
-@mixin text-chicle($taille: 20px,$color: $text-white) {
+@mixin text-chicle($taille: 20px,$color: $text-white,$align:left) {
   font-family: 'Chicle', sans-serif;
   font-size: $taille;
   letter-spacing: 5%;
   font-weight: lighter;
   text-decoration:none;
   color: $color;
+  text-align:$align;
 }
 
 // Couleurs \\

@@ -172,7 +172,6 @@ h2{
 #top-techniques{
     display:block;
     margin-bottom: -5px;
-    overflow:visible;
     position:relative;
     #rond1_technique{
         top:-10px;
@@ -184,6 +183,7 @@ h2{
     }
     svg{
         width:100%;
+        overflow:visible;
         path{
             fill:$color-dark;
             @include drop-shadow;
@@ -199,7 +199,6 @@ h2{
     #bottom-techniques{
         display:block;
         transform:translateY(5px);
-        overflow:visible;
         position:relative;
         bottom:0;
         z-index:$index-medium;       
@@ -397,10 +396,60 @@ h2{
         .container-rea{
             padding-top:$padding-medium;
             display:flex;
-            gap:$gap-medium;
+            gap:$gap-large;
             flex-wrap:wrap;
             align-items:center;
             justify-content:center;
         }
+        .container-btn{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+    }
+    #bottom-realisations{
+        display:block;
+        margin-bottom: -5px;
+        position:relative;
+        svg{
+            overflow:visible;
+            width:100%;
+            path{
+                fill:$color-dark;
+                // @include drop-shadow;
+            }
+        }
+    }
+}
+
+#avis{
+    background-color:$color-dark;
+    min-height:fit-content;
+    overflow:hidden;
+    .container{
+        padding-bottom:$padding-large;
+    }
+    .slider-animation{
+        width:max-content;
+        display:flex;
+        animation: animation-infini 20s linear infinite;
+        &:hover{
+            animation-play-state:paused;
+        }
+        .container-avis{
+            padding-top:$padding-medium;
+            display:flex;
+            gap:$gap-large;
+            padding-left:$padding-large;
+        }
+    }
+    padding-bottom:$padding-bottom;
+}
+@keyframes animation-infini{
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
     }
 }
