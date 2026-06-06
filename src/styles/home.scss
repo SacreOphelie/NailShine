@@ -13,14 +13,13 @@ h2{
     }
 }
 #accueil{
-    display: flex;
     padding-top:$padding-top;
     padding-bottom:100px;
     min-height:fit-content;
     .container{
-        display:flex;
-        gap:$gap-large;
+        flex-direction:row;
         height:fit-content;
+        padding-bottom:0;
         .left{
             width:fit-content;
             height:fit-content;
@@ -175,10 +174,20 @@ h2{
     margin-bottom: -5px;
     overflow:visible;
     position:relative;
-    z-index:$index-null;
-    path{
-        fill:$color-dark;
-        @include drop-shadow;
+    #rond1_technique{
+        top:-10px;
+        right:100px;
+    }
+    #rond2_technique{
+        top:75px;
+        right:200px;
+    }
+    svg{
+        width:100%;
+        path{
+            fill:$color-dark;
+            @include drop-shadow;
+        }
     }
 }
 #techniques{
@@ -193,33 +202,23 @@ h2{
         overflow:visible;
         position:relative;
         bottom:0;
-        z-index:$index-medium;
-        path{
-            fill:$color-middle;
-        }
-        
-    }
-    .container{
-        #rond1_technique{
-            top:-240px;
-            right:-100px;
-            width:120px;
-        }
-        #rond2_technique{
-            top:-170px;
-            right:5px;
-            width:60px;
-        }
+        z-index:$index-medium;       
         #etoile1_technique{
-            bottom:-100px;
-            left:-100px;
-            width:120px;
+            top:-25px;
+            left:100px;
         }
         #etoile2_technique{
-            bottom:-100px;
-            left:0px;
-            width:60px;
+            top:40px;
+            left:190px;
         }
+        svg{
+            width:100%;
+            path{
+                fill:$color-middle;
+            }
+        }
+    }
+    .container{
         .slider{
             display:flex;
             gap:$gap-medium;
@@ -290,71 +289,7 @@ h2{
                 }
             }
         }
-        @media(max-width: 1500px){
-            #rond1_technique{
-                top:-150px;
-                right:0px;
-                width:100px;
-            }
-            #rond2_technique{
-                top:-100px;
-                right:90px;
-                width:40px;
-            }
-            #etoile1_technique{
-                bottom:-75px;
-                left:-50px;
-                width:100px;
-            }
-            #etoile2_technique{
-                bottom:-75px;
-                left:25px;
-                width:40px;
-            }
-        }
-        @media(max-width: 810px){
-            #rond1_technique{
-                top:-100px;
-                right:0px;
-                width:75px;
-            }
-            #rond2_technique{
-                top:-50px;
-                right:65px;
-                width:30px;
-            }
-            #etoile1_technique{
-                bottom:-50px;
-                left:-25px;
-                width:75px;
-            }
-            #etoile2_technique{
-                bottom:-50px;
-                left:40px;
-                width:30px;
-            }
-        }
         @media(max-width: 520px){
-            #rond1_technique{
-                top:-55px;
-                right:-10px;
-                width:50px;
-            }
-            #rond2_technique{
-                top:-20px;
-                right:30px;
-                width:25px;
-            }
-            #etoile1_technique{
-                bottom:-30px;
-                left:-10px;
-                width:50px;
-            }
-            #etoile2_technique{
-                bottom:-30px;
-                left:35px;
-                width:25px;
-            }
             .slider{
                 .card{
                     min-width:300px;
@@ -364,6 +299,98 @@ h2{
     }
 }
 
+// Illustrations techniques
+.illu_grand{
+    width:120px;
+}
+.illu_petit{
+    width:60px;
+}
+@media(max-width:1310){
+    #top-techniques{
+        #rond1_technique{
+            right:50px;
+        }
+        #rond2_technique{
+            top:50px;
+            right:130px;
+        }    
+    }
+    .illu_grand{
+        width:100px;
+    }
+    .illu_petit{
+        width:50px;
+    }
+    #techniques{
+        #bottom-techniques{
+            #etoile1_technique{
+                left:50px;
+            }
+            #etoile2_technique{
+                top:30px;
+                left:125px;
+            }
+        }
+    }
+}
+@media(max-width:810){
+    #top-techniques{
+        #rond1_technique{
+            right:25px;
+        }
+        #rond2_technique{
+            top:40px;
+            right:90px;
+        }    
+    }
+    .illu_grand{
+        width:80px;
+    }
+    .illu_petit{
+        width:40px;
+    }
+    #techniques{
+        #bottom-techniques{
+            #etoile1_technique{
+                left:25px;
+            }
+            #etoile2_technique{
+                top:20px;
+                left:85px;
+            }
+        }
+    }
+}
+@media(max-width:520){
+    #top-techniques{
+        #rond1_technique{
+            right:25px;
+        }
+        #rond2_technique{
+            top:25px;
+            right:65px;
+        }    
+    }
+    .illu_grand{
+        width:50px;
+    }
+    .illu_petit{
+        width:25px;
+    }
+    #techniques{
+        #bottom-techniques{
+            #etoile1_technique{
+                top:-10px;
+                left:25px;
+            }
+            #etoile2_technique{
+                top:20px;
+                left:65px;
+            }
+        }
+    }
+}
 #realisations{
     background-color:$color-middle;
     .container{
