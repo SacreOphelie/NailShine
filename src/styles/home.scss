@@ -8,7 +8,7 @@ h2{
     flex-direction:column;
     gap:$gap-large;
     padding-bottom:$padding-medium;
-    @media(max-width:520px){
+    @media(max-width:$width-mobile){
         padding-top:$padding-medium;
     }
 }
@@ -24,6 +24,9 @@ h2{
             width:fit-content;
             height:fit-content;
             position:relative;
+            display:flex;
+            align-items:center;
+            justify-content:center;
             img{
                 object-fit:contain;
             }
@@ -93,7 +96,7 @@ h2{
                 padding-top:$padding-small;
             }
         }
-        @media(max-width: 1500px){
+        @media(max-width: $width-portable){
             .right{
                 h1{
                     #etoile{
@@ -104,7 +107,7 @@ h2{
                 }
             }
         }
-        @media(max-width: 1310px){
+        @media(max-width: $width-tablette){
             flex-direction:column;
             align-items:center;
             .right{
@@ -127,19 +130,19 @@ h2{
                 }
             }
         }
-        @media(max-width: 810px){
+        @media(max-width: $width-vertical){
             .right{
                 .container-btn{
                     flex-direction:column;
                     align-items:center;
                     width:100%;
                     .button{
-                        width:100%;
+                        width:90%;
                     }
                 }
             }
         }
-        @media(max-width:400px){
+        @media(max-width:$width-mobile){
             .left{
                 #cadre{
                     width:300px;
@@ -288,7 +291,7 @@ h2{
                 }
             }
         }
-        @media(max-width: 520px){
+        @media(max-width: $width-mobile){
             .slider{
                 .card{
                     min-width:300px;
@@ -305,7 +308,7 @@ h2{
 .illu_petit{
     width:60px;
 }
-@media(max-width:1310){
+@media(max-width:$width-tablette){
     #top-techniques{
         #rond1_technique{
             right:50px;
@@ -333,7 +336,7 @@ h2{
         }
     }
 }
-@media(max-width:810){
+@media(max-width:$width-vertical){
     #top-techniques{
         #rond1_technique{
             right:25px;
@@ -361,7 +364,7 @@ h2{
         }
     }
 }
-@media(max-width:520){
+@media(max-width:$width-mobile){
     #top-techniques{
         #rond1_technique{
             right:25px;

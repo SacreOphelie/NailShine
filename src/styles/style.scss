@@ -23,7 +23,7 @@ body{
 .wrapper{
     width:1400px;
     margin:0 auto;
-    @media(max-width:1500px){
+    @media(max-width:$width-portable){
         width:90%;
     }
 }
@@ -47,6 +47,16 @@ body{
         background-color:$color-middle;
         color:$text-darker;
         transform:translateY(-5px);
+    }
+}
+
+.button-secondary{
+    background-color:$color-darker;
+    color:$text-white;
+    &:hover{
+        background-color:$color-light;
+        color:$text-darker;
+        transform:translateY(0px);
     }
 }
 

@@ -1,4 +1,5 @@
 import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 import { logoIcon } from "@/config/assets";
 import "@/styles/style.scss";
 
@@ -19,7 +20,9 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           <Nav />
         </header>
         <main>{children}</main>
-        <footer></footer>
+        <footer>
+          <Footer />
+        </footer>
       </body>
     </html>
   );

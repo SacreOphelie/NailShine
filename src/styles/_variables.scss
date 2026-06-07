@@ -22,13 +22,13 @@
   font-weight: normal;
   line-height: 1;
   text-wrap: wrap;
-  @media (max-width: 1500px) {
+  @media (max-width: $width-portable) {
         font-size: $taille - 24px;
    }
-   @media (max-width: 1310px) {
+   @media (max-width: $width-tablette) {
         text-align: center;
     }
-  @media (max-width: 520px) {
+  @media (max-width: $width-mobile) {
         font-size: $taille - 52px;
     }
   
@@ -42,7 +42,7 @@
   letter-spacing: 5%;
   font-weight: lighter;
   text-decoration:none;
-    @media (max-width: 520px) {
+    @media (max-width: $width-mobile) {
         font-size: 20px;
     }
 }
@@ -54,11 +54,11 @@
   text-decoration:none;
   color: $color;
   text-align: $align;
-    @media (max-width: 810px) {
+    @media (max-width: $width-vertical) {
         $responsive-size: if($taille == 24px, $taille - 4px, $taille);
         font-size: $responsive-size;
     }
-    @media (max-width: 520px) {
+    @media (max-width: $width-mobile) {
         font-size: 16px;
     }
 
@@ -71,7 +71,7 @@
   font-weight: lighter;
   text-decoration:none;
   text-align: center;
-    @media (max-width: 520px) {
+    @media (max-width: $width-mobile) {
         font-size: $taille - 4px;
     }
 }
@@ -84,6 +84,9 @@
   text-decoration:none;
   color: $color;
   text-align:$align;
+  @media(max-width:$width-mobile){
+    font-size: $taille - 4px;
+  }
 }
 
 // Couleurs \\
@@ -186,3 +189,10 @@ $index-null: 0;
 $index-low: 1;
 $index-medium:2;
 $index-high:3;
+
+// Responsive \\
+
+$width-portable:1500px;
+$width-tablette:1310px;
+$width-vertical:810px;
+$width-mobile:520px;
