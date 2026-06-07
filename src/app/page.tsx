@@ -9,6 +9,7 @@ import CardRea from "@/components/Realisations/CardRea";
 import Avis from "@/components/Avis/Avis";
 
 export default async function Page() {
+  // Calcul automatique des années d'expériences en fonction de l'année de début d'activité
   const anneeDebut = 2022;
   const experience = new Date().getFullYear() - anneeDebut + 1;
   const adresse = contact.lieu;
@@ -108,6 +109,7 @@ export default async function Page() {
               <Avis />
               <Avis />
             </div>
+            {/* Copie de la liste des avis pour l'effet de défilement */}
             <div className="container-avis" aria-hidden="true">
               <Avis />
               <Avis />
