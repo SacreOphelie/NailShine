@@ -3,14 +3,8 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Logo from '@/components/Logo';
+import { navItems } from '@/config/navigation';
 import '@/styles/nav.scss';
-
-const navItems = [
-    { name: 'Accueil', href: '/' },
-    { name: 'Qui-suis-je ?', href: '/qui-suis-je' },
-    { name: 'Réalisations', href: '/realisations' },
-    { name: 'Compte', href: '/se-connecter' },
-]
 
 export default function Nav(){
     const [isMenuOpen, setIsMenuOpen] = useState(false);

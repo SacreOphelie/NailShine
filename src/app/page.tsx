@@ -11,7 +11,7 @@ import Avis from "@/components/Avis/Avis";
 export default async function Page() {
   const anneeDebut = 2022;
   const experience = new Date().getFullYear() - anneeDebut + 1;
-  const adresse = "Tubize 1480, Belgique";
+  const adresse = contact.lieu;
 
   // Supabase : récupérer les données de la table "techniques"
   const {data: techniques, error} = await supabase

@@ -20,9 +20,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           <Nav />
         </header>
         <main>{children}</main>
-        <footer>
-          <Footer />
-        </footer>
+        <Footer />
       </body>
     </html>
   );

@@ -28,6 +28,20 @@ body{
     }
 }
 
+.link-logo{
+    width:100px;
+    height:70px;
+    display:inline-block;
+    #logo-svg{
+        object-fit:contain;
+        width:100%;
+        height:100%;
+        .logo-svg{
+            fill:$color-white;
+        }
+    }
+}
+
 .button{
     display: inline-block;
     width:fit-content;
@@ -64,6 +78,8 @@ body{
     position:absolute;
     z-index: $index-high;;
 }
+
+
 
 
 
