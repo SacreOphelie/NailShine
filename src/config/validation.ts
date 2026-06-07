@@ -1,5 +1,5 @@
 export const checkString = (text: string) =>{
-    return text && text.trim().length > 0;
+    return text && text.trim().length > 1;
 };
 
 export const checkEmail = (email: string) => {

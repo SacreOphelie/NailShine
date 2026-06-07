@@ -27,6 +27,7 @@ export default function PageCreateAccount() {
         e.preventDefault();
         setErreur({});
 
+        // Gestions des erreurs grâce aux check de validation ( validation.ts)
         const erreurs = {};
 
         if(!checkString(nom))
@@ -58,7 +59,7 @@ export default function PageCreateAccount() {
             erreurs.reglement = "Vous devez accepter les conditions de confidentialité.";
         }
 
-        // 2. Si l'objet contient au moins une clé, on affiche tout et on stoppe l'envoi
+        // 2. Si l'objet contient au moins une erreur, on affiche tout et on stoppe l'envoi
         if (Object.keys(erreurs).length > 0) {
             setErreur(erreurs);
             return;
@@ -103,7 +104,7 @@ export default function PageCreateAccount() {
                 if(clientError) throw clientError;
 
                 // Inscription réussie, redirection vers la page de connexion
-                router.push('/connexion');
+                router.push('/se-connecter');
             }
         } catch (error){
             setErreur({ general: error.message || "Une erreur est survenue lors de l'inscription." });
@@ -112,24 +113,24 @@ export default function PageCreateAccount() {
 
     return(
         <>
-            <div className="slide" id="about">
+            <div className="slide" id="create-account">
                 <div className="box-connexion">
                     <p>Vous avez déjà un compte ?
-                        <Link href="/connexion">Se connecter</Link>
+                        <Link href="/se-connecter">Se connecter</Link>
                     </p>
                     <form onSubmit={handleRegister}>
                         {erreur.general && <p className="error">{erreur.general}</p>}
                         <div className="group-input">
-                            <Input label="Nom" type="text" value={nom} onChange={(e) => setNom(e.target.value)} required />
+                            <Input label="Nom" type="text" value={nom} onChange={(e) => setNom(e.target.value)} />
                             {erreur.nom && <span className="error-message">{erreur.nom}</span>}
-                            <Input label="Prénom" type="text" value={prenom} onChange={(e) => setPrenom(e.target.value)} required />
+                            <Input label="Prénom" type="text" value={prenom} onChange={(e) => setPrenom(e.target.value)} />
                             {erreur.prenom && <span className="error-message">{erreur.prenom}</span>}
                         </div>
-                        <Input label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                        <Input label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                         {erreur.email && <span className="error-message">{erreur.email}</span>}
-                        <Input label="Mot de passe" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                        <Input label="Mot de passe" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                         {erreur.password && <span className="error-message">{erreur.password}</span>}
-                        <Input label="J'accepte les conditions de confidentialité" type="checkbox" value={reglement} onChange={(e) => setReglement(e.target.checked)} required/>
+                        <Input label="J'accepte les conditions de confidentialité" type="checkbox" value={reglement} onChange={(e) => setReglement(e.target.checked)} />
                         {erreur.reglement && <span className="error-message">{erreur.reglement}</span>}
                         <Input label="J'accepte de poster mes ongles" type="checkbox" checked={consentement} onChange={(e) => setConsentement(e.target.checked)}  />
                         <div className="btn-crea">
