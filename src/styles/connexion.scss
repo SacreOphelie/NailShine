@@ -13,12 +13,34 @@
         flex-direction:column;
         max-width:1400px;
         width:800px;
+        height:fit-content;
         background-color:$color-middle;
         padding:$padding-large;
         gap:$gap-medium;
         border-radius:$border-radius-large;
         @include border;
         @include shadow;
+        position:relative;
+        #etoile1{
+            top:-50px;
+            right:-50px;
+            width:100px;
+        }
+        #etoile2{
+            width:40px;
+            top:-50px;
+            right:-55px;
+        }
+        #rond1{
+            top:50px;
+            left:-40px;
+            width:75px;
+        }
+        #rond2{
+            bottom:-25px;
+            right:300px;
+            width:50px;
+        }
         .no-compte{
             display:flex;
             gap:$gap-small;
@@ -30,12 +52,17 @@
             display:flex;
             flex-direction:column;
             gap:$gap-medium;
-            .error-message{
+            .error-message,.error{
                 @include text($color:$text-darker,$taille:14px);
                 margin-top:$gap-small;
                 display:flex;
                 align-items:center;
                 gap:$gap-small;
+            }
+            .error{
+                @include border($color-darker, 2px);
+                border-radius:$border-radius-min;
+                padding:$padding-small;
             }
             .group-input{
                 display:flex;

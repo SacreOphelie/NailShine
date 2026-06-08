@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import Input from '@/components/Forms/Input';
 import Button from '@/components/Button';
 import {checkEmail} from '@/config/validation';
+import { TriangleAlert } from 'lucide-react';
 
 export default function PageConnexion() {
     const router = useRouter();
@@ -71,15 +72,20 @@ export default function PageConnexion() {
         <>
             <div className="slide" id="connexion">
                 <div className="box-connexion">
-                    <p>C'est votre première visite ?
-                        <Link href="/creer-mon-compte">Créer un compte</Link>
-                    </p>
+                    <div className="no-compte">
+                        <p>C'est votre première visite ?</p>
+                        <Link className='underline' href="/creer-mon-compte">Créer un compte</Link>
+                    </div>
                     <form onSubmit={handleLogin}>
-                        {erreur.general && <p className="error">{erreur.general}</p>}
-                        <Input label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} error={!!erreur.email} />
-                        {erreur.email && <span className="error-message">{erreur.email}</span>}
-                        <Input label="Mot de passe" type="password" value={password} onChange={(e) => setPassword(e.target.value)} error={!!erreur.password} />
-                        {erreur.password && <span className="error-message">{erreur.password}</span>}
+                        {erreur.general && <p className="error"><TriangleAlert size={20}/>{erreur.general}</p>}
+                        <div>
+                            <Input label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} error={!!erreur.email} />
+                            {erreur.email && <div className="error-message"><TriangleAlert size={20}/>{erreur.email}</div>}
+                        </div>
+                        <div>
+                            <Input label="Mot de passe" type="password" value={password} onChange={(e) => setPassword(e.target.value)} error={!!erreur.password} />
+                            {erreur.password && <span className="error-message"><TriangleAlert size={20}/>{erreur.password}</span>}
+                        </div>
                         <div className="btn-crea">
                             <Button text="Se connecter"/>
                         </div>
