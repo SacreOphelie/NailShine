@@ -7,7 +7,7 @@ export const checkEmail = (email: string) => {
     return emailRegex.test(email);
 };
 
-export const checkMdp = (password) => {
+export const checkMdp = (password: string) => {
   const mdpRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
   
   return password && mdpRegex.test(password);
