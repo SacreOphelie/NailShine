@@ -1,7 +1,56 @@
 // Page création de compte
 #create-account, #connexion {
     display: flex;
+    padding-top:$padding-top;
+    padding-bottom:$padding-bottom;
     justify-content: center;
-    align-items: center;
+    height:fit-content;
+    background-image:$bg-image;
+    background-attachment:fixed;
+
+    .box-connexion{
+        display:flex;
+        flex-direction:column;
+        max-width:1400px;
+        width:800px;
+        background-color:$color-middle;
+        padding:$padding-large;
+        gap:$gap-medium;
+        border-radius:$border-radius-large;
+        @include border;
+        @include shadow;
+        .no-compte{
+            display:flex;
+            gap:$gap-small;
+            p,a{
+                @include text($color:$text-white);
+            }
+        }
+        form{
+            display:flex;
+            flex-direction:column;
+            gap:$gap-medium;
+            .error-message{
+                @include text($color:$text-darker,$taille:14px);
+                margin-top:$gap-small;
+                display:flex;
+                align-items:center;
+                gap:$gap-small;
+            }
+            .group-input{
+                display:flex;
+                gap:$gap-small;
+                justify-content: space-between;
+                div{
+                    width:100%;
+                }
+            }
+            .btn-crea{
+                width:100%;
+                display:flex;
+                justify-content: flex-end;
+            }
+        }
+    }
     
 }

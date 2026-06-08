@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import Input from '@/components/Forms/Input';
 import Button from '@/components/Button';
 import { checkString, checkEmail, checkMdp } from '@/config/validation';
+import { TriangleAlert } from 'lucide-react';
 
 export default function PageCreateAccount() {
 
@@ -115,24 +116,35 @@ export default function PageCreateAccount() {
         <>
             <div className="slide" id="create-account">
                 <div className="box-connexion">
-                    <p>Vous avez déjà un compte ?
-                        <Link href="/se-connecter">Se connecter</Link>
-                    </p>
+                    <div className="no-compte">
+                        <p>Vous avez déjà un compte ?</p>
+                        <Link href="/se-connecter" className="underline">Se connecter</Link>
+                    </div>
                     <form onSubmit={handleRegister}>
                         {erreur.general && <p className="error">{erreur.general}</p>}
                         <div className="group-input">
-                            <Input label="Nom" type="text" value={nom} onChange={(e) => setNom(e.target.value)} />
-                            {erreur.nom && <span className="error-message">{erreur.nom}</span>}
-                            <Input label="Prénom" type="text" value={prenom} onChange={(e) => setPrenom(e.target.value)} />
-                            {erreur.prenom && <span className="error-message">{erreur.prenom}</span>}
+                            <div>
+                                <Input label="Nom" type="text" value={nom} onChange={(e) => setNom(e.target.value)} error={!!erreur.nom} />
+                                {erreur.nom && <div className="error-message"><TriangleAlert size={20}/>{erreur.nom}</div>}
+                            </div>
+                            <div>
+                                <Input label="Prénom" type="text" value={prenom} onChange={(e) => setPrenom(e.target.value)} error={!!erreur.prenom} />
+                                {erreur.prenom && <div className="error-message"><TriangleAlert size={20}/>{erreur.prenom}</div>}
+                            </div>
                         </div>
-                        <Input label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                        {erreur.email && <span className="error-message">{erreur.email}</span>}
-                        <Input label="Mot de passe" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                        {erreur.password && <span className="error-message">{erreur.password}</span>}
-                        <Input label="J'accepte les conditions de confidentialité" type="checkbox" value={reglement} onChange={(e) => setReglement(e.target.checked)} />
-                        {erreur.reglement && <span className="error-message">{erreur.reglement}</span>}
-                        <Input label="J'accepte de poster mes ongles" type="checkbox" checked={consentement} onChange={(e) => setConsentement(e.target.checked)}  />
+                        <div>
+                            <Input label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} error={!!erreur.email} />
+                            {erreur.email && <div className="error-message"><TriangleAlert size={20}/>{erreur.email}</div>}
+                        </div>
+                        <div>
+                            <Input label="Mot de passe" type="password" value={password} onChange={(e) => setPassword(e.target.value)} error={!!erreur.password} />
+                            {erreur.password && <div className="error-message"><TriangleAlert size={20}/>{erreur.password}</div>}
+                        </div>
+                        <div>
+                            <Input label="Je reconnais avoir pris connaissance et accepter les Conditions Générales d’Utilisation et la Politique de Confidentialités" type="checkbox" value={reglement} onChange={(e) => setReglement(e.target.checked)} error={!!erreur.reglement} />
+                            {erreur.reglement && <div className="error-message"><TriangleAlert size={20}/>{erreur.reglement}</div>}
+                        </div>
+                        <Input label="J’accepte que mes prestations futures soit publiées sur le site NailShine (vous pouvez toujours modifier cette option dans votre espace compte plus tard)" type="checkbox" checked={consentement} onChange={(e) => setConsentement(e.target.checked)}  />
                         <div className="btn-crea">
                             <Button text="Créer mon compte"/>
                         </div>

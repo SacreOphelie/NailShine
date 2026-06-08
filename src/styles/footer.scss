@@ -8,6 +8,8 @@ footer{
     border-top-right-radius:$border-radius-max;
     border-bottom:0;
     margin-top:-50px;
+    z-index:1000;
+    position:relative;
     .container-footer{
         padding: $padding-medium 0;
         display:flex;

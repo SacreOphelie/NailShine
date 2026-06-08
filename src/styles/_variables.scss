@@ -12,6 +12,11 @@
     font-family: 'Roboto'; 
     src: url('/typo/Roboto-Regular.ttf') format('truetype');
 }
+@font-face {
+    font-family: 'Roboto'; 
+    src: url('/typo/Roboto-Light.ttf') format('truetype');
+    font-weight: 300;
+}
 
 @mixin titre($taille: 100px, $color: $text-darker, $align: left) {
   font-family: 'Kindred', sans-serif;
@@ -47,10 +52,11 @@
     }
 }
 
-@mixin text($taille: 20px, $epaisseur: normal, $color: $text-darker, $align: justify) {
+@mixin text($taille: 20px, $epaisseur: normal, $color: $text-darker, $align: justify,$style: normal) {
   font-family: 'Roboto', sans-serif;
   font-size: $taille;
   font-weight: $epaisseur;
+  font-style: $style;
   text-decoration:none;
   color: $color;
   text-align: $align;
@@ -115,6 +121,7 @@ $bg-image: url('../../public/images/fonds/fond_homepage.png');
 @mixin border($color: $color-white, $width : 5px){
     border: $width solid $color;
 }
+$border-radius-min: 5px;
 $border-radius-small: 10px;
 $border-radius-medium: 15px;
 $border-radius-large: 25px;
@@ -131,6 +138,7 @@ $padding-large:50px;
 $padding-xlarge:100px;
 $padding-top:275px;
 $padding-bottom:200px;
+$padding-input:5px 15px;
 
 $margin-small:25px;
 $margin-medium:50px;

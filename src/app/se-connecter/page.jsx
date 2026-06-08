@@ -76,9 +76,9 @@ export default function PageConnexion() {
                     </p>
                     <form onSubmit={handleLogin}>
                         {erreur.general && <p className="error">{erreur.general}</p>}
-                        <Input label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}  />
+                        <Input label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} error={!!erreur.email} />
                         {erreur.email && <span className="error-message">{erreur.email}</span>}
-                        <Input label="Mot de passe" type="password" value={password} onChange={(e) => setPassword(e.target.value)}  />
+                        <Input label="Mot de passe" type="password" value={password} onChange={(e) => setPassword(e.target.value)} error={!!erreur.password} />
                         {erreur.password && <span className="error-message">{erreur.password}</span>}
                         <div className="btn-crea">
                             <Button text="Se connecter"/>
