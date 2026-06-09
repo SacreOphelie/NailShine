@@ -1,6 +1,6 @@
 export default function Compte(){
     return(
-        <div>
+        <div className="slide">
             Compte
         </div>
     );
