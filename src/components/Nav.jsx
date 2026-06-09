@@ -23,8 +23,10 @@ export default function Nav(){
 
         // notification de toastify
         localStorage.removeItem('token'); 
-        toast.success('Déconnexion réussie.', {
-        
+        toast('Déconnexion réussie.', {
+            icon:"🔓",
+            className: 'toast-success',
+            progressClassName: 'toast-progress-bar',
         });
         router.push('/');
         router.refresh();
@@ -94,6 +96,35 @@ export default function Nav(){
                         {item.name}
                     </Link>
                 ))}
+                {isConnected ? (
+                        <>
+                        <div className="compte-menu-burger">
+                            <Link href="/compte" className="nav-link compte" onClick={() => setIsMenuOpen(false)}>
+                                Compte
+                            </Link>
+                            <div className="sous-menu">
+                                <Link href="/mes-rendez-vous" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+                                    Mes rendez-vous
+                                </Link>
+                                <div onClick={() => {
+                                    handleLogout();
+                                    setIsMenuOpen(false);
+                                }} className="nav-link deco">
+                                    Se déconnecter
+                                </div>
+                            </div>
+                        </div>
+                            <Link href="/favoris" className="nav-link favoris" onClick={() => setIsMenuOpen(false)}>
+                                <img src="/icones/Icon_heart.png" alt="Favoris" />
+                            </Link>
+                        </>
+                    ) : (
+                        <>
+                            <Link href="/se-connecter" className="nav-link compte" onClick={() => setIsMenuOpen(false)}>
+                                Compte
+                            </Link>
+                        </>
+                    )}
             </div>
         </nav>
         </>

@@ -1,5 +1,5 @@
 // Page création de compte
-#create-account, #connexion {
+#create-account, #connexion,#recup-mdp {
     display: flex;
     padding-top:$padding-top;
     padding-bottom:$padding-bottom;
@@ -7,6 +7,8 @@
     height:fit-content;
     background-image:$bg-image;
     background-attachment:fixed;
+    justify-content:center;
+    align-items:center;
 
     .box-connexion{
         display:flex;
@@ -68,6 +70,15 @@
                 @include text($color:$text-white);
             }
         }
+        .success-message{
+            border-radius:$border-radius-min;
+            padding:$padding-small;
+            @include text($color:$text-darker,$taille:14px);
+            display:flex;
+            align-items:center;
+            gap:$gap-small;
+            @include border($width:2px);
+        }
         form{
             display:flex;
             flex-direction:column;
@@ -78,6 +89,9 @@
                 display:flex;
                 align-items:center;
                 gap:$gap-small;
+                svg {
+                    flex-shrink: 0;
+                }
             }
             .error{
                 @include border($color-darker, 2px);
@@ -98,7 +112,7 @@
                     width:100%;
                 }
             }
-            .btn-crea{
+            .btn{
                 width:100%;
                 display:flex;
                 justify-content: flex-end;
@@ -168,12 +182,16 @@
             #rond4{
                 left:150px;
             }
-            .no-compte{
+            .no-compte,.success-message{
+                text-align:left;
                 p,a{
                     text-align:left;
                 }
             }
             form{
+                .error-message,.error,.success-message{
+                    text-align:left;
+                }
                 .btn-crea{
                     justify-content: center;
                 }

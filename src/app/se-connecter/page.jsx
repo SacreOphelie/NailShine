@@ -92,7 +92,7 @@ export default function PageConnexion() {
                             <Link href="/recuperation-mdp" className="forgotten">Mot de passe oublié ?</Link>
                             {erreur.password && <span className="error-message"><TriangleAlert size={20}/>{erreur.password}</span>}
                         </div>
-                        <div className="btn-crea">
+                        <div className="btn">
                             <Button text="Se connecter"/>
                         </div>
                     </form>

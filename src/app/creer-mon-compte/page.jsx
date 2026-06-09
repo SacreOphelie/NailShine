@@ -99,6 +99,7 @@ export default function PageCreateAccount() {
                             id: userId,
                             nom: nom,
                             prenom: prenom,
+                            email:email,
                             consentement: consentement,
                             role: 'client'
                         }
@@ -150,7 +151,7 @@ export default function PageCreateAccount() {
                             {erreur.reglement && <div className="error-message"><TriangleAlert size={20}/>{erreur.reglement}</div>}
                         </div>
                         <Input label="J’accepte que mes prestations futures soit publiées sur le site NailShine (vous pouvez toujours modifier cette option dans votre espace compte plus tard)" type="checkbox" checked={consentement} onChange={(e) => setConsentement(e.target.checked)}  />
-                        <div className="btn-crea">
+                        <div className="btn">
                             <Button text="Créer mon compte"/>
                         </div>
                     </form>

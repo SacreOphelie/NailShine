@@ -49,6 +49,7 @@ body{
 // Style général du button
 
 .button{
+    cursor:pointer;
     display: inline-block;
     width:fit-content;
     height:fit-content;
@@ -195,6 +196,23 @@ body{
         }
         
     }
+}
+
+// Style du toastify
+.toast-success{
+    background-color:$color-dark !important;
+    color:$text-white !important;
+    @include text($color:$text-white);
+    width:fit-content;
+    padding:$padding-medium;
+}
+
+.Toastify__toast-container {
+  @include text();
+}
+
+.toast-progress-bar {
+  background: $color-light !important;
 }
 
 
