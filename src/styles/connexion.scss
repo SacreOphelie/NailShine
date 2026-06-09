@@ -78,6 +78,9 @@
             align-items:center;
             gap:$gap-small;
             @include border($width:2px);
+            svg {
+                flex-shrink: 0;
+            }
         }
         form{
             display:flex;
