@@ -63,7 +63,7 @@ export default function PageConnexion() {
             }
 
             // Connexion réussie => redirection vers la page de compte
-            router.push('/compte');
+            router.push('/se-connecter');
             router.refresh(); 
         }catch (error){
             setErreur({ general: error.message || "Une erreur est survenue lors de la connexion." });
