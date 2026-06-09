@@ -137,6 +137,7 @@
         }
         @media(max-width:$width-mobile)
         {
+            padding:$padding-medium;
             #etoile1{
                 width:50px;
                 top:-25px;
