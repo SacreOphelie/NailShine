@@ -111,6 +111,10 @@ body{
         label{
             @include text($color:$text-white,$epaisseur:300,$style:italic,$taille:16px);
             width:90%;
+            @media(max-width:$width-mobile)
+            {
+                text-align:left;
+            }
         }
     }
     input{

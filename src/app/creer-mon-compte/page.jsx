@@ -119,8 +119,8 @@ export default function PageCreateAccount() {
                 <div className="box-connexion">
                     <img src="images/illustrations/etoile.png" alt="etoile" className="illu" id="etoile1"/>
                     <img src="images/illustrations/etoile.png" alt="etoile2" className="illu" id="etoile2"/>
-                    <img src="images/illustrations/rond.png" alt="rond1" className="illu" id="rond1"/>
-                    <img src="images/illustrations/rond.png" alt="rond2" className="illu" id="rond2"/>
+                    <img src="images/illustrations/Rond.png" alt="rond1" className="illu" id="rond1"/>
+                    <img src="images/illustrations/Rond.png" alt="rond2" className="illu" id="rond2"/>
                     <div className="no-compte">
                         <p>Vous avez déjà un compte ?</p>
                         <Link href="/se-connecter" className="underline">Se connecter</Link>
