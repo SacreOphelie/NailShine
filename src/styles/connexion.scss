@@ -84,6 +84,12 @@
                 border-radius:$border-radius-min;
                 padding:$padding-small;
             }
+            .forgotten{
+                @include text($color:$text-white, $taille:14px,$style:italic,$epaisseur:300);
+                margin-top:5px;
+                display:inline-block;
+                
+            }
             .group-input{
                 display:flex;
                 gap:$gap-small;
