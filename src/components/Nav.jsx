@@ -9,6 +9,7 @@ import '@/styles/nav.scss';
 import { supabase } from '@/config/supabase';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/config/Auth';
+import { toast } from 'react-toastify';
 
 export default function Nav(){
     const router = useRouter();
@@ -19,6 +20,12 @@ export default function Nav(){
     // Déconnexion
     const handleLogout = async () => {
         await supabase.auth.signOut();
+
+        // notification de toastify
+        localStorage.removeItem('token'); 
+        toast.success('Déconnexion réussie.', {
+        
+        });
         router.push('/');
         router.refresh();
     };
