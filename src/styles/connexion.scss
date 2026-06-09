@@ -31,6 +31,16 @@
             top:-50px;
             right:-55px;
         }
+        #etoile3{
+            top:-50px;
+            left:-50px;
+            width:100px;
+        }
+        #etoile4{
+            width:40px;
+            top:-50px;
+            left:-55px;
+        }
         #rond1{
             top:50px;
             left:-40px;
@@ -39,6 +49,16 @@
         #rond2{
             bottom:-25px;
             right:300px;
+            width:50px;
+        }
+        #rond3{
+            top:50px;
+            right:-40px;
+            width:75px;
+        }
+        #rond4{
+            bottom:-25px;
+            left:300px;
             width:50px;
         }
         .no-compte{
@@ -100,6 +120,14 @@
             #etoile2{
                 display:none;
             }
+            #etoile3{
+                width:75px;
+                top:-40px;
+                left:-40px;
+            }
+            #etoile4{
+                display:none;
+            }
             form{
                 .group-input{
                     flex-direction:column;
@@ -114,13 +142,33 @@
                 top:-25px;
                 right:-25px;
             }
+            #etoile3{
+                width:50px;
+                top:-25px;
+                left:-25px;
+            }
             #rond1{
                 width:50px;
                 left:-25px;
             }
+            #rond2{
+                right:150px;
+            }
+            #rond3{
+                width:50px;
+                right:-25px;
+            }
+            #rond4{
+                left:150px;
+            }
             .no-compte{
                 p,a{
                     text-align:left;
+                }
+            }
+            form{
+                .btn-crea{
+                    justify-content: center;
                 }
             }
         }
