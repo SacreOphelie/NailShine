@@ -1,0 +1,28 @@
+#prendre-rdv{
+    display: flex;
+    padding-top:$padding-top;
+    padding-bottom:$padding-bottom;
+    justify-content: center;
+    height:fit-content;
+    background-image:$bg-image;
+    background-attachment:fixed;
+    justify-content:center;
+    align-items:center;
+    .box{
+        display:flex;
+        flex-direction:column;
+        max-width:1400px;
+        width:800px;
+        height:fit-content;
+        background-color:$color-light;
+        padding:$padding-large;
+        gap:$gap-medium;
+        border-radius:$border-radius-large;
+        @include border;
+        @include shadow;
+        position:relative;
+        h2{
+            @include titre($color:$text-darker,$taille:80px);
+        }
+    }
+}

@@ -1,6 +1,5 @@
 h2{
-    @include titre;
-    color:$text-white;
+    @include titre($color:$text-white);
 }
 .container{
     display:flex;

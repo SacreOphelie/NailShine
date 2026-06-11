@@ -3,11 +3,10 @@
 import '@/styles/connexion.scss';
 import {supabase} from "@/config/supabase";
 import { useAuth } from '@/config/Auth';
+import { TriangleAlert } from 'lucide-react';
 
 export default function Compte(){
-    const { userProfil, isConnected,loading } = useAuth();
-
-    if(loading) return <div className="slide" id="compte"><p>Chargement...</p></div>;
+    const { userProfil, isConnected } = useAuth();
 
     return(
         <div className="slide" id="compte">
@@ -19,7 +18,7 @@ export default function Compte(){
                 </div>
             ): (
                 <div className="box-compte">
-                    <h2>Vous devez être connecté pour accéder à votre compte.</h2>
+                    <h4><TriangleAlert size={25}/>Vous devez être connecté pour accéder à votre compte.</h4>
                 </div>
             )}
         </div>
