@@ -69,7 +69,8 @@ export default function RecuperationMdp() {
 
                 // Forcer la déconnexion 
                 await supabase.auth.signOut();
-                router.push('/se-connecter');
+
+                window.location.href = '/se-connecter';
             }
         }catch{
             setErreur({general: "Une erreur est survenue lors de la réinitialisation du mot de passe."});
