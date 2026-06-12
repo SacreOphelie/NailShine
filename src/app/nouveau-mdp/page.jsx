@@ -21,6 +21,10 @@ export default function RecuperationMdp() {
 
     useEffect(() => {
         const hash = window.location.hash;
+        if(!hash || !hash.includes("token")){
+            router.replace('/se-connecter');
+            return;
+        }
         if(hash && hash.includes("otp_expired")){
             setLienInvalide(true);
             setErreur({
