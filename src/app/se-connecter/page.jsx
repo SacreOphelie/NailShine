@@ -89,7 +89,6 @@ export default function PageConnexion() {
                         </div>
                         <div>
                             <Input label="Mot de passe" type="password" value={password} onChange={(e) => setPassword(e.target.value)} error={!!erreur.password} />
-                            <Link href="/recuperation-mdp" className="forgotten">Mot de passe oublié ?</Link>
                             {erreur.password && <span className="error-message"><TriangleAlert size={20}/>{erreur.password}</span>}
                         </div>
                         <div className="btn">
