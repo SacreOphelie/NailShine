@@ -60,6 +60,7 @@ export default function RecuperationMdp() {
                 }
             }else{
                 // Mise à jour réussie
+                router.push('/se-connecter');
                 setPassword('');
                 // Forcer la déconnexion 
                 await supabase.auth.signOut();
@@ -68,7 +69,6 @@ export default function RecuperationMdp() {
                     className: 'toast-success',
                     progressClassName: 'toast-progress-bar',
                 });
-                router.push('/se-connecter');
 
                 
             }
