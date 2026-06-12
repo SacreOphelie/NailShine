@@ -53,11 +53,7 @@ export default function PrendreRdv() {
     // Temps de chargement
     if (loading) {
         return (
-            <div className="slide" id="prendre-rdv">
-                <div className="box">
-                    <p>Chargement...</p>
-                </div>
-            </div>
+            <div className="slide"></div>
         );
     }
     

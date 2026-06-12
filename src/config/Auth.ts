@@ -14,40 +14,36 @@ export function useAuth() {
     useEffect(() => {
         // Récupérer le profil de l'utilisateur
         const getUserProfil = async (userId: string) => {
-            const {data, error} = await supabase
-                .from('clients')
-                .select('nom,prenom,role')
-                .eq('id', userId)
-                .maybeSingle();
-            if(data){
-                setUserProfil(data);
+            try{
+                const {data, error} = await supabase
+                    .from('clients')
+                    .select('nom,prenom,role')
+                    .eq('id', userId)
+                    .maybeSingle();
+                if (error) throw error;
+                if(data){
+                    setUserProfil(data);
+                }
+
+            }catch(error){
+                console.error("Erreur lors de la récupération du profil de l'utilisateur :", error);
             }
         };
-
-        // Vérifier la session de l'utilisateur
-        const checkUser = async () => {
-            const { data: { session } } = await supabase.auth.getSession();
-            setIsConnected(!!session);
-            // Si une session existe récupérer le profil de l'utilisateur
-            if(session?.user){
-                await getUserProfil(session.user.id);
-            }else{
-                setUserProfil(null);
-            }
-            setLoading(false);
-        };
-
-        checkUser();
 
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-            setIsConnected(!!session);// Si session existe, l'utilisateur est connecté
-            // Récupérer la session de l'utilisateur
-            if(session?.user){
-                await getUserProfil(session.user.id);
-            }else{
-                setUserProfil(null);
+            try{
+                setIsConnected(!!session);// Si session existe, l'utilisateur est connecté
+                // Récupérer la session de l'utilisateur
+                if(session?.user){
+                    await getUserProfil(session.user.id);
+                }else{
+                    setUserProfil(null);
+                }
+            }catch (error) {
+                console.error("Erreur lors de la vérification de l'état de connexion :", error);
+            }finally{
+                setLoading(false);
             }
-            setLoading(false);
         });
 
         return () => {
