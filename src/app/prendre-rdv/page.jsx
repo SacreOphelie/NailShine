@@ -79,7 +79,6 @@ export default function PrendreRdv() {
             ) : (
                 <div className="box">
                     <h4>Vous devez être connecté pour prendre rendez-vous.</h4>
-                    
                 </div>
             )}
             </div>
