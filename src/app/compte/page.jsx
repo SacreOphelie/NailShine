@@ -6,7 +6,18 @@ import { useAuth } from '@/config/Auth';
 import { TriangleAlert } from 'lucide-react';
 
 export default function Compte(){
-    const { userProfil, isConnected } = useAuth();
+    const { userProfil, isConnected, loading } = useAuth();
+
+    // Temps de chargement
+    if (loading) {
+        return (
+            <div className="slide" id="prendre-rdv">
+                <div className="box">
+                    <p>Chargement...</p>
+                </div>
+            </div>
+        );
+    }
 
     return(
         <div className="slide" id="compte">
