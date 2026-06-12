@@ -8,12 +8,12 @@ export function useAuth() {
     // Le temps de chargement
     const [loading, setLoading] = useState(true);
     // Profil de l'utilisateur
-    const [userProfil, setUserProfil] = useState(null);
+    const [userProfil, setUserProfil] = useState<any | null>(null);
 
     // Vérifier si l'utilisateur est connecté
     useEffect(() => {
         // Récupérer le profil de l'utilisateur
-        const getUserProfil = async (userId) => {
+        const getUserProfil = async (userId: string) => {
             const {data, error} = await supabase
                 .from('clients')
                 .select('nom,prenom,role')
