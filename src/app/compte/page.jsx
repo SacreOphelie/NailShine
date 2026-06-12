@@ -20,7 +20,7 @@ export default function Compte(){
     // Temps de chargement
     if (loading) {
         return (
-            <div className="slide"></div>
+            <div className="slide">Chargement...</div>
         );
     }
 
@@ -31,7 +31,7 @@ export default function Compte(){
 
     return(
         <div className="slide" id="compte">
-            <div className="box-connexion">
+            <div className="box-compte">
                 <h2>Mon compte</h2>
                 <p>Bienvenue, {userProfil.prenom} {userProfil.nom}!</p>
                 {userProfil.role === 'admin' && <p>Rôle : Administrateur</p>}

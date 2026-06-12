@@ -30,18 +30,32 @@ export function useAuth() {
             }
         };
 
-        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+        const initializeAuth = async () => {
             try{
-                setIsConnected(!!session);// Si session existe, l'utilisateur est connecté
-                // Récupérer la session de l'utilisateur
+                const { data: { session } } = await supabase.auth.getSession();
+                setIsConnected(!!session);
                 if(session?.user){
                     await getUserProfil(session.user.id);
                 }else{
                     setUserProfil(null);
                 }
-            }catch (error) {
-                console.error("Erreur lors de la vérification de l'état de connexion :", error);
+            }catch(error){
+                console.error("Erreur lors de l'initialisation de l'authentification :", error);
             }finally{
+                setLoading(false);
+            }
+        }
+
+        initializeAuth();
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+           if (event === 'SIGNED_IN' || event === 'SIGNED_OUT' || event === 'USER_UPDATED') {
+                setIsConnected(!!session);
+                if (session?.user) {
+                    await getUserProfil(session.user.id);
+                } else {
+                    setUserProfil(null);
+                }
                 setLoading(false);
             }
         });
