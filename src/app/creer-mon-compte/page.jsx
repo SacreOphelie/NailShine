@@ -150,7 +150,7 @@ export default function PageCreateAccount() {
                             <Input label="Je reconnais avoir pris connaissance et accepter les Conditions Générales d’Utilisation et la Politique de Confidentialités" type="checkbox" value={reglement} onChange={(e) => setReglement(e.target.checked)} error={!!erreur.reglement} />
                             {erreur.reglement && <div className="error-message"><TriangleAlert size={20}/>{erreur.reglement}</div>}
                         </div>
-                        <Input label="J’accepte que mes prestations futures soit publiées sur le site NailShine (vous pouvez toujours modifier cette option dans votre espace compte plus tard)" type="checkbox" checked={consentement} onChange={(e) => setConsentement(e.target.checked)}  />
+                            <Input label="J’accepte que mes prestations futures soit publiées sur le site NailShine (vous pouvez toujours modifier cette option dans votre espace compte plus tard)" type="checkbox" checked={consentement} onChange={(e) => setConsentement(e.target.checked)}  />
                         <div className="btn">
                             <Button text="Créer mon compte"/>
                         </div>

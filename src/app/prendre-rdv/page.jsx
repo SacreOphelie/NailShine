@@ -7,6 +7,7 @@ import {supabase} from "@/config/supabase";
 import Select from '@/components/Forms/Select';
 import { useState, useEffect } from 'react';
 import Button from '@/components/Button';
+import Input from '@/components/Forms/Input';
 
 export default function PrendreRdv() {
     const {isConnected, userProfil,loading} = useAuth();
@@ -14,6 +15,8 @@ export default function PrendreRdv() {
     const [techniques, setTechniques] = useState([]);
     // Récupérer le choix client
     const [techniqueId , setTechniqueId] = useState('');
+    // Gérer la case Nail art
+    const [nailArt, setNailArt] = useState(false);
 
     // Récupérer les techniques depuis la base de données
     useEffect(() => {
@@ -47,14 +50,35 @@ export default function PrendreRdv() {
         }
 
         console.log("Technique sélectionnée :", techniqueId);
+        console.log("Nail art :", nailArt);
     }
-
 
     // Temps de chargement
     if (loading) {
         return (
-            <div className="slide">Chargement...</div>
+            <div className="slide"></div>
         );
+    }
+
+    // enlever la technique dont le bool nail_art est à true du select
+    const techniquesPrincipales = techniques.filter(technique => !technique.nail_art);
+    // récupérer la technique dont le bool nail_art est à true
+    const nailArtTechnique = techniques.find(technique => technique.nail_art === true);
+
+    // Calculer le prix de la prestation choisie
+    let prixTotal = 0;
+
+    // Récupérer le prix de la technique choisie
+    if(techniqueId){
+        const techniqueChoisie = techniquesPrincipales.find(technique => technique.id.toString() === techniqueId.toString());
+        if(techniqueChoisie){
+            prixTotal += techniqueChoisie.prix;
+        }
+    }
+
+    // On ajoute le prix du nail art si la case est cochée
+    if(nailArt && nailArtTechnique){
+        prixTotal += nailArtTechnique.prix;
     }
     
     return(
@@ -64,8 +88,20 @@ export default function PrendreRdv() {
                     <h2>Prendre rendez-vous</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="prestations">
-                            <p>Choisissez la prestation que vous souhaitez.</p>
-                            <Select nomSelect="prestation" options={techniques} value={techniqueId} onChange={(e) => setTechniqueId(e.target.value)} />
+                            <p className="subtitle">Choisissez la prestation que vous souhaitez.</p>
+                            <div className="nail-art">
+                                <Input label="Nail art" type="checkbox" value={nailArt} onChange={(e) => setNailArt(e.target.checked)} className="checkbox"/>
+                            </div>
+                            <div className="container-presta">
+                                <Select nomSelect="prestation" options={techniquesPrincipales} value={techniqueId} onChange={(e) => setTechniqueId(e.target.value)} />
+                                <div className="prix">
+                                    {techniqueId ?(
+                                        <p>{prixTotal} €</p>
+                                    ) : (
+                                        <p>Prix €</p>
+                                    )}
+                                </div>
+                            </div>
                         </div>
                         <div className="btn">
                             <Button text="Prendre rendez-vous"/>

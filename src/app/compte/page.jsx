@@ -20,7 +20,7 @@ export default function Compte(){
     // Temps de chargement
     if (loading) {
         return (
-            <div className="slide">Chargement...</div>
+            <div className="slide"></div>
         );
     }
 

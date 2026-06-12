@@ -25,5 +25,57 @@
             @include titre($color:$text-darker,$taille:80px,$align:left);
             text-align:left
         }
+        form{
+            display:flex;
+            flex-direction:column;
+            gap:$gap-medium;
+            .prestations{
+                display:flex;
+                gap:$gap-small;
+                flex-direction:column;
+                .subtitle{
+                    @include sous-titre($align:left,$color:$text-white);
+                }
+                .nail-art{
+                    background-color:$color-dark;
+                    width:fit-content;
+                    padding:5px;
+                    border-radius:$border-radius-small;
+                    display:flex;
+                    align-items:center;
+                    .form-group{
+                        align-items:center;
+                        label{
+                            @include text-chicle();
+                            font-style:normal;
+                        }
+                        input{
+                            width:20px;
+                            height:20px;
+                            min-width:20px;
+                            min-height:20px;
+                        }
+                    }
+                }
+                .container-presta{
+                    display:flex;
+                    gap:$gap-small;
+                    .prix{
+                        @include border($width:2px);
+                        border-radius:$border-radius-min;
+                        height:40px;
+                        padding:$padding-small;
+                        white-space:nowrap;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        width:fit-content;
+                        p{
+                            @include text-chicle($color:$text-darker);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
