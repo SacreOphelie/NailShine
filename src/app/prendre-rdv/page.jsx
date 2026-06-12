@@ -34,7 +34,7 @@ export default function PrendreRdv() {
         };
 
         fetchTechniques();
-    });
+    },[]);
 
     // Envoi du formulaire
     const handleSubmit = (e) => {
@@ -53,7 +53,7 @@ export default function PrendreRdv() {
     // Temps de chargement
     if (loading) {
         return (
-            <div className="slide"></div>
+            <div className="slide">Chargement...</div>
         );
     }
     

@@ -22,7 +22,8 @@
         @include shadow;
         position:relative;
         h2{
-            @include titre($color:$text-darker,$taille:80px);
+            @include titre($color:$text-darker,$taille:80px,$align:left);
+            text-align:left
         }
     }
 }

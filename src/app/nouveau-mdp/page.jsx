@@ -60,13 +60,16 @@ export default function RecuperationMdp() {
                 }
             }else{
                 // Mise à jour réussie
-                setPassword('');
-                router.push('/se-connecter');
                 toast('Votre mot de passe a bien été modifié', {
                     icon:"🔏",
                     className: 'toast-success',
                     progressClassName: 'toast-progress-bar',
                 });
+                setPassword('');
+
+                // Forcer la déconnexion 
+                await supabase.auth.signOut();
+                router.push('/se-connecter');
             }
         }catch{
             setErreur({general: "Une erreur est survenue lors de la réinitialisation du mot de passe."});
