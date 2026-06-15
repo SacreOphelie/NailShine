@@ -82,37 +82,37 @@ export default function PrendreRdv() {
     }
     
     return(
-            <div className="slide" id="prendre-rdv">
-            {isConnected && userProfil ? (
-                <div className="box">
-                    <h2>Prendre rendez-vous</h2>
-                    <form onSubmit={handleSubmit}>
-                        <div className="prestations">
-                            <p className="subtitle">Choisissez la prestation que vous souhaitez.</p>
-                            <div className="nail-art">
-                                <Input label="Nail art" type="checkbox" value={nailArt} onChange={(e) => setNailArt(e.target.checked)} className="checkbox"/>
-                            </div>
-                            <div className="container-presta">
-                                <Select nomSelect="prestation" options={techniquesPrincipales} value={techniqueId} onChange={(e) => setTechniqueId(e.target.value)} />
-                                <div className="prix">
-                                    {techniqueId ?(
-                                        <p>{prixTotal} €</p>
-                                    ) : (
-                                        <p>Prix €</p>
-                                    )}
-                                </div>
+        <div className="slide" id="prendre-rdv">
+        {isConnected && userProfil ? (
+            <div className="box">
+                <h2>Prendre rendez-vous</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="prestations">
+                        <p className="subtitle"></p>
+                        <div className="nail-art">
+                            <Input label="Nail art" type="checkbox" value={nailArt} onChange={(e) => setNailArt(e.target.checked)} className="checkbox"/>
+                        </div>
+                        <div className="container-presta">
+                            <Select nomSelect="prestation" options={techniquesPrincipales} value={techniqueId} onChange={(e) => setTechniqueId(e.target.value)} placeholder="Choisissez la prestation que vous souhaitez." />
+                            <div className="prix">
+                                {techniqueId ?(
+                                    <p>{prixTotal} €</p>
+                                ) : (
+                                    <p>Prix €</p>
+                                )}
                             </div>
                         </div>
-                        <div className="btn">
-                            <Button text="Prendre rendez-vous"/>
-                        </div>
-                    </form>
-                </div>
-            ) : (
-                <div className="box">
-                    <h4>Vous devez être connecté pour prendre rendez-vous.</h4>
-                </div>
-            )}
+                    </div>
+                    <div className="btn">
+                        <Button text="Confirmer"/>
+                    </div>
+                </form>
             </div>
+        ) : (
+            <div className="box">
+                <h4>Vous devez être connecté pour prendre rendez-vous.</h4>
+            </div>
+        )}
+        </div>
     );
 }

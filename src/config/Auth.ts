@@ -10,8 +10,9 @@ export function useAuth() {
     // Profil de l'utilisateur
     const [userProfil, setUserProfil] = useState<any | null>(null);
 
-    // Vérifier si l'utilisateur est connecté
     useEffect(() => {
+        let isMounted = true;
+
         // Récupérer le profil de l'utilisateur
         const getUserProfil = async (userId: string) => {
             try{
@@ -22,37 +23,57 @@ export function useAuth() {
                     .maybeSingle();
                 if (error) throw error;
                 if(data){
-                    setUserProfil(data);
+                    return data;
                 }
+
+                return null;
 
             }catch(error){
                 console.error("Erreur lors de la récupération du profil de l'utilisateur :", error);
+                return null;
             }
         };
 
-        const initializeAuth = async () => {
+        const syncAuthState = async ({ showLoading = false } = {}) => {
             try{
+                if (showLoading) {
+                    setLoading(true);
+                }
+
                 const { data: { session } } = await supabase.auth.getSession();
+
+                if (!isMounted) {
+                    return;
+                }
+
                 setIsConnected(!!session);
                 if(session?.user){
-                    await getUserProfil(session.user.id);
+                    const profil = await getUserProfil(session.user.id);
+                    if (isMounted) {
+                        setUserProfil(profil);
+                    }
                 }else{
                     setUserProfil(null);
                 }
             }catch(error){
                 console.error("Erreur lors de l'initialisation de l'authentification :", error);
             }finally{
-                setLoading(false);
+                if (isMounted) {
+                    setLoading(false);
+                }
             }
-        }
+        };
 
-        initializeAuth();
+        syncAuthState({ showLoading: true });
 
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-           if (event === 'SIGNED_IN' || event === 'SIGNED_OUT' || event === 'USER_UPDATED') {
+           if (event === 'SIGNED_IN' || event === 'SIGNED_OUT' || event === 'USER_UPDATED' || event === 'TOKEN_REFRESHED' || event === 'INITIAL_SESSION') {
                 setIsConnected(!!session);
                 if (session?.user) {
-                    await getUserProfil(session.user.id);
+                    const profil = await getUserProfil(session.user.id);
+                    if (isMounted) {
+                        setUserProfil(profil);
+                    }
                 } else {
                     setUserProfil(null);
                 }
@@ -60,10 +81,43 @@ export function useAuth() {
             }
         });
 
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === 'visible') {
+                syncAuthState();
+            }
+        };
+
+        window.addEventListener('focus', handleVisibilityChange);
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+
         return () => {
+            isMounted = false;
             subscription.unsubscribe();
+            window.removeEventListener('focus', handleVisibilityChange);
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
         };
     }, []);
 
-    return { isConnected, loading, userProfil };
+    const refreshAuth = async () => {
+        const { data: { session } } = await supabase.auth.getSession();
+
+        setIsConnected(!!session);
+        if (session?.user) {
+            const { data, error } = await supabase
+                .from('clients')
+                .select('nom,prenom,role')
+                .eq('id', session.user.id)
+                .maybeSingle();
+
+            if (!error) {
+                setUserProfil(data ?? null);
+            }
+        } else {
+            setUserProfil(null);
+        }
+
+        setLoading(false);
+    };
+
+    return { isConnected, loading, userProfil, refreshAuth };
 }

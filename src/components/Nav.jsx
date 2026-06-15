@@ -10,6 +10,7 @@ import { supabase } from '@/config/supabase';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/config/Auth';
 import { toast } from 'react-toastify';
+import Heart from '@/components/Heart';
 
 export default function Nav(){
     const router = useRouter();
@@ -73,7 +74,7 @@ export default function Nav(){
                             </div>
                         </div>
                             <Link href="/favoris" className="nav-link favoris">
-                                <img src="/icones/Icon_heart.png" alt="Favoris" />
+                                <Heart />
                             </Link>
                         </>
                     ) : (
@@ -115,7 +116,7 @@ export default function Nav(){
                             </div>
                         </div>
                             <Link href="/favoris" className="nav-link favoris" onClick={() => setIsMenuOpen(false)}>
-                                <img src="/icones/Icon_heart.png" alt="Favoris" />
+                                <Heart />
                             </Link>
                         </>
                     ) : (
