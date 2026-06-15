@@ -15,12 +15,25 @@ export default async function Page() {
   const adresse = contact.lieu;
 
   // Supabase : récupérer les données de la table "techniques"
-  const {data: techniques, error} = await supabase
+  const {data: techniques, error: errorTechniques} = await supabase
     .from('techniques')
     .select('*');
-  if (error) {
-    console.error("Erreur lors de la récupération des techniques :", error);
+  if (errorTechniques) {
+    console.error("Erreur lors de la récupération des techniques :", errorTechniques);
   }
+
+  const {data: avis, error: errorAvis} = await supabase
+    .from('avis')
+    .select(`
+      id_client,
+      texte,
+      clients(nom,prenom)
+    `);
+    if(errorAvis){
+      console.error("Erreur lors de la récupération des avis :", errorAvis);
+    }else{
+      console.log("Avis récupérés :", avis);
+    }
 
 	return(
     <>
@@ -103,19 +116,11 @@ export default async function Page() {
           </div>
           <div className="slider-animation">
             <div className="container-avis">
-              <Avis />
-              <Avis />
-              <Avis />
-              <Avis />
-              <Avis />
+              <Avis avis={avis} />
             </div>
             {/* Copie de la liste des avis pour l'effet de défilement */}
             <div className="container-avis" aria-hidden="true">
-              <Avis />
-              <Avis />
-              <Avis />
-              <Avis />
-              <Avis />
+              <Avis avis={avis} />
             </div>
           </div>
       </div>

@@ -45,7 +45,7 @@
             }
         }
         .content{
-            @include text-chicle($color:$text-darker, $align:justify);
+            @include text-chicle($color:$text-darker, $align:center);
         } 
         .footer{
             display:flex;
