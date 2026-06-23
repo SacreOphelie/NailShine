@@ -1,0 +1,50 @@
+#about{
+    background-image: url('/images/fonds/fond_about.png');
+    background-color:$color-darker;
+    position:relative;
+    padding-top: $padding-top;
+    #svg-about{
+        position:absolute;
+        bottom:-1px;
+        right:0;
+        path{
+            fill:$color-light;
+        }
+    }
+    img{
+        width:500px;
+        position:absolute;
+        right:0;
+        top:200px;
+        border-top-left-radius:$border-radius-max;
+        border-bottom-left-radius:$border-radius-max;
+        @include border($width:10px);
+        border-right:none;
+        @include shadow();
+    }
+    .container{
+        gap:$gap-small;
+        padding-bottom:0px;
+        padding-right:400px;
+        .citation{
+            p{
+                @include text($taille:20px,$color:$text-white,$style:italic,$epaisseur:200);
+            }
+        }
+        .nom{
+            h1{
+                @include titre($color:$text-white);
+            }
+            padding-bottom:$padding-large;
+        }
+        .texte{
+            p{
+                @include text($color:$text-white,$epaisseur:300,$taille:24px);
+            }
+        }
+    }
+}
+
+#salon{
+    background-color:$color-light;
+}
