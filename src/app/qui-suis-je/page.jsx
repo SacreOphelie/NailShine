@@ -8,13 +8,15 @@ export default function PageAbout() {
                 <svg id="svg-about" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
                     <path d="M0,1080s306.9-211.9,996.91-211.9C1920,868.1,1920,0,1920,0v1080H0Z"/>
                 </svg>
-                <div className="container wrapper">
+                <div className="wrapper container-about">
                     <div className="citation">
+                        <img src="images/illustrations/etoile.png" alt="Étoile" className="illu"></img>
                         <p>
                             ‘‘ Parce que vos mains sont le prolongement de votre personnalité, je mets mon savoir-faire au service de votre beauté. ’’
                         </p>
                     </div>
                     <div className="nom">
+                        <img src="images/illustrations/etoile.png" alt="Étoile" className="illu"></img>
                         <h1>Nathalie Myers</h1>
                     </div>
                     <div className="texte">
@@ -22,8 +24,14 @@ export default function PageAbout() {
                             Diplômée et passionnée, j'exerce le métier de prothésiste ongulaire depuis 5 ans. Au fil des années, j'ai perfectionné mes techniques pour vous offrir des prestations haute précision, alliant la santé de l'ongle à l'esthétique pure. Mon espace de travail a été pensé comme une parenthèse de détente, où chaque détail compte pour que vous repartiez avec le sourire (et des mains étincelantes !).
                         </p>
                     </div>
+                    <div className="photo">
+                        <img src="images/illustrations/etoile.png" alt="Étoile" className="illu etoile-1"></img>
+                        <img src="images/illustrations/etoile.png" alt="Étoile" className="illu etoile-2"></img>
+                        <img src="images/illustrations/Rond.png" alt="Étoile" className="illu rond-1"></img>
+                        <img src="images/illustrations/Rond.png" alt="Étoile" className="illu rond-2"></img>
+                        <img src="images/prothesiste/Nathalie-1.jpg" alt="Nathalie Myers" id="photo-nathalie"></img>
+                    </div>
                 </div>
-                <img src="images/prothesiste/Nathalie-1.jpg" alt="Nathalie Myers"></img>
             </div>
             <div className="slide" id="salon">
 
