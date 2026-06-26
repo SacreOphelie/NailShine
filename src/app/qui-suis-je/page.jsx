@@ -33,8 +33,23 @@ export default function PageAbout() {
                     </div>
                 </div>
             </div>
-            <div className="slide" id="salon">
-
+            <div className="slide" id="studio">
+                <div className="wrapper container-salon">
+                    <div className="photo">
+                        <Image src="/images/prothesiste/salon_1(web).jpg" alt="Studio" className="illu studio-1" width={500} height={300}/>
+                    </div>
+                    <div className="container-texte">
+                        <h2>Le studio</h2>
+                        <div className="texte">
+                            <p>
+                                Plus qu’un simple salon de manucure, cet espace est un véritable cocon où l’on prend soin de vous et où le temps s’arrête. Ici, on mélange avec passion le travail sérieux, les éclats de rire et, on ne va pas se mentir, un petit peu de drama pour pimenter la séance ! 
+                            </p>
+                            <p>
+                                Que vous veniez pour une transformation radicale ou pour une pause détente, vous êtes ici chez vous. On discute, on rigole, et on repart avec des ongles qui brillent.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </>
     )

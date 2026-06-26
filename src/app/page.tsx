@@ -40,7 +40,7 @@ export default async function Page() {
       <div className="slide" id="accueil">
           <div className="container wrapper">
             <div className="left">
-              <Image src="/images/prothesiste/Cadre-1.png" alt="Prothésiste ongulaire"id="cadre" width={500} height={500} />
+              <Image src="/images/prothesiste/Cadre-1.png" alt="Prothésiste ongulaire"id="cadre" width={500} height={600} />
               <Image src="/images/illustrations/Noeud.png" alt="Noeud" id="noeud" className="illu" width={75} height={75} />
               <Image src="/images/illustrations/Vernis.png" alt="Vernis" id="vernis" className="illu" width={75} height={125} />
             </div>
