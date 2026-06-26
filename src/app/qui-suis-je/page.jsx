@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from 'next/image';
 import '@/styles/about.scss';
 
 export default function PageAbout() {
@@ -10,13 +10,13 @@ export default function PageAbout() {
                 </svg>
                 <div className="wrapper container-about">
                     <div className="citation">
-                        <img src="images/illustrations/etoile.png" alt="Étoile" className="illu"></img>
+                        <Image src="/images/illustrations/etoile.png" alt="Étoile" className="illu" width={75} height={75}/>
                         <p>
                             ‘‘ Parce que vos mains sont le prolongement de votre personnalité, je mets mon savoir-faire au service de votre beauté. ’’
                         </p>
                     </div>
                     <div className="nom">
-                        <img src="images/illustrations/etoile.png" alt="Étoile" className="illu"></img>
+                        <Image src="/images/illustrations/etoile.png" alt="Étoile" className="illu" width={75} height={75}/>
                         <h1>Nathalie Myers</h1>
                     </div>
                     <div className="texte">
@@ -25,11 +25,11 @@ export default function PageAbout() {
                         </p>
                     </div>
                     <div className="photo">
-                        <img src="images/illustrations/etoile.png" alt="Étoile" className="illu etoile-1"></img>
-                        <img src="images/illustrations/etoile.png" alt="Étoile" className="illu etoile-2"></img>
-                        <img src="images/illustrations/Rond.png" alt="Étoile" className="illu rond-1"></img>
-                        <img src="images/illustrations/Rond.png" alt="Étoile" className="illu rond-2"></img>
-                        <img src="images/prothesiste/Nathalie-1.jpg" alt="Nathalie Myers" id="photo-nathalie"></img>
+                        <Image src="/images/illustrations/etoile.png" alt="Étoile" className="illu etoile-1" width={75} height={75}/>
+                        <Image src="/images/illustrations/etoile.png" alt="Étoile" className="illu etoile-2" width={75} height={75}/>
+                        <Image src="/images/illustrations/Rond.png" alt="Étoile" className="illu rond-1" width={75} height={75}/>
+                        <Image src="/images/illustrations/Rond.png" alt="Étoile" className="illu rond-2" width={75} height={75}/>
+                        <Image src="/images/prothesiste/Nathalie-1.jpg" alt="Nathalie Myers" id="photo-nathalie" width={300} height={300}/>
                     </div>
                 </div>
             </div>

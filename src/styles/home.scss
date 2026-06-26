@@ -36,14 +36,12 @@ h2{
             }
             #noeud{
                 width:75px;
-                height:auto;
                 top:50px;
                 right:25px;
                 @include animation;
             }
             #vernis{
                 width:75px;
-                height:auto;
                 bottom:0px;
                 left:10px;
                 @include animation($name:rotation_2);
@@ -108,7 +106,6 @@ h2{
                         top:-5px;
                         right:-40px;
                         width:65px;
-                        height:auto;
                     }
                 }
             }
@@ -311,12 +308,10 @@ h2{
 // Illustrations techniques
 .illu_grand{
     width:120px;
-    height:auto;
 
 }
 .illu_petit{
     width:60px;
-    height:auto;
 }
 @media(max-width:$width-tablette){
     #top-techniques{

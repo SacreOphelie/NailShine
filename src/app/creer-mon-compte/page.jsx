@@ -10,6 +10,7 @@ import Input from '@/components/Forms/Input';
 import Button from '@/components/Button';
 import { checkString, checkEmail, checkMdp } from '@/config/validation';
 import { TriangleAlert } from 'lucide-react';
+import Image from 'next/image';
 
 export default function PageCreateAccount() {
 
@@ -118,10 +119,10 @@ export default function PageCreateAccount() {
         <>
             <div className="slide" id="create-account">
                 <div className="box-connexion">
-                    <img src="images/illustrations/etoile.png" alt="etoile" className="illu" id="etoile1"/>
-                    <img src="images/illustrations/etoile.png" alt="etoile2" className="illu" id="etoile2"/>
-                    <img src="images/illustrations/Rond.png" alt="rond1" className="illu" id="rond1"/>
-                    <img src="images/illustrations/Rond.png" alt="rond2" className="illu" id="rond2"/>
+                    <Image src="/images/illustrations/etoile.png" alt="etoile" className="illu" id="etoile1" width={75} height={75}/>
+                    <Image src="/images/illustrations/etoile.png" alt="etoile2" className="illu" id="etoile2" width={75} height={75}/>
+                    <Image src="/images/illustrations/Rond.png" alt="rond1" className="illu" id="rond1" width={75} height={75}/>
+                    <Image src="/images/illustrations/Rond.png" alt="rond2" className="illu" id="rond2" width={75} height={75}/>
                     <div className="no-compte">
                         <p>Vous avez déjà un compte ?</p>
                         <Link href="/se-connecter" className="underline">Se connecter</Link>
