@@ -1,10 +1,12 @@
 #about{
-    background-image: url('/images/fonds/fond_about.png');
     background-color:$color-darker;
     position:relative;
     padding-top: $padding-top;
     will-change: transform;
     #svg-about{
+        z-index:$index-null;
+        width:100%;
+        height:100%;
         position:absolute;
         bottom:-1px;
         right:0;
@@ -16,116 +18,159 @@
     }
     
     .container-about{
-        gap:$gap-small;
-        padding-bottom:0px;
-        padding-right:400px;
-        .citation{
-            position:relative;
-            img{
-                width:50px;
-                top:-40px;
-                left:-40px;
+        position:relative;
+        width:1920px;
+        margin:0 auto;
+        
+        .wrapper{
+            display:flex;
+            gap:$gap-xlarge;
+            justify-content:space-between;
+            .container-texte{
+                position:relative;
+                flex:1;
+                gap:$gap-small;
+                display:flex;
+                flex-direction:column;
+                padding-top:$padding-large;
+                .citation{
+                    position:relative;
+                    img{
+                        width:50px;
+                        top:-40px;
+                        left:-40px;
+                    }
+                    p{
+                        @include text($taille:20px,$color:$text-white,$style:italic,$epaisseur:200);
+                    }
+                }
+                .nom{
+                    margin:0;
+                    padding:0;
+                    width:fit-content;
+                    position:relative;
+                    img{
+                        width:60px;
+                        bottom:-45px;
+                        right:-40px;
+                    }
+                    h1{
+                        @include titre($color:$text-white);
+                    }
+                }
+                .texte{
+                    padding-top:$padding-large;
+                    p{
+                        @include text($color:$text-white,$taille:24px);
+                    }
+                }
             }
-            p{
-                @include text($taille:20px,$color:$text-white,$style:italic,$epaisseur:200);
-            }
-        }
-        .nom{
-            width:fit-content;
-            position:relative;
-            img{
-                width:60px;
-                bottom:-0px;
-                right:-40px;
-            }
-            h1{
-                @include titre($color:$text-white);
-            }
-            padding-bottom:$padding-large;
-        }
-        .texte{
-            padding-top:$padding-medium;
-            p{
-                @include text($color:$text-white,$taille:24px);
-            }
-        }
-        .photo{
-            width:500px;
-            height:600px;
-            background-color:$color-darker;
-            position:absolute;
-            right:0;
-            top:200px;
-            border-top-left-radius:$border-radius-max;
-            border-bottom-left-radius:$border-radius-max;
-            @include border($width:10px);
-            border-right:none;
-            @include shadow();
-            // overflow:hidden;
-            transform: translateZ(0);
-            will-change: transform;
-            .etoile-1{
-                width:100px;
-                height:auto;
-                position:absolute;
-                top:-70px;
-                right:0px;
-            }
-            .etoile-2{
-                width:50px;
-                position:absolute;
-                top:-10px;
-                right:70px;
-            }
-            .rond-1{
-                width:75px;
-                position:absolute;
-                bottom:-30px;
-                left:-30px;
-            }
-            .rond-2{
-                width:35px;
-                position:absolute;
-                bottom:25px;
-                left:35px;
-            }
-            #photo-nathalie{
-                width:100%;
-                height:100%;
-                object-fit:cover;
+            .photo{
+                margin-right:-260px;
+                margin-top:-50px;
+                flex-shrink:0;
+                width:500px;
+                height:600px;
+                background-color:$color-darker;
+                position:relative;
+                border-top-left-radius:$border-radius-max;
                 border-bottom-left-radius:$border-radius-max;
-                border-top-left-radius:$border-radius-max;   
+                @include border($width:10px);
+                border-right:none;
+                @include shadow();
+                // overflow:hidden;
+                transform: translateZ(0);
+                will-change: transform;
+                .etoile-1{
+                    width:100px;
+                    height:auto;
+                    position:absolute;
+                    top:-70px;
+                    right:0px;
+                }
+                .etoile-2{
+                    width:50px;
+                    position:absolute;
+                    top:-10px;
+                    right:70px;
+                }
+                .rond-1{
+                    width:75px;
+                    position:absolute;
+                    bottom:-30px;
+                    left:-30px;
+                }
+                .rond-2{
+                    width:35px;
+                    position:absolute;
+                    bottom:25px;
+                    left:35px;
+                }
+                #photo-nathalie{
+                    width:100%;
+                    height:100%;
+                    object-fit:cover;
+                    border-bottom-left-radius:$border-radius-max;
+                    border-top-left-radius:$border-radius-max;   
+                }
             }
         }
     }
 }
-
-#studio{
+.info-studio{
+    display:flex;
+    gap:$gap-xlarge;
+    flex-direction:column;
+    padding-bottom:$padding-bottom;
     background-color:$color-light;
-    position:relative;
-    .container-salon{
-        display:flex;
-        .photo{
-            width:200px;
-            height:500px;
-            img{
-                width:100%;
-                height:100%;
-                object-fit:cover;
-            }
-        }
-        .container-texte{
-            h2{
-                @include titre($color:$color-darker);
-            }
-            .texte{
-                gap:$gap-medium;
+    #studio,#localisation-salon,#quali-salon{
+        min-height:fit-content;
+        position:relative;
+        width:100%;
+        .container-salon,.container-location,.container-quali{
+            width:1920px;
+            margin:0 auto;
+            .wrapper{
                 display:flex;
-                flex-direction:column;
-                p{
-                    @include text($color:$color-darker,$taille:24px);
+                gap:$gap-xlarge;
+                align-items:center;
+                justify-content:space-between;
+                .photo{
+                    margin-left:-260px;
+                    width:900px;
+                    height:700px;
+                    flex-shrink:0;
+                    img{
+                        width:100%;
+                        height:100%;
+                        object-fit:cover;
+                    }
+                }
+                .container-texte{
+                    flex:1;
+                    gap:$gap-large;
+                    display:flex;
+                    flex-direction:column;
+                    h2{
+                        @include titre($color:$color-darker);
+                    }
+                    .texte{
+                        gap:$gap-medium;
+                        display:flex;
+                        flex-direction:column;
+                        p{
+                            @include text($color:$color-darker,$taille:24px);
+                        }
+                    }
                 }
             }
+        }
+    }
+    
+    .container-location{
+        .photo{
+            margin-right:-260px;
+            margin-left:0 !important;
         }
     }
 }
