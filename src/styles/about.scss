@@ -140,10 +140,47 @@
                     width:900px;
                     height:700px;
                     flex-shrink:0;
-                    img{
+                    border-top-right-radius:$border-radius-max;
+                    border-bottom-right-radius:$border-radius-max;
+                    @include border($width:10px);
+                    border-left:none;
+                    @include shadow();
+                    transform: translateZ(0);
+                    will-change: transform;
+                    .photo-studio{
                         width:100%;
                         height:100%;
                         object-fit:cover;
+                        border-bottom-right-radius: calc(#{$border-radius-max} - 10px);
+                        border-top-right-radius: calc(#{$border-radius-max} - 10px);
+                    }
+                    #noeud{
+                        width:100px;
+                        top:-25px;
+                        right:-40px;
+                        transform: rotate(15deg);
+                    }
+                    #vernis{
+                        width:100px;
+                        bottom:-100px;
+                        left:100px;
+                        transform: rotate(-10deg);
+                    }
+                    #cuticule{
+                        width:75px;
+                        bottom:-75px;
+                        right:100px;
+                        transform: rotate(10deg);
+                    }
+                    #rond{
+                        width:100px;
+                        bottom:-40px;
+                        right:-40px;
+                    }
+                    #rond2{
+                        width:50px;
+                        bottom:25px;
+                        right:45px;
                     }
                 }
                 .container-texte{
@@ -170,7 +207,20 @@
     .container-location{
         .photo{
             margin-right:-260px;
+            @include border($width:10px);
             margin-left:0 !important;
+            border-left: $color-white solid 10px !important;
+            border-top-left-radius:$border-radius-max;
+            border-bottom-left-radius:$border-radius-max;
+            border-right:none !important;
+            border-top-right-radius:0px !important;
+            border-bottom-right-radius:0px !important;
+            img{
+                border-bottom-left-radius: calc(#{$border-radius-max} - 10px);
+                border-top-left-radius: calc(#{$border-radius-max} - 10px);
+                border-top-right-radius:0px !important;
+                border-bottom-right-radius:0px !important;
+            }
         }
     }
 }

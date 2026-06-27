@@ -42,7 +42,10 @@ export default function PageAbout() {
                     <div className="container-salon">
                         <div className="wrapper">
                             <div className="photo">
-                                <Image src="/images/prothesiste/salon_1(web).jpg" alt="Studio"  width={500} height={300}/>
+                                <Image src="/images/illustrations/Noeud.png" alt="Étoile" className="illu" width={75} height={75} id="noeud"/>
+                                <Image src="/images/prothesiste/salon_1(web).jpg" alt="Studio"  width={500} height={300} className="photo-studio"/>
+                                <Image src="/images/illustrations/Vernis.png" alt="Étoile" className="illu" width={75} height={75} id="vernis"/>
+
                             </div>
                             <div className="container-texte">
                                 <h2>Le studio</h2>
@@ -73,25 +76,29 @@ export default function PageAbout() {
                                 </div>
                             </div>
                             <div className="photo">
-                                <Image src="/images/prothesiste/salon_2(web).jpg" alt="Studio"  width={500} height={300}/>
+                                <Image src="/images/prothesiste/salon_2(web).jpg" alt="Studio"  width={500} height={300} className="photo-studio"/>
+                                <Image src="/images/illustrations/Cuticule.png" alt="Étoile" className="illu" width={75} height={75} id="cuticule"/>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                 </div>
                 <div id="quali-salon">
                     <div className="container-quali">
                         <div className="wrapper">
                             <div className="photo">
-                                <Image src="/images/prothesiste/salon_3(web).jpg" alt="Studio"  width={500} height={300}/>
+                                <Image src="/images/prothesiste/salon_3(web).jpg" alt="Studio"  width={500} height={300} className="photo-studio"/>
+                                <Image src="/images/illustrations/Rond.png" alt="Étoile" className="illu" width={75} height={75} id="rond"/>
+                                <Image src="/images/illustrations/Rond.png" alt="Étoile" className="illu" width={75} height={75} id="rond2"/>
+
                             </div>
                             <div className="container-texte">
                                 <h2>Qualité</h2>
                                 <div className="texte">
                                     <p>
-                                        Situé en Wallonie, au cœur de Tubize, le salon a été choisi pour vous faciliter la vie. Pour votre confort, un parking gratuit est disponible juste devant la porte. 
+                                        Parce que la beauté ne va pas sans la santé, j'accorde une importance capitale à l'hygiène au sein du salon. Chaque outil est rigoureusement désinfecté et j'utilise exclusivement des produits de haute qualité professionnelle. 
                                     </p>
                                     <p>
-                                        Vous venez en transports en commun ? Aucun souci : le salon est idéalement desservi à proximité par le bus et le train. Une localisation stratégique pour une pause beauté sans stress.
+                                        Mon objectif ? Vous offrir une tenue longue durée et un résultat impeccable, tout en respectant la nature de vos ongles naturels. Vous êtes entre de bonnes mains.
                                     </p>
                                 </div>
                             </div>
