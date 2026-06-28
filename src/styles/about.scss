@@ -3,6 +3,7 @@
     position:relative;
     padding-top: $padding-top;
     will-change: transform;
+    overflow:hidden;
     #svg-about{
         z-index:$index-null;
         width:100%;
@@ -15,20 +16,32 @@
         path{
             fill:$color-light;
         }
+        @media(max-width: $width-tablette){
+            height:50%;
+        }
+        @media(max-width: $width-middle){
+            height:20%;
+        }
+        @media(max-width: $width-mobile){
+            height:10%;
+        }
     }
     
     .container-about{
         position:relative;
-        width:1920px;
+        max-width:1920px;
         margin:0 auto;
-        
+        min-width:100%; 
         .wrapper{
             display:flex;
             gap:$gap-xlarge;
             justify-content:space-between;
+            @media(max-width: $width-tablette){
+                gap:$gap-large;
+            }
             .container-texte{
                 position:relative;
-                flex:1;
+                // flex:1;
                 gap:$gap-small;
                 display:flex;
                 flex-direction:column;
@@ -66,10 +79,11 @@
                 }
             }
             .photo{
-                margin-right:-260px;
+                // calculer la marge entre le bord de l'écran et le bord du container
+                margin-right: #{'calc(-1 * (100vw - 100%) / 2)'};
                 margin-top:-50px;
                 flex-shrink:0;
-                width:500px;
+                width:35%;
                 height:600px;
                 background-color:$color-darker;
                 position:relative;
@@ -116,29 +130,127 @@
             }
         }
     }
+    @media(max-width: $width-middle){
+        .container-about{
+            padding-bottom:$padding-bottom;
+            .wrapper{
+                flex-direction:column-reverse;
+                align-items:flex-end;
+                .photo{
+                    width:70%;
+                    #photo-nathalie{
+                        border-bottom-left-radius:$border-radius-max;
+                        border-top-left-radius:$border-radius-max;  
+                    }
+                    .etoile-1{
+                        width:75px;
+                        height:auto;
+                        position:absolute;
+                        top:-50px;
+                        right:0px;
+                    }
+                    .etoile-2{
+                        width:40px;
+                        position:absolute;
+                        top:0px;
+                        right:50px;
+                    }
+                }
+                .container-texte{
+                    padding-top:$padding-medium;
+                    .citation{
+                        img{
+                           width:30px;
+                           top:-25px;
+                           left:-25px;
+                        }
+                    }
+                    .nom{
+                        img{
+                            width:40px;
+                            bottom:-35px;
+                            right:-30px;
+                        }
+                    }
+                    .texte{
+                        padding-top:$padding-medium;
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:$width-mobile)
+    {
+        padding-bottom:0;
+        .container-about{
+            .wrapper{
+                .photo{
+                    border-top-left-radius:$border-radius-large;
+                    border-bottom-left-radius:$border-radius-large;
+                    width:90%;
+                    height:400px;
+                    #photo-nathalie{
+                        border-bottom-left-radius:$border-radius-large;
+                        border-top-left-radius:$border-radius-large;  
+                    }
+                    .etoile-1{
+                        width:50px;
+                        top:-35px;
+                        right:15px;
+                    }
+                    .etoile-2{
+                        width:25px;
+                        top:0px;
+                        right:50px;
+                    }
+                    .rond-1{
+                        width:50px;
+                        bottom:-20px;
+                        left:-15px;
+                    }
+                    .rond-2{
+                        width:25px;
+                        bottom:20px;
+                        left:25px;
+                    }
+                }
+                .container-texte{
+                    img{
+                        display:none;
+                    }
+                }
+            }
+        }
+    }
 }
 .info-studio{
+    overflow:hidden;
     position:relative;
     display:flex;
     gap:$gap-xlarge;
     flex-direction:column;
     padding-bottom:$padding-bottom;
     background-color:$color-light;
+    padding-top:$padding-medium;
     #studio,#localisation-salon,#quali-salon{
         min-height:fit-content;
         position:relative;
-        width:100%;
+        min-width:100%;
         .container-salon,.container-location,.container-quali{
-            width:1920px;
+            max-width:1920px;
             margin:0 auto;
+            width:100%;
             .wrapper{
                 display:flex;
                 gap:$gap-xlarge;
                 align-items:center;
                 justify-content:space-between;
+                @media(max-width: $width-tablette){
+                    gap:$gap-large;
+                }
                 .photo{
-                    margin-left:-260px;
-                    width:900px;
+                    margin-left: #{'calc(-1 * (100vw - 100%) / 2)'};
+                    width:65%;
                     height:700px;
                     flex-shrink:0;
                     border-top-right-radius:$border-radius-max;
@@ -183,6 +295,7 @@
                         bottom:25px;
                         right:45px;
                     }
+                    
                 }
                 .container-texte{
                     flex:1;
@@ -191,6 +304,9 @@
                     flex-direction:column;
                     h2{
                         @include titre($color:$text-darker);
+                        @media(max-width: $width-tablette){
+                            text-align:left;
+                        }
                     }
                     .texte{
                         gap:$gap-medium;
@@ -207,7 +323,7 @@
     
     .container-location{
         .photo{
-            margin-right:-260px;
+            margin-right: #{'calc((-1 * (100vw - 100%) / 2) )'};
             @include border($width:10px);
             margin-left:0 !important;
             border-left: $color-white solid 10px !important;
@@ -226,13 +342,111 @@
     }
     #bottom-studio{
         position:absolute;
-        bottom:-50px;
+        bottom:-15px;
         transform: translateZ(0); 
         will-change: transform;
         width:100%;
         path{
             fill:$color-middle;
         }
+    }
+    @media(max-width:$width-middle)
+    {
+        #studio,#localisation-salon,#quali-salon{
+            .container-salon,.container-location,.container-quali{
+                .wrapper{
+                    flex-direction:column;
+                    align-items:flex-start;
+                    .photo{
+                        width:90%;
+                        height:500px;
+                        #noeud{
+                            width:75px;
+                            top:-20px;
+                            right:-30px;
+                        }
+                        #vernis{
+                            width:75px;
+                            bottom:-50px;
+                        }
+                        #cuticule{
+                            width:50px;
+                            bottom:-50px;
+                        }
+                        #rond{
+                            width:75px;
+                            bottom:-30px;
+                            right:-30px;
+                        }
+                        #rond2{
+                            width:40px;
+                            bottom:20px;
+                            right:30px;
+                        }
+                    }
+                }
+            }
+            .container-location{
+                .wrapper{
+                    flex-direction:column-reverse;
+                    align-items:flex-end;
+
+                }
+            }
+        }
+    }
+    @media(max-width:$width-mobile)
+    {
+        padding-bottom:$padding-xlarge;
+        #studio,#localisation-salon,#quali-salon{
+            .container-salon,.container-location,.container-quali{
+                .wrapper{
+                    .photo{
+                        height:300px;
+                        border-top-right-radius:$border-radius-large;
+                        border-bottom-right-radius:$border-radius-large;
+                        .photo-studio{
+                            border-bottom-right-radius: calc(#{$border-radius-large} - 5px);
+                            border-top-right-radius: calc(#{$border-radius-large} - 10px);
+                        }
+                        #noeud{
+                            width:50px;
+                            top:-20px;
+                            right:-30px;
+                        }
+                        #vernis{
+                            width:50px;
+                            bottom:-50px;
+                        }
+                        #cuticule{
+                            width:40px;
+                            bottom:-40px;
+                        }
+                        #rond{
+                            width:50px;
+                            bottom:-20px;
+                            right:-20px;
+                        }
+                        #rond2{
+                            width:25px;
+                            bottom:20px;
+                            right:20px;
+                        }
+                    }
+                }
+            }
+        }
+        .container-location{
+        .photo{
+            border-left: $color-white solid 5px !important;
+            border-top-left-radius:$border-radius-large;
+            border-bottom-left-radius:$border-radius-large;
+            img{
+                border-bottom-left-radius: calc(#{$border-radius-large} - 5px);
+                border-top-left-radius: calc(#{$border-radius-large} - 5px);
+            }
+        }
+    }
     }
 }
 
@@ -247,6 +461,9 @@
         gap:$gap-medium;
         h2{
             @include titre($color:$text-white);
+            @media(max-width:$width-tablette){
+                text-align:left;
+            }
         }
         p{
             @include text($color:$text-white,$taille:24px);

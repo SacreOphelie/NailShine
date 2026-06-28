@@ -120,6 +120,9 @@ $bg-image: url('../../public/images/fonds/fond_homepage.png');
 
 @mixin border($color: $color-white, $width : 5px){
     border: $width solid $color;
+    @media(max-width:$width-mobile){
+        border: 5px solid $color;
+    }
 }
 $border-radius-min: 5px;
 $border-radius-small: 10px;
@@ -203,5 +206,6 @@ $index-high:3;
 
 $width-portable:1500px;
 $width-tablette:1310px;
+$width-middle:1100px;
 $width-vertical:810px;
 $width-mobile:520px;
