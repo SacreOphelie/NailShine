@@ -118,6 +118,7 @@
     }
 }
 .info-studio{
+    position:relative;
     display:flex;
     gap:$gap-xlarge;
     flex-direction:column;
@@ -189,14 +190,14 @@
                     display:flex;
                     flex-direction:column;
                     h2{
-                        @include titre($color:$color-darker);
+                        @include titre($color:$text-darker);
                     }
                     .texte{
                         gap:$gap-medium;
                         display:flex;
                         flex-direction:column;
                         p{
-                            @include text($color:$color-darker,$taille:24px);
+                            @include text($color:$text-darker,$taille:24px);
                         }
                     }
                 }
@@ -221,6 +222,34 @@
                 border-top-right-radius:0px !important;
                 border-bottom-right-radius:0px !important;
             }
+        }
+    }
+    #bottom-studio{
+        position:absolute;
+        bottom:-50px;
+        transform: translateZ(0); 
+        will-change: transform;
+        width:100%;
+        path{
+            fill:$color-middle;
+        }
+    }
+}
+
+#about-rdv{
+    min-height:fit-content;
+    padding-top:$padding-xlarge;
+    padding-bottom:$padding-bottom;
+    background-color:$color-middle;
+    .container-rdv{
+        display:flex;
+        flex-direction:column;
+        gap:$gap-medium;
+        h2{
+            @include titre($color:$text-white);
+        }
+        p{
+            @include text($color:$text-white,$taille:24px);
         }
     }
 }
