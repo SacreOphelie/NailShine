@@ -36,14 +36,14 @@ h2{
             }
             #noeud{
                 width:75px;
-                top:50px;
-                right:25px;
+                top:45px;
+                right:10px;
                 @include animation;
             }
             #vernis{
                 width:75px;
-                bottom:0px;
-                left:10px;
+                bottom:-20px;
+                left:0px;
                 @include animation($name:rotation_2);
             }
 

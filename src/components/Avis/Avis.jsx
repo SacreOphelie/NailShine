@@ -15,9 +15,9 @@ export default function Avis({ avis }) {
                         <p className="quote-icon">“</p>
                         <p className="nom">{item.clients?.prenom} {item.clients?.nom?.charAt(0)}. </p>
                     </div>
-                    <p className="content">{item.texte}</p>
-                    <div className="footer">
-                        <p className="quote-icon">”</p>
+                    <div className="content">
+                        <p className="text">{item.texte}</p>
+                        <p className="quote-icon bottom">”</p>
                     </div>
                 </div>
             </div>
