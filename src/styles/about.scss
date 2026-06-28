@@ -166,6 +166,7 @@
                         }
                     }
                     .nom{
+                        padding-top:$padding-small;
                         img{
                             width:40px;
                             bottom:-35px;
@@ -342,14 +343,18 @@
     }
     #bottom-studio{
         position:absolute;
-        bottom:-15px;
+        bottom:-10px;
         transform: translateZ(0); 
         will-change: transform;
         width:100%;
         path{
             fill:$color-middle;
         }
+        @media(max-width: $width-mobile){
+            bottom:-1px;
+        }
     }
+
     @media(max-width:$width-middle)
     {
         #studio,#localisation-salon,#quali-salon{
@@ -407,20 +412,22 @@
                         border-bottom-right-radius:$border-radius-large;
                         .photo-studio{
                             border-bottom-right-radius: calc(#{$border-radius-large} - 5px);
-                            border-top-right-radius: calc(#{$border-radius-large} - 10px);
+                            border-top-right-radius: calc(#{$border-radius-large} - 5px);
                         }
                         #noeud{
                             width:50px;
-                            top:-20px;
-                            right:-30px;
+                            top:-10px;
+                            right:-20px;
                         }
                         #vernis{
-                            width:50px;
-                            bottom:-50px;
-                        }
-                        #cuticule{
                             width:40px;
                             bottom:-40px;
+                            left:50px;
+                        }
+                        #cuticule{
+                            width:35px;
+                            bottom:-35px;
+                            right:50px;
                         }
                         #rond{
                             width:50px;
@@ -432,6 +439,9 @@
                             bottom:20px;
                             right:20px;
                         }
+                    }
+                    .container-texte{
+                        gap:$gap-medium;
                     }
                 }
             }

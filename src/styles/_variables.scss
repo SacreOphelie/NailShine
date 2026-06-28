@@ -121,7 +121,9 @@ $bg-image: url('../../public/images/fonds/fond_homepage.png');
 @mixin border($color: $color-white, $width : 5px){
     border: $width solid $color;
     @media(max-width:$width-mobile){
-        border: 5px solid $color;
+        // si le border est de 10 px on reduit de 5px
+        $responsive-width: if($width == 10px, $width - 5px, $width);
+        border: $responsive-width solid $color;
     }
 }
 $border-radius-min: 5px;
