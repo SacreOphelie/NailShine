@@ -51,6 +51,7 @@
             display:flex;
             justify-content:flex-end;
             width:100%;
+            padding-top:$padding-small;
         }
     }
     @media(max-width:$width-vertical)
