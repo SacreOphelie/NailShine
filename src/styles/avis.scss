@@ -51,7 +51,7 @@
             display:flex;
             justify-content:flex-end;
             width:100%;
-            padding-top:$padding-small;
+            margin-right:-20px;
         }
     }
     @media(max-width:$width-vertical)
