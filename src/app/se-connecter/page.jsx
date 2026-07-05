@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import Image from 'next/image';
@@ -73,10 +74,10 @@ export default function PageConnexion() {
         <>
             <div className="slide" id="connexion">
                 <div className="box-connexion">
-                    <Image src="/images/illustrations/etoile.png" alt="etoile" className="illu" id="etoile3" width={75} height={75}/>
-                    <Image src="/images/illustrations/etoile.png" alt="etoile2" className="illu" id="etoile4" width={75} height={75}/>
-                    <Image src="/images/illustrations/Rond.png" alt="rond1" className="illu" id="rond3" width={75} height={75}/>
-                    <Image src="/images/illustrations/Rond.png" alt="rond2" className="illu" id="rond4" width={75} height={75}/>
+                    <img src="/images/illustrations/etoile.png" alt="etoile" className="illu" id="etoile3" />
+                    <img src="/images/illustrations/etoile.png" alt="etoile2" className="illu" id="etoile4" />
+                    <img src="/images/illustrations/Rond.png" alt="rond1" className="illu" id="rond3" />
+                    <img src="/images/illustrations/Rond.png" alt="rond2" className="illu" id="rond4" />
                     <div className="no-compte">
                         <p>C'est votre première visite ?</p>
                         <Link className='underline' href="/creer-mon-compte">Créer un compte</Link>
