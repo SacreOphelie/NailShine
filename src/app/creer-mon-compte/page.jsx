@@ -36,10 +36,6 @@ export default function PageCreateAccount() {
         {
             erreurs.nom = "Veuillez entrer un nom valide.";
         }
-        if(!checkString(nom))
-        {
-            erreurs.nom = "Veuillez entrer un nom valide.";
-        }
 
         if(!checkString(prenom))
         {
@@ -61,7 +57,7 @@ export default function PageCreateAccount() {
             erreurs.reglement = "Vous devez accepter les conditions de confidentialité.";
         }
 
-        // 2. Si l'objet contient au moins une erreur, on affiche tout et on stoppe l'envoi
+        // Si l'objet contient au moins une erreur, on affiche tout et on stoppe l'envoi
         if (Object.keys(erreurs).length > 0) {
             setErreur(erreurs);
             return;

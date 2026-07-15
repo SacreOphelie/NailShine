@@ -1,12 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-export default function Select({nomSelect, options, value,onChange,placeholder = "Sélectionnez une option"})
+export default function Select({nomSelect, options, value,onChange,placeholder = "Sélectionnez une option", error = false, ...props})
 {
     return(
         <div className="form-group">
             <img src="icones/arrow_filter.png" alt="arrow" className="arrow-icon" />
-            <select name={nomSelect} id={nomSelect} value={value} onChange={onChange}>
+            <select name={nomSelect} id={nomSelect} value={value} onChange={onChange} className={error ? "input-error" : ""}
+                {...props}>
                 <option value="" disabled hidden>
                     {placeholder}
                 </option>

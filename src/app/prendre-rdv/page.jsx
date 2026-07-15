@@ -8,6 +8,7 @@ import Select from '@/components/Forms/Select';
 import { useState, useEffect } from 'react';
 import Button from '@/components/Button';
 import Input from '@/components/Forms/Input';
+import { TriangleAlert } from 'lucide-react';
 
 export default function PrendreRdv() {
     const {isConnected, userProfil,loading} = useAuth();
@@ -39,13 +40,25 @@ export default function PrendreRdv() {
         fetchTechniques();
     },[]);
 
+    // Gestion des erreurs
+    const [erreur, setErreur] = useState({});
+
     // Envoi du formulaire
     const handleSubmit = (e) => {
         e.preventDefault();
+        setErreur({});
+
+        const erreurs = {};
 
         if(!techniqueId)
         {
+            erreurs.techniqueId = "Veuillez sélectionner une technique.";
             console.log("Veuillez sélectionner une technique.");
+        }
+
+        //Si l'objet contient au moins une erreur, on affiche tout et on stoppe l'envoi
+        if (Object.keys(erreurs).length > 0) {
+            setErreur(erreurs);
             return;
         }
 
@@ -93,7 +106,7 @@ export default function PrendreRdv() {
                             <Input label="Nail art" type="checkbox" value={nailArt} onChange={(e) => setNailArt(e.target.checked)} className="checkbox"/>
                         </div>
                         <div className="container-presta">
-                            <Select nomSelect="prestation" options={techniquesPrincipales} value={techniqueId} onChange={(e) => setTechniqueId(e.target.value)} placeholder="Choisissez la prestation que vous souhaitez." />
+                            <Select nomSelect="prestation" options={techniquesPrincipales} value={techniqueId} onChange={(e) => setTechniqueId(e.target.value)} placeholder="Choisissez la prestation que vous souhaitez." error={!!erreur.techniqueId}/>
                             <div className="prix">
                                 {techniqueId ?(
                                     <p>{prixTotal} €</p>
@@ -102,6 +115,7 @@ export default function PrendreRdv() {
                                 )}
                             </div>
                         </div>
+                        {erreur.techniqueId && <div className="error-message"><TriangleAlert size={20}/>{erreur.techniqueId}</div>}
                     </div>
                     <div className="btn">
                         <Button text="Confirmer"/>
