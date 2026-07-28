@@ -10,23 +10,41 @@ import Button from '@/components/Button';
 import Input from '@/components/Forms/Input';
 import { TriangleAlert } from 'lucide-react';
 
-const Days = [
-    { name: "Lundi", date: "2026-01-01" },
-    { name: "Mardi", date: "2026-01-02" },
-    { name: "Mercredi", date: "2026-01-03" },
-    { name: "Jeudi", date: "2026-01-04" },
-    { name: "Vendredi", date: "2026-01-05" },
-    { name: "Samedi", date: "2026-01-06" }
-];
+// Les horaires disponibles pour chaque jour de la semaine
+const Hours = ["10h", "14h", "16h"];
 
-const Hours = [
-    { day: "Lundi", hour: ["10h", "14h", "16h"] },
-    { day: "Mardi", hour: ["10h", "16h"] },
-    { day: "Mercredi", hour: ["10h"] },
-    { day: "Jeudi", hour: ["14h", "16h"] },
-    { day: "Vendredi", hour: ["10h"] },
-    { day: "Samedi", hour: [] }
-];
+// Générer les jours de la semaine avec leurs dates correspondantes
+const Week = (startDate = 0) => {
+    const Now = new Date();
+    const Days = Now.getDay(); // dimanche = 0, lundi = 1, ..., samedi = 6
+
+    // Trouver lundi : si on est dimanche on recule de 6 jours sinon on recule jusqu'au lundi
+    const Monday = Days === 0 ? -6 : 1 - Days;
+    
+    // Calculer la date du lundi de la semaine actuelle
+    const currentMonday = new Date(Now.getFullYear(), Now.getMonth(), Now.getDate() + Monday + (startDate*7));
+
+    const weekDays = [];
+
+    const dayNames = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+
+    // Création des 6 jours du calendrier à partir du lundi
+    for(let i = 0; i<6; i++){
+        const currentDay = new Date(currentMonday);
+        currentDay.setDate(currentMonday.getDate()+i);
+
+        const year = currentDay.getFullYear();
+        const month = String(currentDay.getMonth() + 1).padStart(2, '0'); // Les mois commencent à 0
+        const day = String(currentDay.getDate()).padStart(2, '0'); // Ajouter un zéro devant si le jour est inférieur à 10
+
+        weekDays.push({
+            name: dayNames[currentDay.getDay()],
+            date: `${year}-${month}-${day}` // Format YYYY-MM-DD
+        });
+    }
+    return weekDays;
+}
+
 
 export default function PrendreRdv() {
     const {isConnected, userProfil,loading} = useAuth();
@@ -42,6 +60,9 @@ export default function PrendreRdv() {
     const [selectedHour, setSelectedHour] = useState(null);
     // le texte de la prise du rendez-vous
     const [confirmationMessage, setConfirmationMessage] = useState('');
+
+    // Navigation dans les semaines
+    const [currentWeek, setCurrentWeek] = useState(0);
 
     // Récupérer les techniques depuis la base de données
     useEffect(() => {
@@ -66,6 +87,17 @@ export default function PrendreRdv() {
 
     // Gestion des erreurs
     const [erreur, setErreur] = useState({});
+
+    // Générer les jours de la semaine à afficher dans le calendrier
+    const Days = Week(currentWeek);
+
+    // Récupérer le mois du premier jour de la semaine
+    const firstDayOfWeek = new Date(Days[0].date);
+    const monthName = firstDayOfWeek.toLocaleString('fr-FR', { month: 'long' });
+
+    // navigation entre les semaines
+    const previousWeek = () => setCurrentWeek(prev => prev - 1);
+    const nextWeek = () => setCurrentWeek(prev => prev + 1);
 
     // Logique de la sélection du jour et de l'heure
     const handleTime = (day, hour) => {
@@ -170,10 +202,10 @@ export default function PrendreRdv() {
                     </div>
                     <div className="calendrier">
                         <div className="mois">
-                            <p>Janvier</p>
+                            <p>{monthName}</p>
                             <div className="navigation">
                                 <img src="icones/arrow_filter.png" alt="arrow" className="arrow-icon" />
-                                <p>01 - 07</p>
+                                {/* <p></p> */}
                                 <img src="icones/arrow_filter.png" alt="arrow" className="arrow-icon" />
                             </div>
                         </div>
@@ -184,7 +216,7 @@ export default function PrendreRdv() {
                                         <p>{day.name}</p>
                                     </div>
                                     <div className="grid-hours">
-                                        {Hours.find(slotDay => slotDay.day === day.name)?.hour.map(hour => {
+                                        {Hours.map(hour => {
                                             const isSelected = selectedDay?.date === day.date && selectedHour === hour;
                                             return(
                                                 < button 

@@ -138,16 +138,14 @@
                             button{
                                 &:hover{
                                     background-color:$color-dark;
-                                    
                                 }
                                 &.selected{
                                     background-color:$color-dark;
                                     @include border($width:2px);
                                     @include shadow($y:2.5px,$blur:10px);
                                     color:$text-white;
-                                    
                                 }
-                                border:none;
+                                border: 2px solid transparent;
                                 background-color:$color-middle;
                                 @include text-chicle($color:$text-white);
                                 display:flex;
