@@ -72,8 +72,17 @@ export default function PrendreRdv() {
         setSelectedDay(day);
         setSelectedHour(hour);
 
+        // Changer le format de la date pour l'affichage
+        const dateObj = new Date(day.date);
+
+        const dateFormat = dateObj.toLocaleDateString('fr-FR',{
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric'
+        });
+
         // Le message de confirmation se met à jour 
-        const confirmationText = `Vous avez pris rendez-vous pour le ${day.name} ${day.date} à ${hour}.`;
+        const confirmationText = `Vous avez pris rendez-vous pour le ${day.name} ${dateFormat} à ${hour}.`;
         setConfirmationMessage(confirmationText);
     };
 
@@ -163,7 +172,9 @@ export default function PrendreRdv() {
                         <div className="mois">
                             <p>Janvier</p>
                             <div className="navigation">
-                                <p>Semaine-1-7</p>
+                                <img src="icones/arrow_filter.png" alt="arrow" className="arrow-icon" />
+                                <p>01 - 07</p>
+                                <img src="icones/arrow_filter.png" alt="arrow" className="arrow-icon" />
                             </div>
                         </div>
                         <div className="grid-days">
@@ -190,14 +201,14 @@ export default function PrendreRdv() {
                                 </div>
                             ))}
                         </div>
-                        {/* Affichage des erreurs de calendrier */}
-                        {erreur.date && <div className="error-message"><TriangleAlert size={20}/>{erreur.date}</div>}
-                        {confirmationMessage && (   
-                            <div className="message">
-                                <p>{confirmationMessage}</p>
-                            </div>
-                        )}
                     </div>
+                    {/* Affichage des erreurs de calendrier */}
+                    {erreur.date && <div className="error-message"><TriangleAlert size={20}/>{erreur.date}</div>}
+                    {confirmationMessage && (   
+                        <div className="message">
+                            <p>{confirmationMessage}</p>
+                        </div>
+                    )}
                     <div className="btn">
                         <Button text="Confirmer"/>
                     </div>

@@ -91,6 +91,84 @@
                     }
                 }
             }
+            .calendrier{
+                display:flex;
+                flex-direction:column;
+                gap:$gap-small;
+                padding:15px;
+                @include border($width: 2px);
+                border-radius:$border-radius-min;
+                .mois{
+                    display:flex;
+                    width:100%;
+                    p{
+                        @include text-chicle($color:$text-darker,$taille:24px);
+                    }
+                    .navigation{
+                        width:100%;
+                        display:flex;
+                        justify-content:center;
+                        gap:$gap-small;
+                        .arrow-icon{
+                            width:15px;
+                            &:nth-child(1){
+                                transform:rotate(180deg);
+                            }
+                        }
+                    }
+                }
+                .grid-days{
+                    width:100%;
+                    display:flex;
+                    flex-wrap:wrap;
+                    gap:$gap-small;
+                    justify-content:space-between;
+                    p{
+                        @include text-chicle($color:$text-darker);
+                    }
+                    .column{
+                        display:flex;
+                        flex-direction:column;
+                        gap:$gap-small;
+                        align-items:center;
+                        .grid-hours{
+                            display:flex;
+                            flex-direction:column;
+                            gap:$gap-small;
+                            button{
+                                &:hover{
+                                    background-color:$color-dark;
+                                    
+                                }
+                                &.selected{
+                                    background-color:$color-dark;
+                                    @include border($width:2px);
+                                    @include shadow($y:2.5px,$blur:10px);
+                                    color:$text-white;
+                                    
+                                }
+                                border:none;
+                                background-color:$color-middle;
+                                @include text-chicle($color:$text-white);
+                                display:flex;
+                                align-items:center;
+                                justify-content:center;
+                                padding:5px $padding-medium;
+                                border-radius:$border-radius-min;
+                                transition: background-color 0.3s ease;
+                                cursor:pointer;
+                            }
+                        }
+                    }
+                }
+            }
+            .message{
+                background-color:$color-dark;
+                @include text-chicle($color:$text-white,$taille:24px,$align:center);
+                width:100%;
+                padding:$padding-small;
+                border-radius:$border-radius-min;
+            }
             .btn{
                 display:flex;
                 justify-content:flex-end;
