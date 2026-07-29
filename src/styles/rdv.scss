@@ -94,7 +94,7 @@
             .calendrier{
                 display:flex;
                 flex-direction:column;
-                gap:$gap-small;
+                gap:$gap-medium;
                 padding:15px;
                 @include border($width: 2px);
                 border-radius:$border-radius-min;
@@ -111,6 +111,7 @@
                         gap:$gap-small;
                         .arrow-icon{
                             width:15px;
+                            cursor:pointer;
                             &:nth-child(1){
                                 transform:rotate(180deg);
                             }
@@ -125,6 +126,10 @@
                     justify-content:space-between;
                     p{
                         @include text-chicle($color:$text-darker);
+                    }
+                    .past-day{
+                        opacity:0.5;
+                        pointer-events:none;
                     }
                     .column{
                         display:flex;

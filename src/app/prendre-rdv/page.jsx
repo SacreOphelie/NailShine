@@ -94,9 +94,18 @@ export default function PrendreRdv() {
     // Récupérer le mois du premier jour de la semaine
     const firstDayOfWeek = new Date(Days[0].date);
     const monthName = firstDayOfWeek.toLocaleString('fr-FR', { month: 'long' });
+    const month = monthName.charAt(0).toUpperCase() + monthName.slice(1); // Mettre la première lettre en majuscule
+
+    // Récupérer le début et la fin de semaine 
+    const startWeek = Days[0].date.split('-')[2];
+    const endWeek = Days[Days.length - 1].date.split('-')[2];
 
     // navigation entre les semaines
-    const previousWeek = () => setCurrentWeek(prev => prev - 1);
+    const previousWeek = () => {
+        if(currentWeek > 0) {
+            setCurrentWeek(prev => prev - 1);
+        }
+    };
     const nextWeek = () => setCurrentWeek(prev => prev + 1);
 
     // Logique de la sélection du jour et de l'heure
@@ -114,7 +123,7 @@ export default function PrendreRdv() {
         });
 
         // Le message de confirmation se met à jour 
-        const confirmationText = `Vous avez pris rendez-vous pour le ${day.name} ${dateFormat} à ${hour}.`;
+        const confirmationText = `Vous avez choisi le ${day.name} ${dateFormat} à ${hour}.`;
         setConfirmationMessage(confirmationText);
     };
 
@@ -202,36 +211,51 @@ export default function PrendreRdv() {
                     </div>
                     <div className="calendrier">
                         <div className="mois">
-                            <p>{monthName}</p>
+                            <p>{month}</p>
                             <div className="navigation">
-                                <img src="icones/arrow_filter.png" alt="arrow" className="arrow-icon" />
-                                {/* <p></p> */}
-                                <img src="icones/arrow_filter.png" alt="arrow" className="arrow-icon" />
+                                {currentWeek > 0 ? (
+                                    <img src="icones/arrow_filter.png" alt="arrow" className="arrow-icon" onClick={previousWeek}/>
+                                ) : (
+                                    <div style={{ width: '0px'}}></div>
+                                )}
+                                <p>{startWeek} - {endWeek}</p>
+                                <img src="icones/arrow_filter.png" alt="arrow" className="arrow-icon" onClick={nextWeek}/>
                             </div>
                         </div>
                         <div className="grid-days">
-                            {Days.map(day => (
-                                <div key={day.name} className="column">
-                                    <div className="day-name">
-                                        <p>{day.name}</p>
+                            {Days.map(day => {
+
+                                // Récupérer l'info que le jour est passé 
+                                const dayDate = new Date(day.date);
+                                const today = new Date();
+                                // Si c'est plus petit ou égal à aujourd'hui, le jour est passé
+                                const isPast = dayDate <= today;
+
+                                return(
+                                    <div key={day.name} className={`column ${isPast ? 'past-day' : ''}`}>
+                                        <div className="day-name">
+                                            <p>{day.name}</p>
+                                        </div>
+                                        <div className="grid-hours">
+                                            {Hours.map(hour => {
+                                                const isSelected = selectedDay?.date === day.date && selectedHour === hour;
+                                                return(
+                                                    < button 
+                                                        key={hour}
+                                                        type="button"
+                                                        className={`hour-button ${isSelected ? 'selected' : ''}`}
+                                                        onClick={() => !isPast && handleTime(day, hour)}
+                                                        disabled={isPast}
+                                                    >
+                                                        {hour}
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
                                     </div>
-                                    <div className="grid-hours">
-                                        {Hours.map(hour => {
-                                            const isSelected = selectedDay?.date === day.date && selectedHour === hour;
-                                            return(
-                                                < button 
-                                                    key={hour}
-                                                    type="button"
-                                                    className={`hour-button ${isSelected ? 'selected' : ''}`}
-                                                    onClick={() => handleTime(day, hour)}
-                                                >
-                                                    {hour}
-                                                </button>
-                                            );
-                                        })}
-                                    </div>
-                                </div>
-                            ))}
+                                );
+
+                            })}
                         </div>
                     </div>
                     {/* Affichage des erreurs de calendrier */}
