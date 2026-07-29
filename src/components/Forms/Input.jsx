@@ -7,11 +7,12 @@ export default function Input({label, type, value, checked, onChange, error = fa
 
     const inputType = type === "password" && passwordVisible ? 'text' : type;
     return(
-        <div className="form-group">
+        // Si le type est file le form-group est en display none
+        <div className="form-group" style={{ display: type === "file" ? "none" : "flex" }}>
             <label>{label}</label>
             <input
                 type={inputType}
-                value={value}
+                value={type !== "file" ? value : undefined}
                 checked={checked}
                 onChange={onChange}
                 className={error ? "input-error" : ""}

@@ -8,7 +8,8 @@ import Select from '@/components/Forms/Select';
 import { useState, useEffect } from 'react';
 import Button from '@/components/Button';
 import Input from '@/components/Forms/Input';
-import { TriangleAlert } from 'lucide-react';
+import { TriangleAlert, X } from 'lucide-react';
+
 
 // Les horaires disponibles pour chaque jour de la semaine
 const Hours = ["10h", "14h", "16h"];
@@ -63,6 +64,10 @@ export default function PrendreRdv() {
 
     // Navigation dans les semaines
     const [currentWeek, setCurrentWeek] = useState(0);
+
+    // Ajout de l'ajout d'une fichier 
+    const [inspirationFile, setInspirationFile] = useState(null);
+    const [previewUrl, setPreviewUrl] = useState(null);
 
     // Récupérer les techniques depuis la base de données
     useEffect(() => {
@@ -127,6 +132,22 @@ export default function PrendreRdv() {
         setConfirmationMessage(confirmationText);
     };
 
+    // Gestion du choix du fichier d'inspiration
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if(file) {
+            setInspirationFile(file);
+            // générer un url pour afficher l'image choisie
+            setPreviewUrl(URL.createObjectURL(file));
+        }
+    }
+
+    // Supprimer l'image d'inspiration choisie
+    const removeInspiration = () => {
+        setInspirationFile(null);
+        setPreviewUrl(null);
+    }
+
     // Envoi du formulaire
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -137,7 +158,6 @@ export default function PrendreRdv() {
         if(!techniqueId)
         {
             erreurs.techniqueId = "Veuillez sélectionner une technique.";
-            console.log("Veuillez sélectionner une technique.");
         }
 
         if(!selectedDay || !selectedHour)
@@ -155,7 +175,7 @@ export default function PrendreRdv() {
         console.log("Nail art :", nailArt);
         console.log("Jour sélectionné :", selectedDay);
         console.log("Heure sélectionnée :", selectedHour);
-
+        console.log("Fichier d'inspiration :", inspirationFile);
     }
 
     // Temps de chargement
@@ -265,6 +285,23 @@ export default function PrendreRdv() {
                             <p>{confirmationMessage}</p>
                         </div>
                     )}
+                    <div className="container-inspiration">
+                        <div className="inspiration">
+                            <p>Une inspiration en tête ?</p>
+                            <Input type="file" onChange={handleFileChange} accept="image/*" id="inspiration-file" style={{ display: 'none' }}/>
+                            <label htmlFor="inspiration-file" className="btn-inspiration">
+                                Joindre une inspiration
+                            </label>
+                        </div>
+                        {previewUrl && (
+                            <div className="preview">
+                                <img src={previewUrl} alt="Aperçu de l'inspiration" className="preview-image"/>
+                                <button onClick={removeInspiration}>
+                                    <X size={20} />
+                                </button>
+                            </div>
+                        )}
+                    </div>
                     <div className="btn">
                         <Button text="Confirmer"/>
                     </div>

@@ -43,8 +43,8 @@ export default function Compte(){
                     <h2>Mon compte</h2>
                     <p>Votre profil est temporairement indisponible. Vous pouvez réessayer ou vous déconnecter.</p>
                     <div className="btn">
-                        <button type="button" className="button" onClick={refreshAuth}>Réessayer</button>
-                        <button type="button" className="button button-secondary" onClick={handleLogout}>Se déconnecter</button>
+                        <button type="button" onClick={refreshAuth}>Réessayer</button>
+                        <button type="button" onClick={handleLogout}>Se déconnecter</button>
                     </div>
                 </div>
             </div>
