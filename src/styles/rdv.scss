@@ -197,7 +197,8 @@
                     }
                 }
                 .italic{
-                    @include text($taille:14px);
+                    @include text($taille:14px ,$style: italic, $epaisseur: 300);
+                    margin-top:-10px;
                 }
                 .preview{
                     width:150px;
