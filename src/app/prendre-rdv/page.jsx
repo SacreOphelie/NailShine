@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 import Button from '@/components/Button';
 import Input from '@/components/Forms/Input';
 import { TriangleAlert, X } from 'lucide-react';
+import Textarea from '@/components/Forms/Textarea';
 
 
 // Les horaires disponibles pour chaque jour de la semaine
@@ -293,6 +294,7 @@ export default function PrendreRdv() {
                                 Joindre une inspiration
                             </label>
                         </div>
+                        <p className="italic">jpg/png</p>
                         {previewUrl && (
                             <div className="preview">
                                 <img src={previewUrl} alt="Aperçu de l'inspiration" className="preview-image"/>
@@ -301,6 +303,9 @@ export default function PrendreRdv() {
                                 </button>
                             </div>
                         )}
+                    </div>
+                    <div className="commentaire">
+                        <Textarea placeholder="Ajouter un commentaire (optionnel)"/>
                     </div>
                     <div className="btn">
                         <Button text="Confirmer"/>

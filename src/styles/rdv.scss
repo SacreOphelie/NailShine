@@ -196,6 +196,9 @@
                         }
                     }
                 }
+                .italic{
+                    @include text($taille:14px);
+                }
                 .preview{
                     width:150px;
                     height:100px;
