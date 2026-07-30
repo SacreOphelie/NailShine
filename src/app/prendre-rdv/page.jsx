@@ -70,6 +70,9 @@ export default function PrendreRdv() {
     const [inspirationFile, setInspirationFile] = useState(null);
     const [previewUrl, setPreviewUrl] = useState(null);
 
+    // Stocker le commentaire
+    const [commentaire, setCommentaire] = useState('');
+
     // Récupérer les techniques depuis la base de données
     useEffect(() => {
         const fetchTechniques = async () => {
@@ -149,6 +152,39 @@ export default function PrendreRdv() {
         setPreviewUrl(null);
     }
 
+    // Fonction pour gérer la date pour supabase
+    const FormatDateSupabase = (dateStr, hourStr) => {
+        const hourNumber = parseInt(hourStr.replace('h',''),10);
+         const [year, month, day] = dateStr.split('-').map(Number);
+         const date = new Date(year, month-1, day, hourNumber,0,0);
+
+         return date.toISOString();
+    }
+
+    // Gérer l'upload de la photo d'inspiration sur Supabase
+    const uploadInspiration = async (file, clientId) => {
+        if(!file) return null;
+
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${clientId}_${Date.now()}.${fileExt}`;
+        const filePath = `inspirations/${fileName}`;
+
+        const {error: uploadError} = await supabase.storage
+            .from('inspirations')
+            .upload(filePath, file);
+
+        if(uploadError){
+            console.error("Erreur lors de l'upload du fichier :", uploadError);
+            return null;
+        }
+        // Récupération du lien
+        const {data} = supabase.storage
+            .from('inspirations')
+            .getPublicUrl(filePath);
+            
+        return data.publicUrl;
+    }
+
     // Envoi du formulaire
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -177,6 +213,7 @@ export default function PrendreRdv() {
         console.log("Jour sélectionné :", selectedDay);
         console.log("Heure sélectionnée :", selectedHour);
         console.log("Fichier d'inspiration :", inspirationFile);
+        console.log("Commentaire :", commentaire);
     }
 
     // Temps de chargement
@@ -305,7 +342,7 @@ export default function PrendreRdv() {
                         )}
                     </div>
                     <div className="commentaire">
-                        <Textarea placeholder="Ajouter un commentaire (optionnel)"/>
+                        <Textarea placeholder="Ajouter un commentaire (optionnel)" value={commentaire} onChange={(e) => setCommentaire(e.target.value)}/>
                     </div>
                     <div className="btn">
                         <Button text="Confirmer"/>
