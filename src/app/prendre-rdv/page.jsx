@@ -49,6 +49,7 @@ const Week = (startDate = 0) => {
 
 
 export default function PrendreRdv() {
+    
     const {isConnected, userProfil,loading} = useAuth();
     // Afficher les techniques disponibles
     const [techniques, setTechniques] = useState([]);
@@ -155,10 +156,13 @@ export default function PrendreRdv() {
     // Fonction pour gérer la date pour supabase
     const FormatDateSupabase = (dateStr, hourStr) => {
         const hourNumber = parseInt(hourStr.replace('h',''),10);
-         const [year, month, day] = dateStr.split('-').map(Number);
-         const date = new Date(year, month-1, day, hourNumber,0,0);
+        const [year, month, day] = dateStr.split('-').map(Number);
+        const date = new Date(year, month-1, day, hourNumber,0,0);
 
-         return date.toISOString();
+        const offset = date.getTimezoneOffset() * 60000;
+        const localDate = new Date(date.getTime() - offset);
+
+        return localDate.toISOString();
     }
 
     // Gérer l'upload de la photo d'inspiration sur Supabase
@@ -186,7 +190,7 @@ export default function PrendreRdv() {
     }
 
     // Envoi du formulaire
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setErreur({});
 
@@ -208,12 +212,53 @@ export default function PrendreRdv() {
             return;
         }
 
-        console.log("Technique sélectionnée :", techniqueId);
-        console.log("Nail art :", nailArt);
-        console.log("Jour sélectionné :", selectedDay);
-        console.log("Heure sélectionnée :", selectedHour);
-        console.log("Fichier d'inspiration :", inspirationFile);
-        console.log("Commentaire :", commentaire);
+        try{
+            // récupérer le vrai utilisateur connecté
+            const {data:{user},error: authError} = await supabase.auth.getUser();
+            if(authError){
+                console.error("Erreur lors de la récupération de l'utilisateur :", authError);
+                return;
+            }
+            //la date pour supabase
+            const dateRdv = FormatDateSupabase(selectedDay.date, selectedHour);
+
+            // upload de l'image d'inspiration
+            const inspirationUrl = await uploadInspiration(inspirationFile, userProfil.id);
+
+            const rdvData ={
+                client_id: user.id,
+                technique_id: parseInt(techniqueId),
+                nail_art: nailArt,
+                date_heure: dateRdv,
+                inspiration: inspirationUrl,
+                commentaire: commentaire || null
+            };
+
+            // insertion dans la table rdv
+            const {error:insertError} = await supabase
+                .from('rendez_vous')
+                .insert([rdvData]);
+            
+            if(insertError){
+                console.error("Erreur lors de l'insertion du rendez-vous :", insertError);
+                throw insertError;
+                
+            }
+
+            // Succès
+            setConfirmationMessage("Votre rendez-vous a été pris avec succès !");
+            // Réinitialiser le formulaire
+            setTechniqueId('');
+            setNailArt(false);
+            setSelectedDay(null);
+            setSelectedHour(null);
+            setInspirationFile(null);
+            setPreviewUrl(null);
+            setCommentaire('');
+        }catch (error){
+            console.error("Erreur lors de la prise de rendez-vous :", error);
+
+        }
     }
 
     // Temps de chargement

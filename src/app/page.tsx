@@ -31,8 +31,6 @@ export default async function Page() {
     `);
     if(errorAvis){
       console.error("Erreur lors de la récupération des avis :", errorAvis);
-    }else{
-      console.log("Avis récupérés :", avis);
     }
 
 	return(
