@@ -14,23 +14,24 @@ import Heart from '@/components/Heart';
 
 export default function Nav(){
     const router = useRouter();
-    const { isConnected, loading } = useAuth();
+    const { isConnected } = useAuth();
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     // Déconnexion
     const handleLogout = async () => {
-        await supabase.auth.signOut();
-
-        // notification de toastify
-        localStorage.removeItem('token'); 
-        toast('Déconnexion réussie.', {
-            icon:"🔓",
-            className: 'toast-success',
-            progressClassName: 'toast-progress-bar',
-        });
-        router.push('/');
-        router.refresh();
+        try{
+            await supabase.auth.signOut({scope:'local'});
+            localStorage.removeItem('token'); 
+            // Notification de déconnexion réussie
+            toast('Déconnexion réussie.', {
+                icon:"🔓",
+                className: 'toast-success',
+                progressClassName: 'toast-progress-bar',
+            });
+        }catch(error){
+            console.error('Erreur lors de la déconnexion :', error);
+        }
     };
 
     // Ferme le menu si la fenêtre est redimensionnée au-delà de 1500px

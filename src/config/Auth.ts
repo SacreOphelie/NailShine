@@ -71,7 +71,7 @@ export function useAuth() {
                 setIsConnected(!!session);
                 if (session?.user) {
                     const profil = await getUserProfil(session.user.id);
-                    if (isMounted) {
+                    if (isMounted && profil) {
                         setUserProfil(profil);
                     }
                 } else {
