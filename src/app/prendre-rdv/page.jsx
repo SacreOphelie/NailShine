@@ -381,7 +381,7 @@ export default function PrendreRdv() {
                                                     < button 
                                                         key={hour}
                                                         type="button"
-                                                        className={`hour-button ${isSelected ? 'selected' : ''} ${isPast || isBooked ? 'past-day' : ''}`}
+                                                        className={`hour-button ${isSelected ? 'selected' : ''} ${isPast || isBooked ? 'booked' : ''}`}
                                                         onClick={() => !isDisabled && handleTime(day, hour)}
                                                         disabled={isDisabled}
                                                     >
