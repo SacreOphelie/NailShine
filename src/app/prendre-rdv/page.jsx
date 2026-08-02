@@ -74,6 +74,9 @@ export default function PrendreRdv() {
     // Stocker le commentaire
     const [commentaire, setCommentaire] = useState('');
 
+    // rendez-vous déjà pris
+    const [booked, setBooked] = useState([]);
+
     // Récupérer les techniques depuis la base de données
     useEffect(() => {
         const fetchTechniques = async () => {
@@ -94,6 +97,25 @@ export default function PrendreRdv() {
 
         fetchTechniques();
     },[]);
+
+    // Récupérer les rendez-vous déjà pris pour désactiver les créneaux
+    useEffect(() => {
+        const fetchBooked = async () => {
+            try{
+                const {data, error} = await supabase
+                    .from('rendez_vous')
+                    .select('date_heure');
+                if(error){
+                    console.error("Erreur lors de la récupération des rendez-vous :", error);
+                }else if (data){
+                    setBooked(data)
+                }
+            }catch(error){
+                console.error("Erreur système", error)
+            }   
+        };
+        fetchBooked();
+    },[currentWeek]);
 
     // Gestion des erreurs
     const [erreur, setErreur] = useState({});
@@ -247,6 +269,9 @@ export default function PrendreRdv() {
 
             // Succès
             setConfirmationMessage("Votre rendez-vous a été pris avec succès !");
+
+            // Mettre à jour la liste des rendez-vous déjà pris pour désactiver le créneau choisi
+            setBooked(prev => [...prev, {date_heure: dateRdv}]);
             // Réinitialiser le formulaire
             setTechniqueId('');
             setNailArt(false);
@@ -342,13 +367,20 @@ export default function PrendreRdv() {
                                         <div className="grid-hours">
                                             {Hours.map(hour => {
                                                 const isSelected = selectedDay?.date === day.date && selectedHour === hour;
+                                                // le format de l'heure pour supabase
+                                                const currentItemISO = FormatDateSupabase(day.date, hour);
+                                                // Récupérer si un rdv est déjà pris
+                                                const isBooked = booked.some(item => item.date_heure.substring(0,16)=== currentItemISO.substring(0,16));
+
+                                                // Si le jour est passé ou si le créneau est déjà pris, on désactive le bouton
+                                                const isDisabled = isPast || isBooked;
                                                 return(
                                                     < button 
                                                         key={hour}
                                                         type="button"
-                                                        className={`hour-button ${isSelected ? 'selected' : ''}`}
-                                                        onClick={() => !isPast && handleTime(day, hour)}
-                                                        disabled={isPast}
+                                                        className={`hour-button ${isSelected ? 'selected' : ''} ${isPast || isBooked ? 'past-day' : ''}`}
+                                                        onClick={() => !isDisabled && handleTime(day, hour)}
+                                                        disabled={isDisabled}
                                                     >
                                                         {hour}
                                                     </button>
