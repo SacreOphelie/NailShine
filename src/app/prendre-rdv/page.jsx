@@ -10,6 +10,7 @@ import Button from '@/components/Button';
 import Input from '@/components/Forms/Input';
 import { TriangleAlert, X } from 'lucide-react';
 import Textarea from '@/components/Forms/Textarea';
+import { useRouter } from 'next/navigation';
 
 
 // Les horaires disponibles pour chaque jour de la semaine
@@ -51,6 +52,7 @@ const Week = (startDate = 0) => {
 export default function PrendreRdv() {
     
     const {isConnected, userProfil,loading} = useAuth();
+    const router = useRouter();
     // Afficher les techniques disponibles
     const [techniques, setTechniques] = useState([]);
     // Récupérer le choix client
@@ -280,6 +282,7 @@ export default function PrendreRdv() {
             setInspirationFile(null);
             setPreviewUrl(null);
             setCommentaire('');
+            router.push('/confirmation-rdv');
         }catch (error){
             console.error("Erreur lors de la prise de rendez-vous :", error);
 
