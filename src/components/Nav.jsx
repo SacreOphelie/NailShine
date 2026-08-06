@@ -32,7 +32,6 @@ export default function Nav(){
         }catch(error){
             console.error('Erreur lors de la déconnexion :', error);
         }
-        router.push('/');
     };
 
     // Ferme le menu si la fenêtre est redimensionnée au-delà de 1500px

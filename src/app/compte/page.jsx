@@ -33,7 +33,7 @@ export default function Compte(){
 
     // Ne pas aller plus loin si l'utilisateur n'est pas connecté
     if (!isConnected) {
-        return null;
+        return(<div className="slide"></div>)
     }
 
     if (!userProfil) {
