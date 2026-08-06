@@ -1,11 +1,12 @@
 "use client";
 
-import '@/styles/connexion.scss';
+import '@/styles/compte.scss';
 import { useAuth } from '@/config/Auth';
 import { TriangleAlert } from 'lucide-react';
 import {useEffect} from 'react';
 import {useRouter} from 'next/navigation';
 import { supabase } from '@/config/supabase';
+import Button from '@/components/Button';
 
 export default function Compte(){
     const { userProfil, isConnected, loading, refreshAuth } = useAuth();
@@ -52,7 +53,8 @@ export default function Compte(){
     }
 
     return(
-        <div className="slide" id="compte">
+        <div className="slide" id="admin">
+            <Button url="" text="Ajouter une réalisation"className="btn-add"/>
             <div className="box-compte">
                 <h2>Mon compte</h2>
                 <p>Bienvenue, {userProfil.prenom} {userProfil.nom}!</p>

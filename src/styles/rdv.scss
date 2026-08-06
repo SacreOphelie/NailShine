@@ -11,8 +11,8 @@
     .box{
         display:flex;
         flex-direction:column;
-        max-width:1400px;
-        width:800px;
+        max-width:800px;
+        width:fit-content;
         height:fit-content;
         background-color:$color-light;
         padding:$padding-large;
