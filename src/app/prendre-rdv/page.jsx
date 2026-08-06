@@ -272,6 +272,11 @@ export default function PrendreRdv() {
             // Succès
             setConfirmationMessage("Votre rendez-vous a été pris avec succès !");
 
+            // Stockage des données entrées dans le sessionStorage pour la page de confirmation
+            
+
+            sessionStorage.setItem('rdv_success', 'true');
+
             // Mettre à jour la liste des rendez-vous déjà pris pour désactiver le créneau choisi
             setBooked(prev => [...prev, {date_heure: dateRdv}]);
             // Réinitialiser le formulaire
