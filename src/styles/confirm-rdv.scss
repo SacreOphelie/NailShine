@@ -90,6 +90,19 @@
         .box{
             width:90%;
             margin:0 auto;
+            #etoile1{
+                top: -35px;
+                right: -30px;
+                width: 75px;
+            }
+            #etoile2{
+                display:none;
+            }
+            #rond1{
+                bottom: -30px;
+                left: 50px;
+                width: 50px;
+            }
             h2{
                 text-align:left;
             }
@@ -98,6 +111,11 @@
     @media(max-width:$width-mobile){
         .box{
             padding:$padding-medium;
+            #etoile1{
+                top: -30px;
+                right: -0px;
+                width: 50px;
+            }
             h2{
                 font-size:40px;
             }
