@@ -15,7 +15,7 @@ export default function Compte(){
     // Gestion de la redirection si l'utilisateur n'est pas connecté
     useEffect(() => {
         if(!loading && !isConnected) {
-            router.push('/se-connecter');
+            router.replace('/se-connecter');
         }
     }, [loading, isConnected, router]);
 
@@ -28,7 +28,7 @@ export default function Compte(){
 
     const handleLogout = async () => {
         await supabase.auth.signOut();
-        router.push('/se-connecter');
+        router.replace('/se-connecter');
         router.refresh();
     };
 
@@ -37,28 +37,23 @@ export default function Compte(){
         return(<div className="slide"></div>)
     }
 
-    if (!userProfil) {
-        return (
-            <div className="slide" id="compte">
-                <div className="box-compte">
-                    <h2>Mon compte</h2>
-                    <p>Votre profil est temporairement indisponible. Vous pouvez réessayer ou vous déconnecter.</p>
-                    <div className="btn">
-                        <button type="button" onClick={refreshAuth}>Réessayer</button>
-                        <button type="button" onClick={handleLogout}>Se déconnecter</button>
-                    </div>
-                </div>
-            </div>
-        );
-    }
-
-    return(
-        <div className="slide " id="admin">
+    if(userProfil.role === 'admin'){
+        return(
+            <div className="slide " id="admin">
             <Button url="/ajouter-une-realisation" text="Ajouter une réalisation"className="btn-add"/>
             <div className="box-compte wrapper">
                 <h2>Mon compte</h2>
+                <p>Rôle : Administrateur</p>
+            </div>
+        </div>
+        )
+    }
+
+    return(
+        <div className="slide " id="compte">
+            <div className="box-compte wrapper">
+                <h2>Mon compte</h2>
                 <p>Bienvenue, {userProfil.prenom} {userProfil.nom}!</p>
-                {userProfil.role === 'admin' && <p>Rôle : Administrateur</p>}
             </div>
         </div>
     );
