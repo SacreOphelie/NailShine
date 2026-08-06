@@ -5,11 +5,13 @@
     display:flex;
     justify-content:center;
     align-items:center;
+    padding-top:$padding-top;
+    padding-bottom:$padding-bottom;
     .box{
         display:flex;
         flex-direction:column;
-        max-width:1400px;
-        min-width:800px;
+        max-width:950px;
+        width:fit-content;
         height:fit-content;
         background-color:$color-light;
         padding:$padding-large;
@@ -19,8 +21,22 @@
         @include shadow;
         position:relative;
         h2{
-            @include titre($color:$text-darker,$taille:80px,$align:left);
+            @include titre($color:$text-darker,$taille:72px,$align:left);
             text-align:left
+        }
+        p{
+            @include text();
+        }
+        .bloc-info{
+            padding:$padding-small;
+            background-color:$color-dark;
+            display:flex;
+            flex-direction:column;
+            gap:$gap-small;
+            border-radius:$border-radius-small;
+            p{
+                @include text-chicle($taille:20px,$color:$text-white);
+            }
         }
     }
 }

@@ -184,6 +184,7 @@
     {
         padding-bottom:0;
         .container-about{
+            padding-bottom:$padding-xlarge;
             .wrapper{
                 .photo{
                     border-top-left-radius:$border-radius-large;
@@ -402,6 +403,7 @@
     }
     @media(max-width:$width-mobile)
     {
+        gap:$gap-large;
         padding-bottom:$padding-xlarge;
         #studio,#localisation-salon,#quali-salon{
             .container-salon,.container-location,.container-quali{
@@ -465,6 +467,11 @@
     padding-top:$padding-xlarge;
     padding-bottom:$padding-bottom;
     background-color:$color-middle;
+    @media(max-width:$width-mobile)
+    {
+        padding-top:$padding-large;
+        padding-bottom:$padding-xlarge + $padding-medium;
+    }
     .container-rdv{
         display:flex;
         flex-direction:column;

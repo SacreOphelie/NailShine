@@ -9,13 +9,17 @@ h2{
     padding-bottom:$padding-medium;
     @media(max-width:$width-mobile){
         padding-top:$padding-medium;
+        gap:$gap-medium;
     }
 }
 #accueil{
     padding-top:$padding-top;
     padding-bottom:100px;
     min-height:fit-content;
-    
+    @media(max-width:$width-mobile){
+        padding-top:$padding-xlarge + $padding-xlarge;
+        padding-bottom:$padding-xlarge;
+    }
     .container{
         flex-direction:row;
         height:fit-content;
@@ -413,6 +417,10 @@ h2{
             display:flex;
             justify-content:center;
             align-items:center;
+            @media(max-width:$width-mobile){
+                margin-top:$margin-small;
+                margin-bottom:$margin-small;
+            }
         }
     }
     #bottom-realisations{
@@ -452,6 +460,11 @@ h2{
         }
     }
     padding-bottom:$padding-bottom;
+    @media(max-width:$width-mobile){
+        .container{
+            padding-bottom:$padding-medium;
+        }
+    }
 }
 @keyframes animation-infini{
     0% {

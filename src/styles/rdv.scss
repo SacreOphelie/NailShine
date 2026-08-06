@@ -22,8 +22,7 @@
         @include shadow;
         position:relative;
         h2{
-            @include titre($color:$text-darker,$taille:80px,$align:left);
-            text-align:left
+            @include titre($color:$text-darker,$taille:72px,$align:left);
         }
         form{
             .error-message,.error{
@@ -238,6 +237,29 @@
                 display:flex;
                 justify-content:flex-end;
                 
+            }
+        }
+    }
+    @media(max-width:$width-tablette){
+        .box{
+            margin:0 25px;
+            h2{
+                text-align:left;
+            }
+        }
+    }
+    @media(max-width:$width-mobile){
+        .box{
+            padding:$padding-medium;
+            h2{
+                font-size:40px;
+            }
+            form{
+                .calendrier{
+                    .grid-days{
+                        justify-content:center;
+                    }
+                }
             }
         }
     }
