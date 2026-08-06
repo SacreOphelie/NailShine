@@ -53,9 +53,9 @@ export default function Compte(){
     }
 
     return(
-        <div className="slide" id="admin">
-            <Button url="" text="Ajouter une réalisation"className="btn-add"/>
-            <div className="box-compte">
+        <div className="slide " id="admin">
+            <Button url="/ajouter-une-realisation" text="Ajouter une réalisation"className="btn-add"/>
+            <div className="box-compte wrapper">
                 <h2>Mon compte</h2>
                 <p>Bienvenue, {userProfil.prenom} {userProfil.nom}!</p>
                 {userProfil.role === 'admin' && <p>Rôle : Administrateur</p>}

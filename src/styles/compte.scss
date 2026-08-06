@@ -4,13 +4,12 @@
     flex-direction:column;
     justify-content:center;
     align-items:center;
+    gap:$gap-medium;
     .box-compte{
         display:flex;
         flex-direction:column;
-        max-width:1400px;
-        width:fit-content;
         height:fit-content;
-        background-color:$color-light;
+        background-color:$color-dark;
         padding:$padding-large;
         gap:$gap-medium;
         border-radius:$border-radius-large;
