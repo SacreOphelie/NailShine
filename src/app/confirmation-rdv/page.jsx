@@ -1,3 +1,5 @@
+"use client";
+
 /* eslint-disable @next/next/no-img-element */
 import '@/styles/confirm-rdv.scss';
 import { TriangleAlert, X } from 'lucide-react';
@@ -5,6 +7,7 @@ import { contact } from "@/config/contact";
 import Link from 'next/link';
 import Button from '@/components/Button';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export default function ConfirmationRdv()  {
     const adresse = contact.adresse;
@@ -12,18 +15,22 @@ export default function ConfirmationRdv()  {
 
     // Créer une constante qui vérifie si on a bien pris rdv sinon redirection vers la page d'accueil
     const [haveRdv, setHaveRdv] = useState(false);
+    const [rdvInfo, setRdvInfo] = useState(null);
     useEffect(() => {
         const access = sessionStorage.getItem('rdv_success');
+        const infos = sessionStorage.getItem('rdv_info');
 
         if(!access){
             router.replace("/");
         }else{
             setHaveRdv(true);
-            sessionStorage.removeItem('rdv_success');
+            if(infos){
+                setRdvInfo(JSON.parse(infos));
+            }
         }
     },[router]);
 
-    if(!haveRdv){
+    if(!haveRdv || !rdvInfo){
         return(
             <div className="slide"></div>
         )
@@ -37,10 +44,10 @@ export default function ConfirmationRdv()  {
                 <h2>Votre rendez-vous est confirmé</h2>
                 <p>Merci pour votre confiance ! J’ai hâte de m’occuper de vos ongles et de partager ce moment avec vous au salon.</p>
                 <div className="bloc-info">
-                    <p>Prestation : (nom de la prestation)</p>
-                    <p>Date : (date du rendez-vous)</p>
-                    <p>Heure : (heure du rendez-vous)</p>
-                    <p>Prix : (prix de la prestation)</p>
+                    <p>Prestation : {rdvInfo?.prestation}</p>
+                    <p>Date : {rdvInfo?.date}</p>
+                    <p>Heure : {rdvInfo?.heure}</p>
+                    <p>Prix : {rdvInfo?.prix} €</p>
                 </div>
                 <div className="adresse">
                     <img src="/icones/location.png" alt="Localisation" id="location" />
@@ -48,7 +55,7 @@ export default function ConfirmationRdv()  {
                 </div>
                 <p>Vous pouvez retrouver, <strong>modifier</strong>  ou <strong>annuler</strong> ce rendez-vous (jusqu'à 24h à l'avance) à tout moment en vous connectant sur votre compte NailShine. Vous y trouverez également tout l'historique de vos poses.</p>
                 <div className="alert">
-                    <TriangleAlert size={20} stroke-width={2} />
+                    <TriangleAlert size={20} strokeWidth={3} />
                     <p>Rappel important : Pour le respect de mon organisation, toute annulation tardive (moins de 24h) ou non-présentation injustifiée entraînera un acompte de réservation. <Link href="/conditions-generales"> Voir conditions générales</Link></p>
                 </div>
                 <div className="btn">

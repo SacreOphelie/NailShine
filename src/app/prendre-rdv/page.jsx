@@ -213,6 +213,28 @@ export default function PrendreRdv() {
         return data.publicUrl;
     }
 
+    
+    // enlever la technique dont le bool nail_art est à true du select
+    const techniquesPrincipales = techniques.filter(technique => !technique.nail_art);
+    // récupérer la technique dont le bool nail_art est à true
+    const nailArtTechnique = techniques.find(technique => technique.nail_art === true);
+
+    // Calculer le prix de la prestation choisie
+    let prixTotal = 0;
+
+    // Récupérer le prix de la technique choisie
+    if(techniqueId){
+        const techniqueChoisie = techniquesPrincipales.find(technique => technique.id.toString() === techniqueId.toString());
+        if(techniqueChoisie){
+            prixTotal += techniqueChoisie.prix;
+        }
+    }
+
+    // On ajoute le prix du nail art si la case est cochée
+    if(nailArt && nailArtTechnique){
+        prixTotal += nailArtTechnique.prix;
+    }
+
     // Envoi du formulaire
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -273,9 +295,18 @@ export default function PrendreRdv() {
             setConfirmationMessage("Votre rendez-vous a été pris avec succès !");
 
             // Stockage des données entrées dans le sessionStorage pour la page de confirmation
-            
-
+            const TechniqueId = techniques.find(technique => technique.id.toString() === techniqueId.toString());
+            const nomTechnique = TechniqueId?.nom;
+            const infoPrestation = nailArt ? `${nomTechnique} + Nail Art` : nomTechnique;
+            const dateObj = new Date(selectedDay.date);
+            const rdvInfo = {
+                prestation:infoPrestation,
+                date: `${selectedDay.name} ${dateObj.toLocaleDateString('fr-FR')}`,
+                heure: selectedHour,
+                prix: prixTotal
+            };
             sessionStorage.setItem('rdv_success', 'true');
+            sessionStorage.setItem('rdv_info', JSON.stringify(rdvInfo));
 
             // Mettre à jour la liste des rendez-vous déjà pris pour désactiver le créneau choisi
             setBooked(prev => [...prev, {date_heure: dateRdv}]);
@@ -301,26 +332,6 @@ export default function PrendreRdv() {
         );
     }
 
-    // enlever la technique dont le bool nail_art est à true du select
-    const techniquesPrincipales = techniques.filter(technique => !technique.nail_art);
-    // récupérer la technique dont le bool nail_art est à true
-    const nailArtTechnique = techniques.find(technique => technique.nail_art === true);
-
-    // Calculer le prix de la prestation choisie
-    let prixTotal = 0;
-
-    // Récupérer le prix de la technique choisie
-    if(techniqueId){
-        const techniqueChoisie = techniquesPrincipales.find(technique => technique.id.toString() === techniqueId.toString());
-        if(techniqueChoisie){
-            prixTotal += techniqueChoisie.prix;
-        }
-    }
-
-    // On ajoute le prix du nail art si la case est cochée
-    if(nailArt && nailArtTechnique){
-        prixTotal += nailArtTechnique.prix;
-    }
     
     return(
         <div className="slide" id="prendre-rdv">
