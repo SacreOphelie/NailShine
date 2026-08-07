@@ -32,6 +32,9 @@ export default function AddRea()  {
     const [titre, setTitre] = useState('');
     // State description
     const [description, setDescription] = useState('');
+    // State du fichier
+    const [file, setFile] = useState(null);
+    const [previewUrl, setPreviewUrl] = useState(null);
 
     const saisons =[
         {id:"printemps", nom:"Printemps"},
@@ -118,20 +121,53 @@ export default function AddRea()  {
         if(!couleur){
             erreurs.couleur = "Veuillez sélectionner une couleur.";
         }
+        if(!file){
+            erreurs.file = "Veuillez sélectionner un fichier.";
+        }
 
         //Si l'objet contient au moins une erreur, on affiche tout et on stoppe l'envoi
         if (Object.keys(erreurs).length > 0) {
             setErreur(erreurs);
             return;
         }
-
-        console.log(" Technique ID :", techniqueId);
-        console.log(" Client ID :", clientId);
-        console.log(" Date :", date);
-        console.log(" Saison :", saison);
-        console.log(" Couleur :", couleur);
-        console.log(" Titre :", titre);
-        console.log(" Description :", description);
+        try{
+            const {data,error} = await supabase
+                .from('réalisations')
+                .insert([
+                    {
+                        client_id: clientId,
+                        technique_id: techniqueId,
+                        date: date,
+                        saison: saison,
+                        couleur: couleur,
+                        titre: titre,
+                        description: description,
+                    }
+                ]);
+                if(error){
+                    console.error("Erreur lors de l'ajout de la réalisation :", error);
+                }else{
+                    // Succès 
+                    console.log("Réalisation ajoutée avec succès :", data);
+                    // Réinitialiser le formulaire
+                    setTechniqueId('');
+                    setClientId('');
+                    setDate('');
+                    setSaison('');
+                    setCouleur('');
+                    setTitre('');
+                    setDescription('');
+                }    
+        }catch(error){
+            console.error("Erreur système lors de l'ajout de la réalisation :", error);
+        };
+        // console.log(" Technique ID :", techniqueId);
+        // console.log(" Client ID :", clientId);
+        // console.log(" Date :", date);
+        // console.log(" Saison :", saison);
+        // console.log(" Couleur :", couleur);
+        // console.log(" Titre :", titre);
+        // console.log(" Description :", description);
     }
 
     const techniquesPrincipales = techniques.filter(technique => !technique.nail_art);
@@ -183,7 +219,7 @@ export default function AddRea()  {
                         <Button text="Ajouter"/>
                     </div>
                 </form>
-            </div>
+            </div> 
         </div>
     );
 }
