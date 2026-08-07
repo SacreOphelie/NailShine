@@ -6,7 +6,7 @@ import { useAuth } from '@/config/Auth';
 import { useState, useEffect} from 'react';
 import { useRouter } from 'next/navigation';
 import {supabase} from '@/config/supabase';
-import Select from '@/components/forms/Select';
+import Select from '@/components/Forms/Select';
 // import Input from '@/components/forms/Input';
 import Button from '@/components/Button';
 import { TriangleAlert } from 'lucide-react';
