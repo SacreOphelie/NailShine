@@ -12,7 +12,7 @@ export function useAuth() {
         let isMounted = true;
 
         const getUserProfil = async (userId: string) => {
-            console.log("-> [3] DB REQUÊTE : Lancement du fetch profil pour ID:", userId);
+            // console.log("-> [3] DB REQUÊTE : Lancement du fetch profil pour ID:", userId);
             try {
                 const { data, error } = await supabase
                     .from('clients')
@@ -25,7 +25,7 @@ export function useAuth() {
                     throw error;
                 }
 
-                console.log("-> [4] DB RÉSULTAT :", data);
+                // console.log("-> [4] DB RÉSULTAT :", data);
                 if (data) {
                     return data;
                 }
@@ -38,26 +38,26 @@ export function useAuth() {
         };
 
         const syncAuthState = async ({ showLoading = false } = {}) => {
-            console.log("-> [2] SESSION : Lancement de syncAuthState...");
+            // console.log("-> [2] SESSION : Lancement de syncAuthState...");
             try {
                 if (showLoading) {
                     setLoading(true);
                 }
 
                 const { data: { session }, error } = await supabase.auth.getSession();
-                console.log("-> [2] SESSION RÉSULTAT : Session =", session ? "EXISTE" : "NULL", "| Erreur =", error);
+                // console.log("-> [2] SESSION RÉSULTAT : Session =", session ? "EXISTE" : "NULL", "| Erreur =", error);
 
                 if (!isMounted) return;
 
                 setIsConnected(!!session);
                 if (session?.user) {
                     const profil = await getUserProfil(session.user.id);
-                    console.log("-> [5] SYNC UPDATE : Mise à jour userProfil avec =", profil);
+                    // console.log("-> [5] SYNC UPDATE : Mise à jour userProfil avec =", profil);
                     if (isMounted) {
                         setUserProfil(profil);
                     }
                 } else {
-                    console.warn("-> [5] SYNC UPDATE : Aucune session, passage du profil à NULL !");
+                    // console.warn("-> [5] SYNC UPDATE : Aucune session, passage du profil à NULL !");
                     setUserProfil(null);
                 }
             } catch (error) {
@@ -72,7 +72,7 @@ export function useAuth() {
         syncAuthState({ showLoading: true });
 
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-            console.log("-> [EVENT SUPABASE] Événement détecté :", event, "| Session =", session ? "OK" : "NULL");
+            // console.log("-> [EVENT SUPABASE] Événement détecté :", event, "| Session =", session ? "OK" : "NULL");
 
             if (event === 'SIGNED_IN' || event === 'SIGNED_OUT' || event === 'USER_UPDATED' || event === 'TOKEN_REFRESHED' || event === 'INITIAL_SESSION') {
                 setIsConnected(!!session);
@@ -82,7 +82,7 @@ export function useAuth() {
                         setUserProfil(profil);
                     }
                 } else {
-                    console.warn("-> [EVENT SUPABASE] Session vide après event -> passage du profil à NULL !");
+                    // console.warn("-> [EVENT SUPABASE] Session vide après event -> passage du profil à NULL !");
                     setUserProfil(null);
                 }
                 setLoading(false);
@@ -91,7 +91,7 @@ export function useAuth() {
 
         const handleVisibilityChange = () => {
             if (document.visibilityState === 'visible') {
-                console.log("-> [1] VISIBILITÉ : Retour sur l'onglet Chrome ! Déclenchement de syncAuthState...");
+                // console.log("-> [1] VISIBILITÉ : Retour sur l'onglet Chrome ! Déclenchement de syncAuthState...");
                 syncAuthState();
             }
         };
