@@ -24,6 +24,9 @@
             @include titre($taille:72px);
         }
         form{
+            display:flex;
+            flex-direction:column;
+            gap:$gap-medium;
             .error-message,.error{
                 @include text($taille:14px);
                 margin-top:0;
@@ -39,9 +42,6 @@
                 border-radius:$border-radius-min;
                 padding:$padding-small;
             }
-            display:flex;
-            flex-direction:column;
-            gap:$gap-medium;
             .prestations{
                 display:flex;
                 gap:$gap-small;

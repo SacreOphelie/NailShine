@@ -23,6 +23,20 @@
         h2{
             @include titre($taille:72px);
         }
+        form{
+            display:flex;
+            flex-direction:column;
+            gap:$gap-medium;
+            margin-top:$margin-small;
+            .row{
+                display:flex;
+                gap:$gap-medium;
+                justify-content:space-between;
+                div{
+                    width:100%;
+                }
+            }
+        }
         @media(max-width:$width-tablette){
             .box{
                 width:90%;
@@ -37,13 +51,6 @@
                 padding:$padding-medium;
                 h2{
                     font-size:40px;
-                }
-                form{
-                    .calendrier{
-                        .grid-days{
-                            justify-content:center;
-                        }
-                    }
                 }
             }
         }
