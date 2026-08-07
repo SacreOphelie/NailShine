@@ -36,23 +36,34 @@ export default function AddRea()  {
 
     // Récupérer les techniques depuis la base de données
     useEffect(() => {
-        const fetchTechniques = async () => {
+        const fetchData = async () => {
             try{
-                const {data, error} = await supabase
-                    .from('techniques')
-                    .select('*');
+                const[techniquesResponse, clientResponse] = await Promise.all([
+                    supabase.from('techniques').select('*'),
+                    supabase.from('clients').select('*')
+                ]);
 
-                if(error){
-                    console.error("Erreur lors de la récupération des techniques :", error);
-                }else if (data){
-                    setTechniques(data);
+                // Gestion des techniques
+                if(techniquesResponse.error){
+                    console.error("Erreur techniques :", techniquesResponse.error);
+                }else if(techniquesResponse.data){
+                    setTechniques(techniquesResponse.data);
                 }
+
+                // Gestion des clients
+                if(clientResponse.error){
+                    console.error("Erreur clients :", clientResponse.error);
+                }else if(clientResponse.data){
+                    setClients(clientResponse.data);
+                }
+
+
             }catch (error){
                 console.error("Erreur système", error)
             }
         };
 
-        fetchTechniques();
+        fetchData();
     },[]);
 
     const handleSubmit = async (e) => {
@@ -63,6 +74,9 @@ export default function AddRea()  {
         if(!techniqueId){
             erreurs.techniqueId = "Veuillez sélectionner une technique.";
         }
+        if(!clientId){
+            erreurs.clientId = "Veuillez sélectionner un client.";
+        }
 
         //Si l'objet contient au moins une erreur, on affiche tout et on stoppe l'envoi
         if (Object.keys(erreurs).length > 0) {
@@ -71,6 +85,7 @@ export default function AddRea()  {
         }
 
         console.log(" Technique ID :", techniqueId);
+        console.log(" Client ID :", clientId);
     }
 
     const techniquesPrincipales = techniques.filter(technique => !technique.nail_art);
@@ -89,7 +104,10 @@ export default function AddRea()  {
                     <div className="container-form">
                         <div className="row">
                             <div className="client">
-                                
+                                 <Select nomSelect="Client" options={clients} value={clientId} onChange={(e) => setClientId(e.target.value)} placeholder="Choisissez le client." 
+                                error={!!erreur.clientId}
+                                />
+                                {erreur.clientId && <div className="error-message"><TriangleAlert size={20}/>{erreur.clientId}</div>}
                             </div>
                             <div className="technique">
                                 <Select nomSelect="Technique" options={techniquesPrincipales} value={techniqueId} onChange={(e) => setTechniqueId(e.target.value)} placeholder="Choisissez la prestation que vous souhaitez." 
