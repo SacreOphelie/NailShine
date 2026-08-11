@@ -10,7 +10,7 @@ import Input from '@/components/Forms/Input';
 import Select from '@/components/Forms/Select';
 import Textarea from '@/components/Forms/Textarea';
 import Button from '@/components/Button';
-import { TriangleAlert } from 'lucide-react';
+import { TriangleAlert, X } from 'lucide-react';
 
 export default function AddRea()  {
     const{userProfil, isConnected,loading} = useAuth();
@@ -101,6 +101,24 @@ export default function AddRea()  {
         fetchData();
     },[]);
 
+    // Gestion du changement de fichier
+    const handleFileChange = (e) => {
+        const selectedFile = e.target.files[0];
+        if(selectedFile){
+            setFile(selectedFile);
+            setPreviewUrl(URL.createObjectURL(selectedFile));
+        }else{
+            setFile(null);
+            setPreviewUrl(null);
+        }
+    };
+
+     // Supprimer l'image d'inspiration choisie
+    const removeFile = () => {
+        setFile(null);
+        setPreviewUrl(null);
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErreur({});
@@ -131,8 +149,32 @@ export default function AddRea()  {
             return;
         }
         try{
+            // Gestion de l'upload du fichier
+            let imageUrl = null;
+            if(file){
+                // créer un nom de fichier 
+                const fileExt = file.name.split('.').pop();
+                const fileName = `${Date.now()}.${fileExt}`;
+                const filePath = `images/${fileName}`;
+
+                const{error: uploadError} = await supabase.storage
+                    .from('realisations')
+                    .upload(filePath, file);
+                
+                if(uploadError){
+                    console.error("Erreur lors de l'upload du fichier :", uploadError);
+                    setErreur({file : "Erreur lors de l'upload du fichier."});
+                    return;
+                }
+
+                const{data:publicUrlData} = await supabase.storage
+                    .from('realisations')
+                    .getPublicUrl(filePath);
+
+                imageUrl = publicUrlData.publicUrl;
+            }
             const {data,error} = await supabase
-                .from('réalisations')
+                .from('realisations')
                 .insert([
                     {
                         client_id: clientId,
@@ -142,6 +184,7 @@ export default function AddRea()  {
                         couleur: couleur,
                         titre: titre,
                         description: description,
+                        image_url: imageUrl
                     }
                 ]);
                 if(error){
@@ -157,17 +200,19 @@ export default function AddRea()  {
                     setCouleur('');
                     setTitre('');
                     setDescription('');
+                    setPreviewUrl(null);
                 }    
         }catch(error){
             console.error("Erreur système lors de l'ajout de la réalisation :", error);
         };
-        // console.log(" Technique ID :", techniqueId);
-        // console.log(" Client ID :", clientId);
-        // console.log(" Date :", date);
-        // console.log(" Saison :", saison);
-        // console.log(" Couleur :", couleur);
-        // console.log(" Titre :", titre);
-        // console.log(" Description :", description);
+        console.log(" Technique ID :", techniqueId);
+        console.log(" Client ID :", clientId);
+        console.log(" Date :", date);
+        console.log(" Saison :", saison);
+        console.log(" Couleur :", couleur);
+        console.log(" Titre :", titre);
+        console.log(" Description :", description);
+        // console.log(" Fichier :", imageUrl);
     }
 
     const techniquesPrincipales = techniques.filter(technique => !technique.nail_art);
@@ -183,6 +228,23 @@ export default function AddRea()  {
             <div className="box">
                 <h2>Ajouter une réalisation</h2>
                 <form onSubmit={handleSubmit}>
+                    <div className="container-file">
+                        <div className="file">
+                            <Input type="file" onChange={handleFileChange} accept="image/*" id="realisation-file" style={{ display: 'none' }}/>
+                            <label htmlFor="realisation-file" className="btn-realisation">
+                                Choisir une images
+                            </label>
+                        </div>
+                        <p className="italic">jpg/png</p>
+                        {previewUrl && (
+                            <div className="preview">
+                                <img src={previewUrl} alt="Aperçu de la réalisation" className="preview-image"/>
+                                <button onClick={removeFile}>
+                                    <X size={20} />
+                                </button>
+                            </div>
+                        )}
+                    </div>
                     <div className="row">
                         <div className="client">
                                 <Select nomSelect="Client" options={clients} value={clientId} onChange={(e) => setClientId(e.target.value)} placeholder="Client" 
