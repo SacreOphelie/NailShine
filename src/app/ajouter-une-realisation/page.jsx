@@ -19,6 +19,7 @@ export default function AddRea()  {
     // State : techniques
     const [techniques, setTechniques] = useState([]);
     const [techniqueId , setTechniqueId] = useState('');
+    const [nailArt, setNailArt] = useState(false);
     // State : clients
     const [clients, setClients] = useState([]);
     const [clientId, setClientId] = useState('');
@@ -172,6 +173,7 @@ export default function AddRea()  {
                     {
                         client_id: clientId || null,
                         technique_id: techniqueId,
+                        nail_art: nailArt,
                         date: date,
                         saison: saison || null,
                         couleur: couleur || null,
@@ -188,6 +190,7 @@ export default function AddRea()  {
                     setConfirmationMessage("Votre réalisation a été ajoutée avec succès !");
                     // Réinitialiser le formulaire
                     setTechniqueId('');
+                    setNailArt(false);
                     setClientId('');
                     setDate('');
                     setSaison('');
@@ -210,6 +213,7 @@ export default function AddRea()  {
     }
 
     const techniquesPrincipales = techniques.filter(technique => !technique.nail_art);
+    const nailArtTechnique = techniques.find(technique => technique.nail_art === true);
 
     
     if (loading || !isConnected || userProfil?.role !== 'admin') {
@@ -245,6 +249,9 @@ export default function AddRea()  {
                             </div>
                         )}
                     </div>
+                    <div className="nail-art">
+                        <Input label="Nail art" type="checkbox" checked={nailArt} onChange={(e) => setNailArt(e.target.checked)} className="checkbox"/>
+                    </div>
                     <div className="row">
                         <div className="client">
                                 <Select nomSelect="Client" options={clients} value={clientId} onChange={(e) => setClientId(e.target.value)} placeholder="Client" />
@@ -254,6 +261,7 @@ export default function AddRea()  {
                             error={!!erreur.techniqueId}
                             />
                             {erreur.techniqueId && <div className="error-message"><TriangleAlert size={20}/>{erreur.techniqueId}</div>}
+                            
                         </div>
                     </div>
                     <div className="date">

@@ -45,6 +45,25 @@
                 padding:$padding-small;
                 border-radius:$border-radius-min;
             }
+            .nail-art{
+                flex-shrink: 0;
+                width:fit-content;
+                padding:5px;
+                border-radius:$border-radius-small;
+                display:flex;
+                align-items:center;
+                .form-group{
+                    align-items:center;
+                    label{
+                        @include text-chicle($color:$text-darker,$taille:20px);
+                        font-style:normal;
+                    }
+                    input{
+                        min-width:20px;
+                        min-height:20px;
+                    }
+                }
+            }
             .row{
                 display:flex;
                 gap:$gap-medium;

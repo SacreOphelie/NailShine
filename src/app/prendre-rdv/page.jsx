@@ -340,9 +340,8 @@ export default function PrendreRdv() {
                 <h2>Prendre rendez-vous</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="prestations">
-                        <p className="subtitle"></p>
                         <div className="nail-art">
-                            <Input label="Nail art" type="checkbox" value={nailArt} onChange={(e) => setNailArt(e.target.checked)} className="checkbox"/>
+                            <Input label="Nail art" type="checkbox" checked={nailArt} onChange={(e) => setNailArt(e.target.checked)} className="checkbox"/>
                         </div>
                         <div className="container-presta">
                             <Select nomSelect="prestation" options={techniquesPrincipales} value={techniqueId} onChange={(e) => setTechniqueId(e.target.value)} placeholder="Choisissez la prestation que vous souhaitez." error={!!erreur.techniqueId}/>

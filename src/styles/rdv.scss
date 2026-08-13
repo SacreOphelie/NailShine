@@ -46,9 +46,6 @@
                 display:flex;
                 gap:$gap-small;
                 flex-direction:column;
-                .subtitle{
-                    @include sous-titre($align:left,$color:$text-white);
-                }
                 .nail-art{
                     background-color:$color-dark;
                     width:fit-content;

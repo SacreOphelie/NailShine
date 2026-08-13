@@ -1,9 +1,6 @@
-"use client";
-
 /* eslint-disable @next/next/no-img-element */
 import '@/styles/cardRealisation.scss';
 import Link from 'next/link';
-import { useState } from 'react';
 
 export default function CardRealisation({realisations }) {
 

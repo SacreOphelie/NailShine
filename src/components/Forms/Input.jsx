@@ -12,8 +12,8 @@ export default function Input({label, type, value, checked, onChange, error = fa
             <label>{label}</label>
             <input
                 type={inputType}
-                value={type !== "file" ? value : undefined}
-                checked={checked}
+                value={type !== "file" && type !== "checkbox" ? value : undefined}
+                checked={type === "checkbox" ? checked : undefined}
                 onChange={onChange}
                 className={error ? "input-error" : ""}
                 {...props}
