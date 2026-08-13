@@ -105,21 +105,21 @@
                 }
             }
         }
-        @media(max-width:$width-tablette){
-            .box{
-                width:90%;
-                margin:0 auto;
-                h2{
-                    text-align:left;
-                }
+    }
+    @media(max-width:$width-tablette){
+        .box{
+            width:90%;
+            margin:0 auto;
+            h2{
+                text-align:left !important;
             }
         }
-        @media(max-width:$width-mobile){
-            .box{
-                padding:$padding-medium;
-                h2{
-                    font-size:40px;
-                }
+    }
+    @media(max-width:$width-mobile){
+        .box{
+            padding:$padding-medium;
+            h2{
+                font-size:40px;
             }
         }
     }
