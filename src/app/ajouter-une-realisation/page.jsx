@@ -127,9 +127,6 @@ export default function AddRea()  {
         if(!techniqueId){
             erreurs.techniqueId = "Veuillez sélectionner une technique.";
         }
-        if(!clientId){
-            erreurs.clientId = "Veuillez sélectionner un client.";
-        }
         if(!date){
             erreurs.date = "Veuillez sélectionner une date.";
         }
@@ -230,10 +227,11 @@ export default function AddRea()  {
                 <form onSubmit={handleSubmit}>
                     <div className="container-file">
                         <div className="file">
-                            <Input type="file" onChange={handleFileChange} accept="image/*" id="realisation-file" style={{ display: 'none' }}/>
+                            <Input type="file" onChange={handleFileChange} accept="image/*" id="realisation-file" style={{ display: 'none' }} error={!!erreur.file}/>
                             <label htmlFor="realisation-file" className="btn-realisation">
-                                Choisir une images
+                                Choisir une image
                             </label>
+                            {erreur.file && <div className="error-message"><TriangleAlert size={20}/>{erreur.file}</div>}
                         </div>
                         <p className="italic">jpg/png</p>
                         {previewUrl && (
