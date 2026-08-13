@@ -31,6 +31,7 @@
         transition: width 0.5s ease;
         img{
             width:25px;
+            cursor:pointer;
         }
         p{
             @include text-chicle(16px);

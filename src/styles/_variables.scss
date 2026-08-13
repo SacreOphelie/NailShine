@@ -107,6 +107,12 @@ $text-darker:#8E0055;
 $text-white:#FFFFFF;
 $bg-image: url('../../public/images/fonds/fond_homepage.png');
 
+$saison-printemps: #78d184;
+$saison-ete: #d664a7;
+$saison-automne: #cc880a;
+$saison-hiver: #71aee0;
+
+
 @mixin shadow($y: 5px, $blur:20px){
     color: $color-shadow;
     box-shadow: 0 $y $blur $color-shadow;

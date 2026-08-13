@@ -1,3 +1,4 @@
+
 /* eslint-disable @next/next/no-img-element */
 import {supabase} from "@/config/supabase";
 import '@/styles/realisationPage.scss';
@@ -44,8 +45,12 @@ export default async function RealisationPage({params}) {
                 </h2>
                 <div className="date mini-box">{formatDate(realisation.date)}</div>
                 <div className="container-details">
-                  <div className="saison mini-box">{capitalize(realisation.saison)}</div>
-                  <div className="couleur mini-box">{capitalize(realisation.couleur)}</div>
+                  <div className={`saison mini-box saison-${realisation.saison}`}>
+                    {capitalize(realisation.saison)}
+                  </div>
+                  <div className={`couleur mini-box couleur-${realisation.couleur}`}>
+                    {capitalize(realisation.couleur)}
+                  </div>
                 </div>
                 <div className="texte">
                   <h4>{realisation.titre}</h4>

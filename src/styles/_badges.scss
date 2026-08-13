@@ -1,0 +1,6 @@
+@use 'variables' as *;
+
+.saison-printemps { background-color: $saison-printemps; }
+.saison-été        { background-color: $saison-ete; }
+.saison-automne    { background-color: $saison-automne; }
+.saison-hiver       { background-color: $saison-hiver; }
