@@ -57,6 +57,8 @@ export default function AddRea()  {
         {id:"multicolore", nom:"Multicolore"}
     ]
 
+    const [confirmationMessage, setConfirmationMessage] = useState('');
+
     // Gestion des erreurs de formulaire
      const [erreur, setErreur] = useState({});
 
@@ -183,6 +185,7 @@ export default function AddRea()  {
                 }else{
                     // Succès 
                     console.log("Réalisation ajoutée avec succès :", data);
+                    setConfirmationMessage("Votre réalisation a été ajoutée avec succès !");
                     // Réinitialiser le formulaire
                     setTechniqueId('');
                     setClientId('');
@@ -196,13 +199,13 @@ export default function AddRea()  {
         }catch(error){
             console.error("Erreur système lors de l'ajout de la réalisation :", error);
         };
-        console.log(" Technique ID :", techniqueId);
-        console.log(" Client ID :", clientId);
-        console.log(" Date :", date);
-        console.log(" Saison :", saison);
-        console.log(" Couleur :", couleur);
-        console.log(" Titre :", titre);
-        console.log(" Description :", description);
+        // console.log(" Technique ID :", techniqueId);
+        // console.log(" Client ID :", clientId);
+        // console.log(" Date :", date);
+        // console.log(" Saison :", saison);
+        // console.log(" Couleur :", couleur);
+        // console.log(" Titre :", titre);
+        // console.log(" Description :", description);
         // console.log(" Fichier :", imageUrl);
     }
 
@@ -219,6 +222,11 @@ export default function AddRea()  {
             <div className="box">
                 <h2>Ajouter une réalisation</h2>
                 <form onSubmit={handleSubmit}>
+                    {confirmationMessage && (   
+                        <div className="message">
+                            <p>{confirmationMessage}</p>
+                        </div>
+                    )}
                     <div className="container-file">
                         <div className="file">
                             <Input type="file" onChange={handleFileChange} accept="image/*" id="realisation-file" style={{ display: 'none' }} error={!!erreur.file}/>

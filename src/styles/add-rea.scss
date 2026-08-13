@@ -38,6 +38,13 @@
                     flex-shrink: 0;
                 }
             }
+            .message{
+                background-color:$color-dark;
+                @include text-chicle($color:$text-white,$taille:24px,$align:center);
+                width:100%;
+                padding:$padding-small;
+                border-radius:$border-radius-min;
+            }
             .row{
                 display:flex;
                 gap:$gap-medium;
