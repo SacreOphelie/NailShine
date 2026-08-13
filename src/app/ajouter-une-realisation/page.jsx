@@ -130,12 +130,6 @@ export default function AddRea()  {
         if(!date){
             erreurs.date = "Veuillez sélectionner une date.";
         }
-        if(!saison){
-            erreurs.saison = "Veuillez sélectionner une saison.";
-        }
-        if(!couleur){
-            erreurs.couleur = "Veuillez sélectionner une couleur.";
-        }
         if(!file){
             erreurs.file = "Veuillez sélectionner un fichier.";
         }
@@ -174,13 +168,13 @@ export default function AddRea()  {
                 .from('realisations')
                 .insert([
                     {
-                        client_id: clientId,
+                        client_id: clientId || null,
                         technique_id: techniqueId,
                         date: date,
-                        saison: saison,
-                        couleur: couleur,
-                        titre: titre,
-                        description: description,
+                        saison: saison || null,
+                        couleur: couleur || null,
+                        titre: titre || null,
+                        description: description || null,
                         image_url: imageUrl
                     }
                 ]);
@@ -245,10 +239,7 @@ export default function AddRea()  {
                     </div>
                     <div className="row">
                         <div className="client">
-                                <Select nomSelect="Client" options={clients} value={clientId} onChange={(e) => setClientId(e.target.value)} placeholder="Client" 
-                            error={!!erreur.clientId}
-                            />
-                            {erreur.clientId && <div className="error-message"><TriangleAlert size={20}/>{erreur.clientId}</div>}
+                                <Select nomSelect="Client" options={clients} value={clientId} onChange={(e) => setClientId(e.target.value)} placeholder="Client" />
                         </div>
                         <div className="technique">
                             <Select nomSelect="Technique" options={techniquesPrincipales} value={techniqueId} onChange={(e) => setTechniqueId(e.target.value)} placeholder="Technique" 
