@@ -1,0 +1,91 @@
+#realisationPage{
+    display: flex;
+    padding-top:$padding-top;
+    padding-bottom:$padding-bottom;
+    justify-content: center;
+    height:fit-content;
+    justify-content:center;
+    align-items:center;
+    background-color:$color-light;
+    .container{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:$gap-large;
+        height:fit-content;
+        .left{
+            width: 50%;
+            height: 600px;
+            background-color:$color-light;
+            background-size: cover;
+            background-position: center;
+            @include shadow();
+            @include border();
+            border-radius:$border-radius-large;
+            .favoris{
+                position:absolute;
+                top:10px;
+                right:10px;
+                background-color:$color-dark;
+                border-radius:$border-radius-max;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                width:40px;
+                height:40px;
+                overflow:hidden;
+                gap:$gap-small;
+                padding:$padding-small;
+                transition: width 0.5s ease;
+                img{
+                    width:25px;
+                }
+                p{
+                    @include text-chicle(16px);
+                    transform:translateX(150px);
+                    display:none;
+                    white-space: nowrap;
+                }
+            }
+        }
+        .right{
+            width:50%;
+            height:100%;
+            display:flex;
+            flex-direction:column;
+            gap:$gap-medium;
+            h2{
+                @include text-chicle($taille:72px,$color:$text-darker);
+            }
+            .mini-box{
+                width:fit-content;
+                border-radius:$border-radius-small;
+                padding:$padding-small;
+                @include shadow($y:2.5px, $blur:10px);
+            }
+            .date{
+                background-color:$color-light;
+                @include text-chicle($taille:24px, $color:$text-white);
+            }
+            .container-details{
+                display:flex;
+                gap:$gap-medium;
+                .mini-box{
+                    @include text($taille:24px,$color:$text-white);
+                }
+            }
+            .texte{
+                display:flex;
+                flex-direction:column;
+                gap:$gap-small;
+                h4{
+
+                    @include text($taille:24px,$epaisseur:bolder)
+                }
+                p{
+                    @include text($taille:20px);
+                }
+            }
+        }
+    }
+}

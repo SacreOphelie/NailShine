@@ -13,7 +13,7 @@ export default function CardRealisation({realisations }) {
   return (
     <>
       {realisations?.map((item) =>(
-          <Link href={`/${item.id}`} className="cardRea" key={item.id} style={{ backgroundImage: `url(${item.image_url})` }}>
+          <Link href={`/realisation/${item.id}`} className="cardRea" key={item.id} style={{ backgroundImage: `url(${item.image_url})` }}>
               <div className="favoris">
                 <p>Mettre en favoris</p>
                 <img src="/icones/Icon_heart.png" alt="Favoris" />
