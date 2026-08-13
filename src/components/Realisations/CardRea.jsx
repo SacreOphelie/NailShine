@@ -2,18 +2,20 @@
 import '@/styles/cardRealisation.scss';
 import Link from 'next/link';
 
-export default function CardRealisation({ idRea = "#" }) {
+export default function CardRealisation({realisations }) {
   return (
     <>
-        <Link href={idRea} className="cardRea">
-            <div className="favoris">
-              <p>Mettre en favoris</p>
-              <img src="/icones/Icon_heart.png" alt="Favoris" />
-            </div>
-            <div className="dateRea">
-                <p>Date</p>
-            </div>
-        </Link>
+      {realisations?.map((item) =>(
+          <Link href={`/${item.id}`} className="cardRea" key={item.id}>
+              <div className="favoris">
+                <p>Mettre en favoris</p>
+                <img src="/icones/Icon_heart.png" alt="Favoris" />
+              </div>
+              <div className="dateRea">
+                  <p>{item.date}</p>
+              </div>
+          </Link>
+      ))}
     </>
   );
 }

@@ -22,6 +22,14 @@ export default async function Page() {
     console.error("Erreur lors de la récupération des techniques :", errorTechniques);
   }
 
+  // Supabase : récupérer les données de la table "realisations"
+  const {data: realisations, error: errorRealisations} = await supabase
+    .from('realisations')
+    .select('*');
+  if (errorRealisations) {
+    console.error("Erreur lors de la récupération des réalisations :", errorRealisations);
+  }
+
   const {data: avis, error: errorAvis} = await supabase
     .from('avis')
     .select(`
@@ -91,12 +99,7 @@ export default async function Page() {
         <div className="wrapper container">
             <h2>Réalisations</h2>
             <div className="container-rea">
-              <CardRea />
-              <CardRea />
-              <CardRea />
-              <CardRea />
-              <CardRea />
-              <CardRea />
+              <CardRea realisations={realisations} />
             </div>
             <div className="container-btn">
               <Button text="Voir plus de réalisations" url="/realisations" />
