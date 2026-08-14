@@ -54,8 +54,22 @@
             flex-wrap:wrap;
             align-items:center;
             justify-content:space-between;
+            position:relative;
+            #rond1{
+                width:100px;
+                top:-100px;
+                right:-50px;
+            }
+            #rond2{
+                width:50px;
+                top:-25px;
+                right:-75px;
+            }
             @media(max-width:$width-portable){
                 justify-content:center;
+                 #rond1,#rond2{
+                    display:none;
+                }
             }
         }
     }
