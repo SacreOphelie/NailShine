@@ -51,11 +51,13 @@ export default function AddRea()  {
         {id:"vert", nom:"Vert"},
         {id:"jaune", nom:"Jaune"},
         {id:"orange", nom:"Orange"},
+        {id:"marron", nom:"Marron"},
         {id:"blanc", nom:"Blanc"},
         {id:"noir", nom:"Noir"},
-        {id:"argent", nom:"Argent"},
-        {id:"or", nom:"Or"},
-        {id:"multicolore", nom:"Multicolore"}
+        {id:"argente", nom:"Argenté"},
+        {id:"dore", nom:"Doré"},
+        {id:"multicolore", nom:"Multicolore"},
+        {id:"paillette", nom:"Paillette"}
     ]
 
     const [confirmationMessage, setConfirmationMessage] = useState('');

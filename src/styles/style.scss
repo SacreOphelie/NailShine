@@ -100,6 +100,25 @@ body{
     }
 }
 
+.btn-retour{
+        margin-bottom:$margin-small;
+        div{
+            width:fit-content;
+            cursor:pointer;
+            display:flex;
+            gap:$gap-small;
+            align-items:center;
+            text-decoration:none;
+            .arrow-icon{
+                width:15px;
+                transform:rotate(180deg);
+            }
+            p{
+                @include text-chicle($taille:24px,$color:$text-darker);
+            }
+        }
+    }
+
 // Style général des illustrations
 .illu{
     position:absolute;

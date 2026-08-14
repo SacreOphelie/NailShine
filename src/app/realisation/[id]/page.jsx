@@ -2,6 +2,8 @@
 /* eslint-disable @next/next/no-img-element */
 import {supabase} from "@/config/supabase";
 import '@/styles/realisationPage.scss';
+import Button from "@/components/Button";
+import Retour from "@/components/Retour";
 
 export default async function RealisationPage({params}) {
     const {id} = await params;
@@ -31,6 +33,9 @@ export default async function RealisationPage({params}) {
   return (
     <>
       <div className="slide" id="realisationPage">
+        <div className="btn-retour wrapper">
+          <Retour fallback="/realisations" />
+        </div>
         <div className="container wrapper">
             <div className="left" style={{ backgroundImage: `url(${realisation.image_url})` }}>
               <div className="favoris">
@@ -55,6 +60,9 @@ export default async function RealisationPage({params}) {
                 <div className="texte">
                   <h4>{realisation.titre}</h4>
                   <p>{realisation.description}</p>
+                </div>
+                <div className="btn">
+                  <Button text="Prendre rendez-vous" url="/prendre-rdv" className="button-secondary" />
                 </div>
             </div>
         </div>
