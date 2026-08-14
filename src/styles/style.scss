@@ -294,6 +294,42 @@ body{
   background: $color-light !important;
 }
 
+// Style de la pagination
+.pagination{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    .pagination_container{
+        display:flex;
+        align-items:center;
+        gap:$gap-medium;
+        p{
+            @include text-chicle($color:$text-white,$taille:24px);
+        }
+        .page_arrow{
+            cursor:pointer;
+            width:40px;
+            height:40px;
+            border-radius:$border-radius-max;
+            background-color:$color-dark;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            img{
+                width:15px;
+                margin-left:4px;
+            }
+        }
+        .left{
+            img{
+                transform:rotate(180deg);
+                margin-right:4px;
+                margin-left:0px;
+            }
+        }
+    }
+}
 
 
 

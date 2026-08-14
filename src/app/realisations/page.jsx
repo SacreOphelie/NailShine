@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import '@/styles/realisationsAll.scss';
-import CardRea from "@/components/Realisations/CardRea";
 import {supabase} from "@/config/supabase";
+import RealisationsList from "@/components/Realisations/realisationList";
 
 // Supabase : récupérer les données de la table "realisations"
   const {data: realisations, error: errorRealisations} = await supabase
@@ -23,11 +23,7 @@ export default function Realisations()
             </svg>
             <div className="wrapper container">
                 <h2>Réalisations</h2>
-                <div className="container-rea">
-                    <img src="/images/illustrations/Rond.png" alt="rond1" className="illu" id="rond1"/>
-                    <img src="/images/illustrations/Rond.png" alt="rond2" className="illu" id="rond2"/>
-                    <CardRea realisations={realisations} />
-                </div>
+                <RealisationsList realisations={realisations} />
             </div>
         </div>
     );
