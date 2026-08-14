@@ -2,6 +2,37 @@
     background-color:$color-middle;
     padding-top:$padding-top;
     padding-bottom:$padding-bottom;
+    position:relative;
+    #svg-1{
+        position:absolute;
+        top:-200px;
+        right:-150px;
+        width:900px;
+        path{
+            fill:$color-light;
+        }
+        @media(max-width:$width-portable){
+            right:-250px;
+        }
+        @media(max-width:$width-vertical){
+            width:500px;
+            right:-200px;
+        }
+    }
+    #svg-2{
+        position:absolute;
+        bottom:-250px;
+        left:-100px;
+        width:900px;
+        transform:rotate(-90deg);
+        path{
+            fill:$color-light;
+        }
+        @media(max-width:$width-vertical){
+            width:500px;
+            bottom:-100px;
+        }
+    }
     
     h2{
         @include titre($color:$text-white);
