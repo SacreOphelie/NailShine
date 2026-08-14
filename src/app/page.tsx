@@ -99,7 +99,7 @@ export default async function Page() {
         <div className="wrapper container">
             <h2>Réalisations</h2>
             <div className="container-rea">
-              <CardRea realisations={realisations} />
+              <CardRea realisations={realisations} limit={6} />
             </div>
             <div className="container-btn">
               <Button text="Voir plus de réalisations" url="/realisations" />

@@ -1,0 +1,31 @@
+#realisationsAll{
+    background-color:$color-middle;
+    padding-top:$padding-top;
+    padding-bottom:$padding-bottom;
+    
+    h2{
+        @include titre($color:$text-white);
+    }
+    .container{
+        display:flex;
+        position:relative;
+        flex-direction:column;
+        gap:$gap-large;
+        padding-bottom:$padding-medium;
+        @media(max-width:$width-mobile){
+            padding-top:$padding-medium;
+            gap:$gap-medium;
+        }
+        .container-rea{
+            padding-top:$padding-medium;
+            display:flex;
+            gap:$gap-large;
+            flex-wrap:wrap;
+            align-items:center;
+            justify-content:space-between;
+            @media(max-width:$width-portable){
+                justify-content:center;
+            }
+        }
+    }
+}

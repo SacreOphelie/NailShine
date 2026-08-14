@@ -2,7 +2,7 @@
 import '@/styles/cardRealisation.scss';
 import Link from 'next/link';
 
-export default function CardRealisation({realisations }) {
+export default function CardRealisation({realisations, limit }) {
 
   // Modifier le format de la date (JJ/MM/AAAA)
   const formatDate = (dateString) => {
@@ -10,9 +10,14 @@ export default function CardRealisation({realisations }) {
     return date.toLocaleDateString('fr-FR');
   };
 
+  // ordonnée par date
+  const order = realisations?.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  const limitRealisations = limit ? order.slice(0, limit) : order;
+
   return (
     <>
-      {realisations?.map((item) =>(
+      {limitRealisations?.map((item) =>(
           <Link href={`/realisation/${item.id}`} className="cardRea" key={item.id} style={{ backgroundImage: `url(${item.image_url})` }}>
               <div className="favoris">
                 <p>Mettre en favoris</p>

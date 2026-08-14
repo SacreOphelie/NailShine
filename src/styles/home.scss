@@ -411,7 +411,10 @@ h2{
             gap:$gap-large;
             flex-wrap:wrap;
             align-items:center;
-            justify-content:center;
+            justify-content:space-between;
+            @media(max-width:$width-portable){
+                justify-content:center;
+            }
         }
         .container-btn{
             display:flex;
