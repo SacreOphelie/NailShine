@@ -8,7 +8,7 @@ import Retour from "@/components/Retour";
 export default async function RealisationPage({params}) {
     const {id} = await params;
 
-     // Supabase : récupérer les données de la realisation
+      // Supabase : récupérer les données de la realisation
       const {data: realisation, error} = await supabase
         .from('realisations')
         .select('*, techniques(nom)')
@@ -50,17 +50,24 @@ export default async function RealisationPage({params}) {
                 </h2>
                 <div className="date mini-box">{formatDate(realisation.date)}</div>
                 <div className="container-details">
-                  <div className={`saison mini-box saison-${realisation.saison}`}>
-                    {capitalize(realisation.saison)}
-                  </div>
-                  <div className={`couleur mini-box couleur-${realisation.couleur}`}>
-                    {capitalize(realisation.couleur)}
-                  </div>
+                  {/* Si il y a une saison */}
+                  {realisation.saison && (
+                    <div className={`saison mini-box saison-${realisation.saison}`}>
+                      {capitalize(realisation.saison)}
+                    </div>
+                  )}
+                  {realisation.couleur && (
+                    <div className={`couleur mini-box couleur-${realisation.couleur}`}>
+                      {capitalize(realisation.couleur)}
+                    </div>
+                  )}
                 </div>
-                <div className="texte">
-                  <h4>{realisation.titre}</h4>
-                  <p>{realisation.description}</p>
-                </div>
+                {realisation.titre && realisation.description && (
+                  <div className="texte">
+                    <h4>{realisation.titre}</h4>
+                    <p>{realisation.description}</p>
+                  </div>
+                )}
                 <div className="btn">
                   <Button text="Prendre rendez-vous" url="/prendre-rdv" className="button-secondary" />
                 </div>
