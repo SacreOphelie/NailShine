@@ -75,6 +75,9 @@
             gap:$gap-medium;
             h2{
                 @include text-chicle($taille:72px,$color:$text-darker);
+                @media(max-width:$width-vertical){
+                    font-size: 52px;
+                }
             }
             .mini-box{
                 width:fit-content;
@@ -105,6 +108,18 @@
                     @include text($taille:20px);
                     white-space: pre-line;
                 }
+            }
+        }
+        @media(max-width:$width-middle){
+            flex-direction:column;
+            align-items:center;
+            gap:$gap-medium;
+            .left{
+                height:400px;
+                width:100%;
+            }
+            .right{
+                width:100%;
             }
         }
     }
