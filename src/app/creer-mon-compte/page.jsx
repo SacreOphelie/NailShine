@@ -25,6 +25,7 @@ export default function PageCreateAccount() {
 
     const [erreur, setErreur] = useState({});
 
+    // Permet de gérer l'inscription d'un utilisateur
     const handleRegister = async(e) =>{
         e.preventDefault();
         setErreur({});

@@ -22,7 +22,7 @@ export default function Compte(){
     // Temps de chargement
     if (loading) {
         return (
-            <div className="slide"></div>
+            <div className="slide">Chargement en cours...</div>
         );
     }
 
@@ -34,7 +34,7 @@ export default function Compte(){
 
     // Ne pas aller plus loin si l'utilisateur n'est pas connecté
     if (!isConnected) {
-        return(<div className="slide"></div>)
+        return(<div className="slide"> Veuillez vous connecter pour accéder à votre compte.</div>)
     }
 
     if(userProfil.role === 'admin'){
