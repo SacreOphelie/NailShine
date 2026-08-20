@@ -46,7 +46,7 @@ export default async function Page() {
       <div className="slide" id="accueil">
           <div className="container wrapper">
             <div className="left">
-              <img src="/images/prothesiste/Cadre-1.png" alt="Prothésiste ongulaire" id="cadre" />
+              <img src="/images/prothesiste/Cadre(1).png" alt="Prothésiste ongulaire" id="cadre" />
               <img src="/images/illustrations/Noeud.png" alt="Noeud" id="noeud" className="illu" />
               <img src="/images/illustrations/Vernis.png" alt="Vernis" id="vernis" className="illu" />
             </div>

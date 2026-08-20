@@ -4,6 +4,7 @@ import {supabase} from "@/config/supabase";
 import '@/styles/realisationPage.scss';
 import Button from "@/components/Button";
 import Retour from "@/components/Retour";
+import { notFound } from 'next/navigation';
 
 export default async function RealisationPage({params}) {
     const {id} = await params;
@@ -14,10 +15,9 @@ export default async function RealisationPage({params}) {
         .select('*, techniques(nom)')
         .eq('id', id)
         .single();
+      // Si la realisation n'existe pas, afficher une page 404
       if (error || !realisation) {
-        return(
-            <div className="slide">Pas de réalisation trouvée</div>
-        )
+              notFound(); 
       }
       // Modifier le format de la date (JJ/MM/AAAA)
       const formatDate = (dateString) => {
