@@ -50,6 +50,7 @@
             gap:$gap-medium;
         }
         .container-filtre{
+            cursor:pointer;
             display:flex;
             align-items:center;
             background-color:$color-middle;
@@ -125,11 +126,20 @@
                             transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                         p{
                             @include text-chicle();
+                            &.selected{
+                                color:$color-darker;
+                                background-color:$color-light;
+                                padding:2px $padding-small;
+                                border-radius:$border-radius-min;
+                            }
                         }
                         .couleurs{
                             width:20px;
                             height:20px;
                             border-radius:$border-radius-min;
+                            &.selected{
+                                @include border($width:2px,$color:$color-white);
+                            }
                         }
                     }
                     .filtre-couleurs{
@@ -137,21 +147,21 @@
                         grid-template-columns: repeat(3, 1fr);
                         gap:$gap-small;
                     }
-                &.is-open{
-                    img{
-                        transform:rotate(90deg);
-                        transition: transform 0.3s ease;
-                    }
-                    .infos-filtre{
-                        opacity:1;
-                        visibility:visible;
-                        top:50px;
-                        z-index:$index-medium;
-                    }
+                    &.is-open{
+                        img{
+                            transform:rotate(90deg);
+                            transition: transform 0.3s ease;
+                        }
+                        .infos-filtre{
+                            opacity:1;
+                            visibility:visible;
+                            top:50px;
+                            z-index:$index-medium;
+                        }
                     }
                 }
             }
-            &:hover{
+            &.is-open-menu-filtre{
                 .content{
                     max-width:500px;
                     opacity:1;
