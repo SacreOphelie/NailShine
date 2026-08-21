@@ -2,17 +2,18 @@
 import '@/styles/realisationsAll.scss';
 import {supabase} from "@/config/supabase";
 import RealisationsList from "@/components/Realisations/realisationList";
+export const dynamic = 'force-dynamic';
 
-// Supabase : récupérer les données de la table "realisations"
-  const {data: realisations, error: errorRealisations} = await supabase
-    .from('realisations')
-    .select('*');
-  if (errorRealisations) {
-    console.error("Erreur lors de la récupération des réalisations :", errorRealisations);
-  }
 
-export default function Realisations() 
+export default async function Realisations() 
 {
+    // Supabase : récupérer les données de la table "realisations"
+    const {data: realisations, error: errorRealisations} = await supabase
+        .from('realisations')
+        .select('*');
+    if (errorRealisations) {
+        console.error("Erreur lors de la récupération des réalisations :", errorRealisations);
+    }
     return(
         <div className="slide" id="realisationsAll">
             <svg id="svg-1" xmlns="http://www.w3.org/2000/svg" viewBox="500 0 900 1080">

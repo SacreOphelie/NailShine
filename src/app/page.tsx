@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-
 import {supabase} from "@/config/supabase";
 import Button from "@/components/Button";
 import { contact } from "@/config/contact";
@@ -7,6 +6,7 @@ import SliderTechniques from "@/components/SliderTechniques";
 import '@/styles/home.scss';
 import CardRea from "@/components/Realisations/CardRea";
 import Avis from "@/components/Avis/Avis";
+export const dynamic = 'force-dynamic';
 
 export default async function Page() {
   // Calcul automatique des années d'expériences en fonction de l'année de début d'activité
