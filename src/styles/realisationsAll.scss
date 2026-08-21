@@ -1,3 +1,5 @@
+@use 'badges';
+
 #realisationsAll{
     background-color:$color-middle;
     padding-top:$padding-top;
@@ -46,6 +48,117 @@
         @media(max-width:$width-mobile){
             padding-top:$padding-medium;
             gap:$gap-medium;
+        }
+        .container-filtre{
+            display:flex;
+            align-items:center;
+            background-color:$color-middle;
+            padding:$padding-medium;
+            border-radius:$border-radius-large;
+            @include border($width:2px);
+            @include shadow();
+            color:$text-white;
+            width:fit-content;
+            height:fit-content;
+            .content{
+                display:flex;
+                align-items:center;
+                gap:$gap-medium;
+                transition: opacity 0.1s ease, max-width 0.5s ease,margin-left 0.3s ease;
+                max-width:0;
+                opacity:0;
+                // overflow:hidden;
+                white-space:nowrap;
+                .filtre{
+                    cursor:pointer;
+                    display:flex;
+                    align-items:center;
+                    gap:$gap-small;
+                    padding:5px $padding-small;
+                    background-color:$color-dark;
+                    border-radius:$border-radius-small;
+                    @include border($width:2px);
+                    position:relative;
+                    p{
+                        @include text-chicle()
+                    }
+                    img{
+                        width:15px;
+                        transition: transform 0.3s ease;
+                    }
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        width: 100%;
+                        height: 20px;
+                        background-color: transparent; 
+                    }
+                    .infos-filtre{
+                        cursor:pointer;
+                        display:flex;
+                        z-index:-1;
+                        flex-direction:column;
+                        gap:$gap-small;
+                        justify-content:center;
+                        align-items:center;
+                        position:absolute;
+                        // mettre au milieu x
+                        top:-150px;
+                        opacity:0;
+                        visibility:hidden;
+                        left:50%;
+                        transform:translateX(-50%);
+                        min-width:100%;
+                        width:fit-content;
+                        height:fit-content;
+                        white-space:nowrap;
+                        background-color:$color-dark;
+                        padding:$padding-small;
+                        @include border($width:2px);
+                        border-radius:$border-radius-small;
+                        transition: 
+                            opacity 0.2s ease, 
+                            visibility 0.2s ease, 
+                            top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                            transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                        p{
+                            @include text-chicle();
+                        }
+                        .couleurs{
+                            width:20px;
+                            height:20px;
+                            border-radius:$border-radius-min;
+                        }
+                    }
+                    .filtre-couleurs{
+                        display:grid;
+                        grid-template-columns: repeat(3, 1fr);
+                        gap:$gap-small;
+                    }
+                &.is-open{
+                    img{
+                        transform:rotate(90deg);
+                        transition: transform 0.3s ease;
+                    }
+                    .infos-filtre{
+                        opacity:1;
+                        visibility:visible;
+                        top:50px;
+                        z-index:$index-medium;
+                    }
+                    }
+                }
+            }
+            &:hover{
+                .content{
+                    max-width:500px;
+                    opacity:1;
+                    margin-left:$gap-medium;
+                    transition: max-width 0.5s ease,opacity 0.3s ease-in-out,margin-left 0.3s ease;
+                }
+            }
         }
         .container-rea{
             padding-top:$padding-medium;

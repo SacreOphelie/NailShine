@@ -124,9 +124,9 @@ $couleur-marron: #8b5e3c;
 $couleur-blanc: $color-light;
 $couleur-paillette: $color-light;
 $couleur-noir: #242323;
-$couleur-argent: gradient(linear, 0% 0%, 100% 100%, from(#e6e6e6), to(#b3b3b3));
-$couleur-or: gradient(linear, 0% 0%, 100% 100%, from(#ffd700), to(#b8860b));
-$couleur-multicolore: gradient(linear, 0% 0%, 100% 100%, from(#ff0000), color-stop(0.2, #ff7f00), color-stop(0.4, #ffff00), color-stop(0.6, #00ff00), color-stop(0.8, #0000ff), to(#8b00ff));
+$couleur-argent: linear-gradient(to bottom right, #e6e6e6, #b3b3b3);
+$couleur-or: linear-gradient(to bottom right, #ffd700, #b8860b);
+$couleur-multicolore: linear-gradient(to bottom right, #ff0000, #ff7f00 20%, #ffff00 40%, #00ff00 60%, #0000ff 80%, #8b00ff);
 
 
 
