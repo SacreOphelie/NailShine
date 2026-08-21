@@ -21,8 +21,8 @@ const couleurs =[
     {id:"marron", nom:"Marron"},
     {id:"blanc", nom:"Blanc"},
     {id:"noir", nom:"Noir"},
-    {id:"argente", nom:"Argenté"},
-    {id:"dore", nom:"Doré"},
+    {id:"argent", nom:"Argenté"},
+    {id:"or", nom:"Doré"},
     {id:"multicolore", nom:"Multicolore"},
     {id:"paillette", nom:"Paillette"}
 ]

@@ -89,10 +89,20 @@
                 @include text-chicle($taille:24px, $color:$text-darker);
             }
             .container-details{
+                &:has(.couleur-blanc){
+                    .couleur-blanc{
+                        @include text-chicle($taille:24px,$color:$text-darker);
+                    }
+                }
+                &:has(.couleur-jaune){
+                    .couleur-jaune{
+                        @include text-chicle($taille:24px,$color:$text-darker);
+                    }
+                }
                 display:flex;
                 gap:$gap-medium;
                 .mini-box{
-                    @include text($taille:24px,$color:$text-white);
+                    @include text-chicle($taille:24px,$color:$text-white);
                 }
             }
             .texte{
