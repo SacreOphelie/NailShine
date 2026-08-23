@@ -51,6 +51,9 @@
         @include shadow;
         position:relative;
         transition: height 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+        @media(max-width:$width-mobile){
+            padding: $padding-medium $padding-small;
+        }
     }
 }
 
@@ -69,6 +72,10 @@
                 @include text-chicle($color:$text-white,$taille:24px);
                 opacity: 0.7;
                 cursor: pointer;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                
                 &:hover {
                     opacity: 1;
                 }
@@ -84,6 +91,12 @@
                 border-radius: $border-radius-max;
                 transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
                             width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            }
+            @media(max-width:$width-vertical){
+                .slider{
+                    display:none;
+                }
+                flex-direction:column;
             }
         }
         .list-rdv{
@@ -103,15 +116,16 @@
                     align-items:center;
                     justify-content:space-between;
                     width:100%;
+                    gap:$gap-medium;
                     .dateRdv{
                         background-color: $color-dark;
-                        @include text-chicle($color:$text-white,$taille:24px);
+                        @include text-chicle($color:$text-white,$taille:24px,$align:center);
                         padding: $padding-small;
                         border-radius: $border-radius-small;
                         height:fit-content;
                     }
                     .prestationRdv{
-                        @include text-chicle($color:$text-darker,$taille:24px);
+                        @include text-chicle($color:$text-darker,$taille:24px,$align:center);
                     }
                     .prixRdv{
                         background-color: $color-dark;
@@ -131,6 +145,15 @@
                 justify-content:center;
             }
         }
+        @media(max-width:$width-middle)
+        {
+            .barre-rdv{
+                flex-direction:column;
+                .infos{
+                    flex-direction:column;
+                }
+            }
+        }
     }
 }
 .popup-overlay{
@@ -144,6 +167,7 @@
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    padding: $padding-medium;
     .popup-confirm{
         background-color: $color-middle;
         @include border();
@@ -162,6 +186,10 @@
             button{
                 width:fit-content;
             }
+            @media(max-width:$width-mobile){
+                flex-direction:column-reverse;
+                align-items:center;
+            }
         }
     }
 }
@@ -173,6 +201,9 @@
         background-color:$color-light;
         h2{
             @include text-chicle($color:$text-darker,$taille:72px);
+            @media(max-width:$width-vertical){
+                font-size: 48px;
+            }
         }
     }
     .btn-add{
@@ -185,12 +216,26 @@
         top:-75px;
         left:0px;
     }
+    @media(max-width:$width-mobile){
+        .btn-add{
+            top:-125px;
+            right:50%;
+            transform:translateX(50%);
+            width:100%;
+        }
+        .btn-rdv{
+            top:-75px;
+            left:50%;
+            transform:translateX(-50%);
+            width:100%;
+        }
+    }
     .list-realisation{
         display:flex;
         background-color:$color-middle;
         padding:$padding-medium;
         border-radius:$border-radius-small;
-        
+        gap:$gap-medium;
         .infos{
             display:flex;
             width:100%;
@@ -211,10 +256,11 @@
             }
             .titre{
                 p{
-                    @include text-chicle($color:$text-darker,$taille:24px);
+                    @include text-chicle($color:$text-darker,$taille:24px,$align:center);
                     text-overflow: ellipsis;
                     overflow: hidden;
                     white-space: nowrap;
+                    width:250px;
                 }
             }
         }
@@ -222,6 +268,17 @@
             display:flex;
             gap:$gap-medium;
             align-items:center;
+        }
+        @media(max-width:$width-middle){
+            flex-direction:column;
+            align-items:center;
+            .infos{
+                flex-direction:column;
+                align-items:center;
+            }
+            .actions{
+                flex-direction:column;
+            }
         }
     }
 }
