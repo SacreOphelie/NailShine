@@ -2,11 +2,12 @@
 
 import '@/styles/compte.scss';
 import { useAuth } from '@/config/Auth';
-import { TriangleAlert } from 'lucide-react';
 import {useEffect} from 'react';
 import {useRouter} from 'next/navigation';
 import { supabase } from '@/config/supabase';
-import Button from '@/components/Button';
+
+import CompteClient from '@/components/Compte/CompteClient';
+import CompteAdmin from '@/components/Compte/CompteAdmin';
 
 export default function Compte(){
     const { userProfil, isConnected, loading, refreshAuth } = useAuth();
@@ -39,22 +40,16 @@ export default function Compte(){
 
     if(userProfil.role === 'admin'){
         return(
-            <div className="slide " id="admin">
-            <Button url="/ajouter-une-realisation" text="Ajouter une réalisation"className="btn-add"/>
-            <div className="box-compte wrapper">
-                <h2>Mon compte</h2>
-                <p>Rôle : Administrateur</p>
-            </div>
-        </div>
+            <CompteAdmin />
         )
     }
+    const rendezVousStatic = [
+        { id: 1, date: '2026-05-26', heure: '10h', prestation: 'Acrylique + Nail art', prix: 50 },
+        { id: 2, date: '2026-05-26', heure: '10h', prestation: 'Acrylique + Nail art', prix: 50 },
+        { id: 3, date: '2025-08-30', heure: '14h', prestation: 'Pose gel', prix: 40 },
+    ];
 
     return(
-        <div className="slide " id="compte">
-            <div className="box-compte wrapper">
-                <h2>Mon compte</h2>
-                <p>Bienvenue, {userProfil.prenom} {userProfil.nom}!</p>
-            </div>
-        </div>
+        <CompteClient rendezVous={userProfil.rendezVous || rendezVousStatic} />
     );
 }

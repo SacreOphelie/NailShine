@@ -1,10 +1,41 @@
-#admin{
+#admin,#compte{
     background-color:$color-light;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     gap:$gap-medium;
+    position:relative;
+    #svg-1{
+        position:absolute;
+        top:-200px;
+        right:-150px;
+        width:900px;
+        path{
+            fill:$color-darker;
+        }
+        @media(max-width:$width-portable){
+            right:-250px;
+        }
+        @media(max-width:$width-vertical){
+            width:500px;
+            right:-200px;
+        }
+    }
+    #svg-2{
+        position:absolute;
+        bottom:-250px;
+        left:-100px;
+        width:900px;
+        transform:rotate(-90deg);
+        path{
+            fill:$color-darker;
+        }
+        @media(max-width:$width-vertical){
+            width:500px;
+            bottom:-100px;
+        }
+    }
     .box-compte{
         display:flex;
         flex-direction:column;
@@ -16,6 +47,84 @@
         @include border;
         @include shadow;
         position:relative;
+        transition: height 0.35s cubic-bezier(0.25, 1, 0.5, 1);
     }
-    
+}
+
+#compte{
+    .container-tabs{
+        display: flex;
+        flex-direction: column;
+        gap:$gap-medium;
+        .tabs{
+            display: flex;
+            gap: $gap-medium;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            p{
+                @include text-chicle($color:$text-white,$taille:24px);
+                opacity: 0.7;
+                cursor: pointer;
+                &:hover {
+                    opacity: 1;
+                }
+                &.active {
+                    opacity: 1;
+                }
+            }
+            .slider{
+                position: absolute;
+                bottom: 0;
+                height: 2.5px;
+                background: $color-white;
+                border-radius: $border-radius-max;
+                transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                            width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            }
+        }
+        .list-rdv{
+            display: flex;
+            flex-direction: column;
+            gap: $gap-medium;
+            .barre-rdv{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: $gap-medium;
+                background-color: $color-light;
+                border-radius: $border-radius-small;
+                padding:$padding-medium;
+                .infos{
+                    display:flex;
+                    align-items:center;
+                    justify-content:space-between;
+                    width:100%;
+                    .dateRdv{
+                        background-color: $color-dark;
+                        @include text-chicle($color:$text-white,$taille:24px);
+                        padding: $padding-small;
+                        border-radius: $border-radius-small;
+                    }
+                    .prestationRdv{
+                        @include text-chicle($color:$text-darker,$taille:24px);
+                    }
+                    .prixRdv{
+                        background-color: $color-dark;
+                        @include text-chicle($color:$text-white,$taille:24px);
+                        padding: $padding-small;
+                        border-radius: $border-radius-small;
+                    }
+                }
+            }
+            .empty {
+                @include text-chicle($color:$text-white,$taille:24px,$align:center);
+                gap:$gap-medium;
+                display:flex;
+                flex-direction:column;
+                align-items:center;
+                justify-content:center;
+            }
+        }
+    }
 }

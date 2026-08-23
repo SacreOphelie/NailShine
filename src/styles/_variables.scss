@@ -129,9 +129,6 @@ $couleur-or: linear-gradient(to bottom right, #ffd700, #b8860b);
 $couleur-multicolore: linear-gradient(to bottom right, #ff0000, #ff7f00 20%, #ffff00 40%, #00ff00 60%, #0000ff 80%, #8b00ff);
 
 
-
-
-
 @mixin shadow($y: 5px, $blur:20px){
     color: $color-shadow;
     box-shadow: 0 $y $blur $color-shadow;
