@@ -6,6 +6,9 @@
     align-items:center;
     gap:$gap-medium;
     position:relative;
+    height:fit-content;
+    padding-top:$padding-top;
+    padding-bottom:$padding-bottom;
     #svg-1{
         position:absolute;
         top:-200px;
@@ -124,6 +127,38 @@
                 flex-direction:column;
                 align-items:center;
                 justify-content:center;
+            }
+        }
+    }
+    .popup-overlay{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        .popup-confirm{
+            background-color: $color-middle;
+            @include border();
+            padding: $padding-large;
+            border-radius: $border-radius-medium;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap:$gap-medium;
+            @include text-chicle($color:$text-white,$taille:24px,$align:center);
+            .popup-actions{
+                display:flex;
+                gap:$gap-medium;
+                width:100%;
+                justify-content:center;
+                button{
+                    width:fit-content;
+                }
             }
         }
     }

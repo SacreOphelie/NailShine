@@ -1,7 +1,7 @@
 import React from "react";
 import Link from 'next/link';
 
-const Button = ({ text = "Bouton", url, className = "", type = "submit" }) => {
+const Button = ({ text = "Bouton", url, className = "", type = "submit", onClick }) => {
 	if(url)
 	{
 		return (
@@ -11,7 +11,7 @@ const Button = ({ text = "Bouton", url, className = "", type = "submit" }) => {
 		);
 	}else{
 		return(
-			<button className={`button ${className}`} type={type}>
+			<button className={`button ${className}`} type={type} onClick={onClick}>
 				{text}
 			</button>
 		)

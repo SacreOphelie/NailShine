@@ -12,11 +12,11 @@ export function useAuth() {
         let isMounted = true;
 
         const getUserProfil = async (userId: string) => {
-            console.log("-> [3] DB REQUÊTE : Lancement du fetch profil pour ID:", userId);
+            // console.log("-> [3] DB REQUÊTE : Lancement du fetch profil pour ID:", userId);
             try {
                 const { data, error } = await supabase
                     .from('clients')
-                    .select('nom,prenom,role')
+                    .select('id,nom,prenom,role')
                     .eq('id', userId)
                     .maybeSingle();
 
@@ -25,7 +25,7 @@ export function useAuth() {
                     throw error;
                 }
 
-                console.log("-> [4] DB RÉSULTAT :", data);
+                // console.log("-> [4] DB RÉSULTAT :", data);
                 return data ?? null;
             } catch (error) {
                 console.error("-> [4] DB EXCEPTION : Erreur lors de la récupération :", error);
@@ -56,7 +56,7 @@ export function useAuth() {
         initAuth();
 
         const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-            console.log("-> [EVENT SUPABASE] Événement détecté :", event, "| Session =", session ? "OK" : "NULL");
+            // console.log("-> [EVENT SUPABASE] Événement détecté :", event, "| Session =", session ? "OK" : "NULL");
 
             setTimeout(async () => {
                 if (!isMounted) return;

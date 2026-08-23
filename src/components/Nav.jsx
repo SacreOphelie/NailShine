@@ -25,7 +25,6 @@ export default function Nav(){
             localStorage.removeItem('token'); 
             // Notification de déconnexion réussie
             toast('Déconnexion réussie.', {
-                icon:"🔓",
                 className: 'toast-success',
                 progressClassName: 'toast-progress-bar',
             });

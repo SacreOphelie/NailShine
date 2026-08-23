@@ -181,12 +181,8 @@ export default function PrendreRdv() {
     const FormatDateSupabase = (dateStr, hourStr) => {
         const hourNumber = parseInt(hourStr.replace('h',''),10);
         const [year, month, day] = dateStr.split('-').map(Number);
-        const date = new Date(year, month-1, day, hourNumber,0,0);
-
-        const offset = date.getTimezoneOffset() * 60000;
-        const localDate = new Date(date.getTime() - offset);
-
-        return localDate.toISOString();
+        const date = new Date(year, month-1, day, hourNumber, 0, 0);
+        return date.toISOString();
     }
 
     // Gérer l'upload de la photo d'inspiration sur Supabase

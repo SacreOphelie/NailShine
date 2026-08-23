@@ -4,23 +4,21 @@ import '@/styles/compte.scss';
 import {useState, useEffect, useRef} from 'react';
 import Button from '@/components/Button';
 
-export default function CompteClient({ rendezVous }) {
-     const [activeTab, setActiveTab] = useState('a-venir'); 
-    //  petite barre de slider
+export default function CompteClient({ rendezVous, nailArt = 0, onAnnuler }) {
+    const [activeTab, setActiveTab] = useState('a-venir');
     const [sliderPosition, setSliderPosition] = useState({left: 0, width: 0});
     const sliderRef = useRef(null);
-    // Animer la hauteur de la box-compte en fonction du contenu
     const [boxHeight, setBoxHeight] = useState('fit-content');
     const contentRef = useRef(null);
     const boxRef = useRef(null);
 
+    // Rdv en attente de confirmation d'annulation
+    const [rdvAAnnuler, setRdvAAnnuler] = useState(null);
+
     useEffect(() => {
         if (sliderRef.current) {
-            // On cible les p qui ont la classe active
             const activeElement = sliderRef.current.querySelector('.active');
-            
             if (activeElement) {
-                // le slider se place en dessous des p
                 setSliderPosition({
                     left: activeElement.offsetLeft,
                     width: activeElement.offsetWidth,
@@ -28,7 +26,7 @@ export default function CompteClient({ rendezVous }) {
             }
         }
     }, [activeTab]);
-    // Mesure dynamique de la hauteur du contenu (en tenant compte du padding de la box)
+
     useEffect(() => {
         const contentEl = contentRef.current;
         const boxEl = boxRef.current;
@@ -38,38 +36,48 @@ export default function CompteClient({ rendezVous }) {
             const boxStyles = window.getComputedStyle(boxEl);
             const paddingTop = parseFloat(boxStyles.paddingTop) || 0;
             const paddingBottom = parseFloat(boxStyles.paddingBottom) || 0;
-
             setBoxHeight(contentEl.scrollHeight + paddingTop + paddingBottom);
         };
 
         updateHeight();
-
         const resizeObserver = new ResizeObserver(updateHeight);
         resizeObserver.observe(contentEl);
-
         return () => resizeObserver.disconnect();
     }, [activeTab, rendezVous]);
 
-    // Modifier le format de la date (JJ/MM/AAAA)
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         return date.toLocaleDateString('fr-FR');
     };
     const now = new Date();
 
-    // Séparation historique / à venir
     const aVenir = rendezVous
-        ?.filter((item) => new Date(item.date) >= now)
-        .sort((a, b) => new Date(a.date) - new Date(b.date));
+        ?.filter((item) => new Date(item.date_heure) >= now)
+        .sort((a, b) => new Date(a.date_heure) - new Date(b.date_heure));
 
     const historique = rendezVous
-        ?.filter((item) => new Date(item.date) < now)
-        .sort((a, b) => new Date(b.date) - new Date(a.date));
+        ?.filter((item) => new Date(item.date_heure) < now)
+        .sort((a, b) => new Date(b.date_heure) - new Date(a.date_heure));
 
     const listeRdv = activeTab === 'a-venir' ? aVenir : historique;
 
-    const handleAnnuler = (id) => {
-        console.log('Annuler', id);
+    // Ouvre la popup de confirmation
+    const demanderAnnulation = (item) => {
+        setRdvAAnnuler(item);
+        console.log("Rendez-vous à annuler :", item);
+    };
+
+    // Confirme l'annulation
+    const confirmerAnnulation = () => {
+        if (rdvAAnnuler) {
+            onAnnuler?.(rdvAAnnuler.id);
+        }
+        setRdvAAnnuler(null);
+    };
+
+    // Ferme la popup sans annuler
+    const fermerPopup = () => {
+        setRdvAAnnuler(null);
     };
 
     return(
@@ -97,14 +105,14 @@ export default function CompteClient({ rendezVous }) {
                                 <div className="barre-rdv" key={item.id}>
                                     <div className="infos">
                                         <div className="dateRdv">
-                                            {formatDate(item.date)} {item.heure}
+                                            {formatDate(item.date_heure)} {new Date(item.date_heure).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
                                         </div>
-                                        <div className="prestationRdv">{item.prestation}</div>
-                                        <div className="prixRdv">{item.prix} €</div>
+                                        <div className="prestationRdv">{item.techniques?.nom}{item.nail_art ? ' & Nail art' : ''}</div>
+                                        {activeTab === 'a-venir' && (<div className="prixRdv">{(item.techniques?.prix || 0) + (item.nail_art ? nailArt : 0)} €</div>)}
                                     </div>
                                     {activeTab === 'a-venir' && (
                                         <div className="actionsRdv">
-                                            <Button onClick={() => handleAnnuler(item.id)} className="button-secondary" text="Annuler" />
+                                            <Button onClick={() => demanderAnnulation(item)} className="button-secondary" text="Annuler" />
                                         </div>
                                     )}
                                 </div>
@@ -118,6 +126,19 @@ export default function CompteClient({ rendezVous }) {
                     </div>
                 </div>
             </div>
+
+            {/* Popup de confirmation */}
+            {rdvAAnnuler && (
+                <div className="popup-overlay" onClick={fermerPopup}>
+                    <div className="popup-confirm" onClick={(e) => e.stopPropagation()}>
+                        <p>Voulez-vous vraiment annuler votre rendez-vous  ? </p>
+                        <div className="popup-actions">
+                            <Button onClick={fermerPopup} className="button-secondary" text="Retour" />
+                            <Button onClick={confirmerAnnulation} className="button-primary" text="Confirmer l'annulation" type="submit" />
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
