@@ -5,7 +5,7 @@ const Button = ({ text = "Bouton", url, className = "", type = "submit", onClick
 	if(url)
 	{
 		return (
-			<Link href={url} className={`button ${className}`}>
+			<Link href={url} className={`button ${className}`} onClick={onClick}>
 				{text}
 			</Link>
 		);
