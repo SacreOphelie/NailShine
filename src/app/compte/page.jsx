@@ -17,6 +17,27 @@ export default function Compte(){
     const [rendezVous, setRendezVous] = useState([]);
     const [nailArt, setNailArt] = useState(0);
 
+    const [realisations, setRealisations] = useState([]);
+
+   // Récupération des réalisations (admin)
+    const fetchRealisations = useCallback(async () => {
+        const { data, error } = await supabase
+            .from('realisations')
+            .select('*');
+
+        if (error) {
+            console.error("Erreur lors de la récupération des réalisations :", error);
+        } else {
+            setRealisations(data);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (isConnected && userProfil?.role === 'admin') {
+            fetchRealisations();
+        }
+    }, [isConnected, userProfil, fetchRealisations]);
+
     // Gestion de la redirection si l'utilisateur n'est pas connecté
     useEffect(() => {
         if(!loading && !isConnected) {
@@ -78,6 +99,24 @@ export default function Compte(){
         });
     };
 
+    const handleSupprimer = async (reaId) => {
+        const { error } = await supabase
+            .from('realisations')
+            .delete()
+            .eq('id', reaId);
+
+        if (error) {
+            console.error('Erreur lors de la suppression :', error);
+            return;
+        }
+        // Mise à jour locale : on retire la réalisation supprimée sans refaire un fetch complet
+        setRealisations(prev => prev.filter(item => item.id !== reaId));
+        toast('Réalisation supprimée.', {
+            className: 'toast-success',
+            progressClassName: 'toast-progress-bar',
+        });
+    };
+
     // Temps de chargement
     if (loading) {
         return (
@@ -93,7 +132,7 @@ export default function Compte(){
     if(userProfil.role === 'admin'){
         return(
             <>
-                <CompteAdmin />
+                <CompteAdmin realisations={realisations} onSupprimer={handleSupprimer}/>
             </>
         )
     }

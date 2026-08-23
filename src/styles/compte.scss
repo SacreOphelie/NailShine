@@ -108,6 +108,7 @@
                         @include text-chicle($color:$text-white,$taille:24px);
                         padding: $padding-small;
                         border-radius: $border-radius-small;
+                        height:fit-content;
                     }
                     .prestationRdv{
                         @include text-chicle($color:$text-darker,$taille:24px);
@@ -117,6 +118,7 @@
                         @include text-chicle($color:$text-white,$taille:24px);
                         padding: $padding-small;
                         border-radius: $border-radius-small;
+                        height:fit-content;
                     }
                 }
             }
@@ -130,36 +132,96 @@
             }
         }
     }
-    .popup-overlay{
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
+}
+.popup-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    .popup-confirm{
+        background-color: $color-middle;
+        @include border();
+        padding: $padding-large;
+        border-radius: $border-radius-medium;
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
-        z-index: 1000;
-        .popup-confirm{
-            background-color: $color-middle;
-            @include border();
-            padding: $padding-large;
-            border-radius: $border-radius-medium;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        gap:$gap-medium;
+        @include text-chicle($color:$text-white,$taille:24px,$align:center);
+        .popup-actions{
+            display:flex;
             gap:$gap-medium;
-            @include text-chicle($color:$text-white,$taille:24px,$align:center);
-            .popup-actions{
-                display:flex;
-                gap:$gap-medium;
-                width:100%;
-                justify-content:center;
-                button{
-                    width:fit-content;
+            width:100%;
+            justify-content:center;
+            button{
+                width:fit-content;
+            }
+        }
+    }
+}
+#admin{
+    background-image: $bg-image;
+    background-attachment:fixed;
+    padding-top:$padding-top + 50px;
+    .box-compte{
+        background-color:$color-light;
+        h2{
+            @include text-chicle($color:$text-darker,$taille:72px);
+        }
+    }
+    .btn-add{
+        position:absolute;
+        top:-75px;
+        right:0px;
+    }
+    .btn-rdv{
+        position:absolute;
+        top:-75px;
+        left:0px;
+    }
+    .list-realisation{
+        display:flex;
+        background-color:$color-middle;
+        padding:$padding-medium;
+        border-radius:$border-radius-small;
+        
+        .infos{
+            display:flex;
+            width:100%;
+            gap:$gap-medium;
+            align-items:center;
+            img{
+                width:100px;
+                height:100px;
+                object-fit:cover;
+                border-radius:$border-radius-small;
+            }
+            .dateRea{
+                background-color: $color-dark;
+                @include text-chicle($color:$text-white,$taille:24px);
+                padding: $padding-small;
+                border-radius: $border-radius-small;
+                height:fit-content;
+            }
+            .titre{
+                p{
+                    @include text-chicle($color:$text-darker,$taille:24px);
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
                 }
             }
+        }
+        .actions{
+            display:flex;
+            gap:$gap-medium;
+            align-items:center;
         }
     }
 }
