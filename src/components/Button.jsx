@@ -1,7 +1,7 @@
 import React from "react";
 import Link from 'next/link';
 
-const Button = ({ text = "Bouton", url, className = "", type = "submit", onClick }) => {
+const Button = ({ text = "Bouton", url, className = "", type = "submit", onClick = () => {} }) => {
 	if(url)
 	{
 		return (
