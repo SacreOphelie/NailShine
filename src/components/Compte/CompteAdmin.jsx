@@ -38,7 +38,7 @@ export default function CompteClient({realisations, onSupprimer}) {
         <div className="slide " id="admin">
             <div className="box-compte wrapper">
                 <Button url="/ajouter-une-realisation" text="Ajouter une réalisation"className="btn-add button-secondary"/>
-                <Button url="/mes-rdv" text="Mes rendez-vous"className="btn-rdv"/>
+                <Button url="/admin-rdv" text="Mes rendez-vous"className="btn-rdv"/>
                 <h2>Les réalisations</h2>
                 {realisations?.map(item =>(
                     <div className="list-realisation" key={item.id}>

@@ -1,0 +1,142 @@
+#admin-rdv{
+    display: flex;
+    padding-top:$padding-top;
+    padding-bottom:$padding-bottom;
+    justify-content: center;
+    height:fit-content;
+    background-image:$bg-image;
+    background-attachment:fixed;
+    justify-content:center;
+    align-items:center;
+    .box{
+        display:flex;
+        flex-direction:column;
+        height:fit-content;
+        background-color:$color-light;
+        padding:$padding-large;
+        gap:$gap-medium;
+        border-radius:$border-radius-large;
+        @include border;
+        @include shadow;
+        position:relative;
+        .btn-compte{
+            position:absolute;
+            top:-75px;
+            left:0px;
+        }
+        h2{
+            @include titre($taille:72px);
+            @media(max-width:$width-tablette){
+                text-align:left;
+            }
+        }
+        .calendrier{
+            display:flex;
+            flex-direction:column;
+            gap:$gap-medium;
+            padding:15px;
+            @include border($width: 2px);
+            border-radius:$border-radius-min;
+            .mois{
+                display:flex;
+                width:100%;
+                p{
+                    @include text-chicle($color:$text-darker,$taille:24px);
+                }
+                .navigation{
+                    width:100%;
+                    display:flex;
+                    justify-content:center;
+                    gap:$gap-small;
+                    .arrow-icon{
+                        width:15px;
+                        cursor:pointer;
+                        &:nth-child(1){
+                            transform:rotate(180deg);
+                        }
+                    }
+                }
+            }
+            .grid-days{
+                width:100%;
+                display:flex;
+                flex-wrap:wrap;
+                gap:$gap-small;
+                justify-content:space-between;
+                p{
+                    @include text-chicle($color:$text-darker);
+                }
+                .past-day{
+                    .grid-hours{
+                        button{
+                            opacity:0.5;
+                            pointer-events:none;
+                        }
+                    }
+                }
+                .column{
+                    display:flex;
+                    flex-direction:column;
+                    gap:$gap-small;
+                    align-items:center;
+                    .grid-hours{
+                        display:flex;
+                        flex-direction:column;
+                        gap:$gap-small;
+                        .not-booked{
+                            opacity:0.5;
+                            pointer-events:none;
+                        }
+                        button{
+                            &:hover{
+                                background-color:$color-dark;
+                            }
+                            border: 2px solid transparent;
+                            background-color:$color-middle;
+                            @include text-chicle($color:$text-white);
+                            display:flex;
+                            flex-direction:column;
+                            align-items:center;
+                            justify-content:center;
+                            padding:5px $padding-medium;
+                            border-radius:$border-radius-min;
+                            transition: background-color 0.3s ease;
+                            cursor:pointer;
+                        }
+                    }
+                }
+            }
+        }
+        .details-rdv{
+            display:flex;
+            flex-direction:column;
+            gap:$gap-small;
+            p{
+                strong{
+                    @include text-chicle($color:$text-darker,$taille:24px);
+                }
+                @include text($color:$text-darker,$taille:20px);
+            }
+            img{
+                width:500px;
+                height:500px;
+                object-fit:cover;
+                border-radius:$border-radius-small;
+            }
+        }
+    }
+    @media(max-width:$width-mobile){
+        .box{
+            padding:$padding-medium;
+            h2{
+                font-size:40px;
+            }
+            .calendrier{
+                .grid-days{
+                    justify-content:center;
+                    flex-direction:column;
+                }
+            }
+        }
+    }
+}

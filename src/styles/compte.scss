@@ -171,7 +171,7 @@
     .popup-confirm{
         background-color: $color-middle;
         @include border();
-        padding: $padding-large;
+        padding: $padding-medium;
         border-radius: $border-radius-medium;
         display: flex;
         flex-direction: column;
