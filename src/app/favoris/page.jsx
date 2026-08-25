@@ -1,8 +1,93 @@
-export default function Favoris() 
-{
-    return(
-        <div className="slide" id="favoris">
-    
+"use client";
+
+import '@/styles/favoris.scss';
+import { useEffect, useState } from 'react';
+import CardRea from "@/components/Realisations/CardRea";
+import { useAuth } from '@/config/Auth';
+import { supabase } from "@/config/supabase";
+import { useRouter } from 'next/navigation';
+import Button from '@/components/Button';
+
+export const dynamic = 'force-dynamic';
+
+export default function Favoris() {
+    const { isConnected, loading: authLoading, userProfil } = useAuth();
+    const [realisations, setRealisations] = useState([]);
+    const [loadingFavoris, setLoadingFavoris] = useState(true);
+    const router = useRouter();
+
+    // Gestion de la redirection si l'utilisateur n'est pas connecté
+    useEffect(() => {
+        if(!loadingFavoris && !isConnected) {
+            router.replace('/se-connecter');
+        }
+    }, [loadingFavoris, isConnected, router]);
+
+  useEffect(() => {
+    if (authLoading) return;
+
+    if (!isConnected || !userProfil?.id) {
+      setRealisations([]);
+      setLoadingFavoris(false);
+      return;
+    }
+
+    const fetchFavoris = async () => {
+      setLoadingFavoris(true);
+
+      // Jointure : on récupère les favoris du client, avec les données complètes de la réalisation liée
+      const { data, error } = await supabase
+        .from('favoris')
+        .select('id, realisations(*)')
+        .eq('client_id', userProfil.id);
+
+      if (error) {
+        console.error("Erreur lors de la récupération des favoris :", error);
+        setRealisations([]);
+      } else {
+        // On extrait uniquement l'objet "realisations" de chaque ligne favoris
+        const rea = data.map((fav) => fav.realisations).filter(Boolean);
+        setRealisations(rea);
+      }
+
+      setLoadingFavoris(false);
+    };
+
+    fetchFavoris();
+  }, [authLoading, isConnected, userProfil?.id]);
+
+  if (authLoading || loadingFavoris) {
+    return <div className="slide" id="favoris"></div>;
+  }
+     // Ne pas aller plus loin si l'utilisateur n'est pas connecté
+    if (!isConnected) {
+        return <div className="slide" id="favoris"></div>;
+    }
+
+
+  return (
+    <div className="slide" id="favoris">
+        <svg id="svg-1" xmlns="http://www.w3.org/2000/svg" viewBox="500 0 900 1080">
+            <path d="M970.64,26.35l20.74,1.5c152.71,15.51,270.65,153.74,330.74,285.02,17,37.14,25.88,75.28,34.25,115.19,9.68,46.18,17.56,95.5,18.14,142.78.01.84-.32,2.22.51,2.74v30.49c-.96,3.2-.44,7.1-.5,10.49-1.57,88.5-34.14,173.85-101.73,231.87-93.52,80.28-217.78,93.43-328.26,137.07-25.34,10.01-43.32,21.2-66.52,34.44-45.65,26.06-97.97,39.2-150.79,34.9-92.93-7.57-161.5-66.69-178.21-158.91-6.8-37.52-4.39-78.28,2.91-115.56,6.86-35.04,19.69-68.14,26.61-103.33,11.99-61.03,11.43-121.38,6.23-183.17-6.51-77.4-22.74-158.29,5.63-233.26,25.78-68.14,85.26-117.91,145.37-155.51,63.99-40.03,135.59-74.18,212.68-76.23l1.21-.52h20.99Z"/>
+        </svg>
+        <svg id="svg-2" xmlns="http://www.w3.org/2000/svg" viewBox="500 0 900 1080">
+            <path d="M970.64,26.35l20.74,1.5c152.71,15.51,270.65,153.74,330.74,285.02,17,37.14,25.88,75.28,34.25,115.19,9.68,46.18,17.56,95.5,18.14,142.78.01.84-.32,2.22.51,2.74v30.49c-.96,3.2-.44,7.1-.5,10.49-1.57,88.5-34.14,173.85-101.73,231.87-93.52,80.28-217.78,93.43-328.26,137.07-25.34,10.01-43.32,21.2-66.52,34.44-45.65,26.06-97.97,39.2-150.79,34.9-92.93-7.57-161.5-66.69-178.21-158.91-6.8-37.52-4.39-78.28,2.91-115.56,6.86-35.04,19.69-68.14,26.61-103.33,11.99-61.03,11.43-121.38,6.23-183.17-6.51-77.4-22.74-158.29,5.63-233.26,25.78-68.14,85.26-117.91,145.37-155.51,63.99-40.03,135.59-74.18,212.68-76.23l1.21-.52h20.99Z"/>
+        </svg>
+        <div className="container wrapper">
+            <h2>Mes favoris</h2>
+            {realisations.length === 0 ? (
+                <>
+                    <div className="no-favoris">
+                        <p >Vous n'avez pas encore ajouté de favoris.</p>
+                        <Button text="Voir les réalisations" url="/realisations" />
+                    </div>
+                </>
+            ) : (
+                <div className="container-favoris">
+                    <CardRea realisations={realisations} />
+                </div>
+            )}
         </div>
-    );
+    </div>
+  );
 }

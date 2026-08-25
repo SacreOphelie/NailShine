@@ -126,7 +126,7 @@ export default function Compte(){
 
     // Ne pas aller plus loin si l'utilisateur n'est pas connecté
     if (!isConnected) {
-        return(<div className="slide"> Veuillez vous connecter pour accéder à votre compte.</div>)
+        return(<div className="slide"></div>)
     }
 
     if(userProfil.role === 'admin'){

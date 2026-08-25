@@ -15,30 +15,8 @@
     position:relative;
     text-decoration:none;
     .favoris{
-        position:absolute;
         top:10px;
         right:10px;
-        background-color:$color-dark;
-        border-radius:$border-radius-max;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        width:40px;
-        height:40px;
-        overflow:hidden;
-        gap:$gap-small;
-        padding:$padding-small;
-        transition: width 0.5s ease;
-        img{
-            width:25px;
-            cursor:pointer;
-        }
-        p{
-            @include text-chicle(16px);
-            transform:translateX(150px);
-            display:none;
-            white-space: nowrap;
-        }
     }
     .dateRea{
         width:100%;
@@ -60,6 +38,10 @@
             width:200px;
             max-width:fit-content;
             transition: width 0.5s ease;
+            svg{
+                min-width:30px !important;
+                width:30px !important;
+            }
             p{
                 transition: transform 0.1s ease;
                 transform:translateX(0);

@@ -1,6 +1,8 @@
+"use client";
 /* eslint-disable @next/next/no-img-element */
 import '@/styles/cardRealisation.scss';
 import Link from 'next/link';
+import Favoris from '@/components/Realisations/Favoris';
 
 export default function CardRealisation({realisations, limit }) {
 
@@ -19,10 +21,7 @@ export default function CardRealisation({realisations, limit }) {
     <>
       {limitRealisations?.map((item) =>(
           <Link href={`/realisation/${item.id}`} className="cardRea" key={item.id} style={{ backgroundImage: `url(${item.image_url})` }}>
-              <div className="favoris">
-                <p>Mettre en favoris</p>
-                <img src="/icones/Icon_heart.png" alt="Favoris" />
-              </div>
+            <Favoris realisationId={item.id} />
               <div className="dateRea">
                   <p>{formatDate(item.date)}</p>
               </div>

@@ -73,7 +73,7 @@ export default function Nav(){
                                 </div>
                             </div>
                         </div>
-                            <Link href="/favoris" className="nav-link favoris">
+                            <Link href="/favoris" className="nav-link page-favoris">
                                 <Heart />
                             </Link>
                         </>
@@ -115,7 +115,7 @@ export default function Nav(){
                                 </div>
                             </div>
                         </div>
-                            <Link href="/favoris" className="nav-link favoris" onClick={() => setIsMenuOpen(false)}>
+                            <Link href="/favoris" className="nav-link page-favoris" onClick={() => setIsMenuOpen(false)}>
                                 <Heart />
                             </Link>
                         </>

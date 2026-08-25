@@ -5,6 +5,7 @@ import '@/styles/realisationPage.scss';
 import Button from "@/components/Button";
 import Retour from "@/components/Retour";
 import { notFound } from 'next/navigation';
+import Favoris from "@/components/Realisations/Favoris";
 
 export default async function RealisationPage({params}) {
     const {id} = await params;
@@ -38,10 +39,7 @@ export default async function RealisationPage({params}) {
         </div>
         <div className="container wrapper">
             <div className="left" style={{ backgroundImage: `url(${realisation.image_url})` }}>
-              <div className="favoris">
-                <p>Mettre en favoris</p>
-                <img src="/icones/Icon_heart.png" alt="Favoris" />
-              </div>
+              <Favoris realisationId={realisation.id} />
             </div>
             <div className="right">
                 <h2>

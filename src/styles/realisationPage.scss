@@ -27,43 +27,21 @@
             border-radius:$border-radius-large;
             position:relative;
             .favoris{
-                position:absolute;
                 bottom:10px;
-                right:10px;
-                background-color:$color-dark;
-                border-radius:$border-radius-max;
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                width:40px;
-                height:40px;
-                overflow:hidden;
-                gap:$gap-small;
-                padding:$padding-small;
-                transition: width 0.5s ease;
-                img{
-                    width:25px;
-                    cursor:pointer;
-                }
-                p{
-                    @include text-chicle(16px);
-                    transform:translateX(150px);
-                    display:none;
-                    white-space: nowrap;
-                }   
+                right:10px; 
             }
             &:hover{
-                    .favoris{
-                        width:200px;
-                        max-width:fit-content;
-                        transition: width 0.5s ease;
-                        p{
-                            transition: transform 0.1s ease;
-                            transform:translateX(0);
-                            display:block;
-                        }
+                .favoris{
+                    width:200px;
+                    max-width:fit-content;
+                    transition: width 0.5s ease;
+                    p{
+                        transition: transform 0.1s ease;
+                        transform:translateX(0);
+                        display:block;
                     }
                 }
+            }
         }
         .right{
             padding-top:$padding-medium;

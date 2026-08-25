@@ -64,6 +64,39 @@ body{
         }
     }
 }
+// Style favoris
+.favoris{
+    position:absolute;
+    background-color:$color-dark;
+    border-radius:$border-radius-max;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:40px;
+    height:40px;
+    overflow:hidden;
+    gap:$gap-small;
+    padding:$padding-small;
+    transition: width 0.5s ease;
+    svg{
+        min-width:30px !important;
+        width:30px !important;
+        cursor:pointer;
+    }
+    &.active{
+        svg{
+            .cls-1{
+                fill:$color-light !important;
+            }
+        }
+    }
+    p{
+        @include text-chicle(16px);
+        transform:translateX(150px);
+        display:none;
+        white-space: nowrap;
+    }
+}
 
 
 // Style général du button
