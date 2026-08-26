@@ -104,7 +104,7 @@ export default function PageCreateAccount() {
                 if(clientError) throw clientError;
 
                 // Inscription réussie, redirection vers la page de connexion
-                router.push('/se-connecter');
+                router.push('/compte');
             }
         } catch (error){
             setErreur({ general: error.message || "Une erreur est survenue lors de l'inscription." });
