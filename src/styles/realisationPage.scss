@@ -110,4 +110,87 @@
             }
         }
     }
+    .container-commentaire{
+        display:flex;
+        flex-direction:column;
+        .liste-commentaires{
+            margin-top:$margin-large;
+            display:flex;
+            flex-wrap:wrap;
+            gap:$gap-medium;
+            justify-content:space-between;
+            .no-commentaire{
+                @include text($color:$text-white,$taille:24px);
+                background-color:$color-middle;
+                padding:$padding-medium;
+                width:100%;
+                text-align:center;
+                border-radius:$border-radius-min;
+            }
+            .div-commentaire{
+                width:45%;
+                padding:$padding-medium;
+                background-color:$color-middle;
+                @include shadow();
+                @include border();
+                border-radius:$border-radius-medium;
+                display:flex;
+                flex-direction:column;
+                gap:$gap-medium;
+                @media(max-width:$width-vertical){
+                    width:100%;
+                }
+                .header{
+                    display:flex;
+                    gap:$gap-medium;
+                    flex-wrap:wrap;
+                    @media(max-width:$width-mobile){
+                        justify-content:center;
+                    }
+                    img{
+                        width:75px;
+                        object-fit:contain;
+                    }
+                    .infos{
+                        display:flex;
+                        flex-direction:column;
+                        justify-content:center;
+                        gap:$gap-small;
+                        .avis{
+                            display:flex;
+                            .note{
+                                svg{
+                                    .cls-1{
+                                        fill:$color-middle !important;
+                                    }
+                                }
+                            }
+                            .active{
+                                svg{
+                                    .cls-1{
+                                        fill:$color-light !important;
+                                    }
+                                }
+                            }
+                        }
+                        .auteur{
+                            @include text-chicle($color:$text-darker,$taille:24px);
+                            @media(max-width:$width-mobile){
+                                text-align:center;
+                            }
+                        }
+                    }
+                }
+                .contenu{
+                    background-color:$color-light;
+                    padding:$padding-medium;
+                    border-radius:$border-radius-medium;
+                    min-height:150px;
+                    p{
+                        @include text();
+                    }
+                }
+            }
+        }
+    }
 }

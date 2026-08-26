@@ -11,7 +11,7 @@ import Input from '@/components/Forms/Input';
 import { TriangleAlert, X } from 'lucide-react';
 import Textarea from '@/components/Forms/Textarea';
 import { useRouter } from 'next/navigation';
-
+export const dynamic = 'force-dynamic';
 
 // Les horaires disponibles pour chaque jour de la semaine
 const Hours = ["10h", "14h", "16h"];
