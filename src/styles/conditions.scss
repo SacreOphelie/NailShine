@@ -1,0 +1,25 @@
+#conditions-generales,#politique-de-confidentialite{
+    background-color:$color-light;
+    padding-top:$padding-top;
+    padding-bottom:$padding-bottom;
+    .container{
+        display:flex;
+        gap:$gap-small;
+        flex-direction:column;
+        h1{
+            @include titre($taille:88px);
+            @media(max-width:$width-tablette){
+                text-align:left;
+            }
+        }
+        h2{
+            @include titre($taille:52px);
+            @media(max-width:$width-tablette){
+                text-align:left;
+            }
+        }
+        p,li,a{
+            @include text();
+        }
+    }
+}
