@@ -135,7 +135,7 @@ export default function AdminRdv() {
 
     return (
         <div className="slide" id="admin-rdv">
-            <div className="box wrapper">
+            <div className="box-admin wrapper">
                 <Button text="Mon compte" url="/compte" className="btn-compte"/>
                 <h2>Rendez-vous pris</h2>
                 <div className="calendrier">

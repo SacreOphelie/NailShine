@@ -179,9 +179,9 @@ export default function PrendreRdv() {
 
     // Fonction pour gérer la date pour supabase
     const FormatDateSupabase = (dateStr, hourStr) => {
-        const hourNumber = parseInt(hourStr.replace('h',''),10);
+        const hourNumber = parseInt(hourStr.replace('h', ''), 10);
         const [year, month, day] = dateStr.split('-').map(Number);
-        const date = new Date(year, month-1, day, hourNumber, 0, 0);
+        const date = new Date(year, month - 1, day, hourNumber, 0, 0);
         return date.toISOString();
     }
 
@@ -327,7 +327,6 @@ export default function PrendreRdv() {
             <div className="slide"></div>
         );
     }
-
     
     return(
         <div className="slide" id="prendre-rdv">
@@ -384,7 +383,7 @@ export default function PrendreRdv() {
                                                 // le format de l'heure pour supabase
                                                 const currentItemISO = FormatDateSupabase(day.date, hour);
                                                 // Récupérer si un rdv est déjà pris
-                                                const isBooked = booked.some(item => item.date_heure.substring(0,16)=== currentItemISO.substring(0,16));
+                                                const isBooked = booked.find(item => item.date_heure.substring(0, 16) === currentItemISO.substring(0, 16));
 
                                                 // Si le jour est passé ou si le créneau est déjà pris, on désactive le bouton
                                                 const isDisabled = isPast || isBooked;

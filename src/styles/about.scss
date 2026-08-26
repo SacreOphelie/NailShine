@@ -64,6 +64,7 @@
                     position:relative;
                     img{
                         width:60px;
+                        height:auto;
                         bottom:-45px;
                         right:-40px;
                     }
@@ -161,6 +162,7 @@
                     .citation{
                         img{
                            width:30px;
+                           height:auto;
                            top:-25px;
                            left:-25px;
                         }
@@ -168,6 +170,7 @@
                     .nom{
                         padding-top:$padding-small;
                         img{
+                            height:auto;
                             width:40px;
                             bottom:-35px;
                             right:-30px;

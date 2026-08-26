@@ -58,7 +58,8 @@
             align-items:flex-end;
             gap:$gap-small;
             img{
-                width:24px;
+                width:25px;
+                height:auto;
             }
             p{
                 @include text-chicle($color:$text-darker);

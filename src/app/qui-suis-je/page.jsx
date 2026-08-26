@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import '@/styles/about.scss';
 import Button from '@/components/Button';
+import Image from 'next/image';
 
 export default function PageAbout() {
     return(
@@ -13,13 +14,13 @@ export default function PageAbout() {
                     <div className="wrapper">
                         <div className="container-texte">
                             <div className="citation">
-                                <img src="/images/illustrations/etoile.png" alt="Étoile" className="illu" />
+                                <Image src="/images/illustrations/etoile.png" alt="Étoile" className="illu" width={100} height={100} />
                                 <p>
                                     ‘‘ Parce que vos mains sont le prolongement de votre personnalité, je mets mon savoir-faire au service de votre beauté. ’’
                                 </p>
                             </div>
                             <div className="nom">
-                                <img src="/images/illustrations/etoile.png" alt="Étoile" className="illu"/>
+                                <Image src="/images/illustrations/etoile.png" alt="Étoile" className="illu" width={100} height={100} />
                                 <h1>Nathalie Myers</h1>
                             </div>
                             <div className="texte">
@@ -29,11 +30,11 @@ export default function PageAbout() {
                             </div>
                         </div>
                         <div className="photo">
-                            <img src="/images/illustrations/etoile.png" alt="Étoile" className="illu etoile-1" />
-                            <img src="/images/illustrations/etoile.png" alt="Étoile" className="illu etoile-2" />
-                            <img src="/images/illustrations/Rond.png" alt="Étoile" className="illu rond-1" />
-                            <img src="/images/illustrations/Rond.png" alt="Étoile" className="illu rond-2" />
-                            <img src="/images/prothesiste/Nathalie-1.jpg" alt="Nathalie Myers" id="photo-nathalie"/>
+                            <Image src="/images/illustrations/etoile.png" alt="Étoile" className="illu etoile-1" width={100} height={100} />
+                            <Image src="/images/illustrations/etoile.png" alt="Étoile" className="illu etoile-2" width={100} height={100} />
+                            <Image src="/images/illustrations/Rond.png" alt="Étoile" className="illu rond-1" width={100} height={100} />
+                            <Image src="/images/illustrations/Rond.png" alt="Étoile" className="illu rond-2" width={100} height={100} />
+                            <Image src="/images/prothesiste/Nathalie-1.jpg" alt="Nathalie Myers" id="photo-nathalie" width={1000} height={1000} />
                         </div>
                     </div>
                 </div>
@@ -43,9 +44,9 @@ export default function PageAbout() {
                     <div className="container-salon">
                         <div className="wrapper">
                             <div className="photo">
-                                <img src="/images/illustrations/Noeud.png" alt="Étoile" className="illu" id="noeud"/>
-                                <img src="/images/prothesiste/salon_1(web).jpg" alt="Studio"   className="photo-studio"/>
-                                <img src="/images/illustrations/Vernis.png" alt="Étoile" className="illu" id="vernis"/>
+                                <Image src="/images/illustrations/Noeud.png" alt="Étoile" className="illu" width={100} height={100} id="noeud"/>
+                                <Image src="/images/prothesiste/salon_1(web).jpg" alt="Studio" className="photo-studio" width={1000} height={1000} />
+                                <Image src="/images/illustrations/Vernis.png" alt="Étoile" className="illu" width={100} height={100} id="vernis"/>
 
                             </div>
                             <div className="container-texte">
@@ -77,8 +78,8 @@ export default function PageAbout() {
                                 </div>
                             </div>
                             <div className="photo">
-                                <img src="/images/prothesiste/salon_2(web).jpg" alt="Studio"   className="photo-studio"/>
-                                <img src="/images/illustrations/Cuticule.png" alt="Étoile" className="illu" id="cuticule"/>
+                                <Image src="/images/prothesiste/salon_2(web).jpg" alt="Studio"   className="photo-studio" width={1000} height={1000} />
+                                <Image src="/images/illustrations/Cuticule.png" alt="Étoile" className="illu" width={100} height={100} id="cuticule"/>
                             </div>
                         </div>
                     </div> 
@@ -87,9 +88,9 @@ export default function PageAbout() {
                     <div className="container-quali">
                         <div className="wrapper">
                             <div className="photo">
-                                <img src="/images/prothesiste/salon_3(web).jpg" alt="Studio"   className="photo-studio"/>
-                                <img src="/images/illustrations/Rond.png" alt="Étoile" className="illu" id="rond"/>
-                                <img src="/images/illustrations/Rond.png" alt="Étoile" className="illu" id="rond2"/>
+                                <Image src="/images/prothesiste/salon_3(web).jpg" alt="Studio"   className="photo-studio" width={1000} height={1000} />
+                                <Image src="/images/illustrations/Rond.png" alt="Étoile" className="illu" width={100} height={100} id="rond"/>
+                                <Image src="/images/illustrations/Rond.png" alt="Étoile" className="illu" width={100} height={100} id="rond2"/>
 
                             </div>
                             <div className="container-texte">

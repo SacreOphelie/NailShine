@@ -1,6 +1,5 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
 import '@/styles/confirm-rdv.scss';
 import { TriangleAlert, X } from 'lucide-react';
 import { contact } from "@/config/contact";
@@ -8,6 +7,7 @@ import Link from 'next/link';
 import Button from '@/components/Button';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 export default function ConfirmationRdv()  {
     const adresse = contact.adresse;
@@ -38,9 +38,9 @@ export default function ConfirmationRdv()  {
     return(
         <div className="slide" id="confirmation-rdv">
             <div className="box">
-                <img src="/images/illustrations/etoile.png" alt="etoile" className="illu" id="etoile1" />
-                <img src="/images/illustrations/etoile.png" alt="etoile2" className="illu" id="etoile2" />
-                <img src="/images/illustrations/Rond.png" alt="rond1" className="illu" id="rond1" />
+                <Image src="/images/illustrations/etoile.png" alt="etoile" className="illu" width={100} height={100} id="etoile1" />
+                <Image src="/images/illustrations/etoile.png" alt="etoile2" className="illu" width={100} height={100} id="etoile2" />
+                <Image src="/images/illustrations/Rond.png" alt="rond1" className="illu" width={100} height={100} id="rond1" />
                 <h2>Votre rendez-vous est confirmé</h2>
                 <p>Merci pour votre confiance ! J’ai hâte de m’occuper de vos ongles et de partager ce moment avec vous au salon.</p>
                 <div className="bloc-info">
@@ -50,7 +50,7 @@ export default function ConfirmationRdv()  {
                     <p>Prix : {rdvInfo?.prix} €</p>
                 </div>
                 <div className="adresse">
-                    <img src="/icones/location.png" alt="Localisation" id="location" />
+                    <Image src="/icones/location.png" alt="Localisation" width={100} height={100} id="location" />
                     <p>{adresse}</p>
                 </div>
                 <p>Vous pouvez retrouver, <strong>modifier</strong>  ou <strong>annuler</strong> ce rendez-vous (jusqu'à 24h à l'avance) à tout moment en vous connectant sur votre compte NailShine. Vous y trouverez également tout l'historique de vos poses.</p>

@@ -1,10 +1,11 @@
-/* eslint-disable @next/next/no-img-element */
+
 import Link from "next/link";
 import Button from "@/components/Button";
 import { navItems } from "@/config/navigation";
 import '@/styles/footer.scss';
 import Logo from "@/components/Logo";
 import { contact } from "@/config/contact";
+import Image from "next/image";
 
 export default function Footer() {
 
@@ -37,13 +38,13 @@ export default function Footer() {
             </div>
             <div className="reseaux div-footer">
                 <Link href={contact.facebook} target="_blank" rel="noopener noreferrer">
-                    <img src="/icones/icon_fb.png" alt="Facebook" />
+                    <Image src="/icones/icon_fb.png" alt="Facebook" width={100} height={100} />
                 </Link>
                 <Link href={contact.instagram} target="_blank" rel="noopener noreferrer">
-                    <img src="/icones/icon_insta.png" alt="Instagram" />
+                    <Image src="/icones/icon_insta.png" alt="Instagram" width={100} height={100} />
                 </Link>
                 <Link href={contact.tiktok} target="_blank" rel="noopener noreferrer">
-                    <img src="/icones/icon_tiktok.png" alt="Tik Tok" />
+                    <Image src="/icones/icon_tiktok.png" alt="Tik Tok" width={100} height={100} />
                 </Link>
             </div>
             <div className="btn">

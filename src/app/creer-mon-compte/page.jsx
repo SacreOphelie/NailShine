@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import '@/styles/connexion.scss';
@@ -10,6 +9,7 @@ import Input from '@/components/Forms/Input';
 import Button from '@/components/Button';
 import { checkString, checkEmail, checkMdp } from '@/config/validation';
 import { TriangleAlert } from 'lucide-react';
+import Image from 'next/image';
 
 export default function PageCreateAccount() {
 
@@ -115,10 +115,10 @@ export default function PageCreateAccount() {
         <>
             <div className="slide" id="create-account">
                 <div className="box-connexion">
-                    <img src="/images/illustrations/etoile.png" alt="etoile" className="illu" id="etoile1"/>
-                    <img src="/images/illustrations/etoile.png" alt="etoile2" className="illu" id="etoile2"/>
-                    <img src="/images/illustrations/Rond.png" alt="rond1" className="illu" id="rond1"/>
-                    <img src="/images/illustrations/Rond.png" alt="rond2" className="illu" id="rond2"/>
+                    <Image src="/images/illustrations/etoile.png" alt="etoile" className="illu" width={100} height={100} id="etoile1"/>
+                    <Image src="/images/illustrations/etoile.png" alt="etoile2" className="illu" width={100} height={100} id="etoile2"/>
+                    <Image src="/images/illustrations/Rond.png" alt="rond1" className="illu" width={100} height={100} id="rond1"/>
+                    <Image src="/images/illustrations/Rond.png" alt="rond2" className="illu" width={100} height={100} id="rond2"/>
                     <div className="no-compte">
                         <p>Vous avez déjà un compte ?</p>
                         <Link href="/se-connecter" className="underline">Se connecter</Link>

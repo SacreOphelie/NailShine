@@ -122,6 +122,7 @@
                 }
                 img{
                     width:75px;
+                    height:auto;
                     object-fit:contain;
                 }
                 .infos-user{
@@ -163,6 +164,7 @@
                     position:relative;
                     img{
                         width:40px;
+                        height:auto;
                         top:-20px;
                         left:-20px;
                     }
