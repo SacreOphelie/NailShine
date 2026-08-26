@@ -59,7 +59,7 @@ export default function ConfirmationRdv()  {
                     <p>Rappel important : Pour le respect de mon organisation, toute annulation tardive (moins de 24h) ou non-présentation injustifiée entraînera un acompte de réservation. <Link href="/conditions-generales"> Voir conditions générales</Link></p>
                 </div>
                 <div className="btn">
-                    <Button text="Voir le rendez-vous" />
+                    <Button text="Voir le rendez-vous" url="/compte" />
                 </div>
             </div>
         </div>
