@@ -1,4 +1,3 @@
-
 /* eslint-disable @next/next/no-img-element */
 import {supabase} from "@/config/supabase";
 import '@/styles/realisationPage.scss';
@@ -6,8 +5,7 @@ import Button from "@/components/Button";
 import Retour from "@/components/Retour";
 import { notFound } from 'next/navigation';
 import Favoris from "@/components/Realisations/Favoris";
-import Commentaire from "@/components/Avis/Commentaire";
-import Heart from "@/components/Heart";
+import SectionCommentaire from "@/components/Avis/SectionCommentaire";
 export const dynamic = 'force-dynamic';
 
 export default async function RealisationPage({params}) {
@@ -81,30 +79,7 @@ export default async function RealisationPage({params}) {
             </div>
         </div>
         <div className="container-commentaire wrapper">
-            <Commentaire realisationId={realisation.id} />
-            <div className="liste-commentaires">
-              {commentaires.length === 0 ? (
-                <p className="no-commentaire">Aucun commentaire pour le moment.</p>
-              ) : (
-                commentaires.map((commentaire) => (
-                  <div key={commentaire.id} className="div-commentaire">
-                      <div className="header">
-                        <img src="/images/prothesiste/placeholder_pp.png" alt="placeholder"/>
-                        <div className="infos">
-                            <div className="avis">
-                                {[1, 2, 3, 4].map((n) => (
-                                    <div key={n} className={`note ${n <= commentaire.note ? 'active' : ''}`}><Heart /></div>
-                                ))}
-                            </div>
-                            <p className="auteur">
-                                {commentaire.clients?.prenom} {commentaire.clients?.nom.charAt(0)}.
-                            </p>
-                        </div>
-                      </div>
-                      <div className="contenu"><p>{commentaire.contenu}</p></div>
-                  </div>
-              )))}
-            </div>
+            <SectionCommentaire realisationId={realisation.id} commentairesInitiaux={commentaires} clientId={realisation.client_id} />
         </div>
       </div>
     </>

@@ -10,7 +10,7 @@ import { TriangleAlert } from 'lucide-react';
 import { Check } from 'lucide-react';
 import '@/styles/commentaire.scss';
 
-export default function Commentaire({ realisationId }) {
+export default function Commentaire({ realisationId, onCommentaireAjoute }) {
     const { isConnected, userProfil, loading } = useAuth();
 
     // Stocker le contenu du commentaire et la note
@@ -28,18 +28,15 @@ export default function Commentaire({ realisationId }) {
         setConfirmationMessage('');
 
         const erreurs = {};
-
         if (!contenu) {
             erreurs.contenu = "Veuillez écrire un commentaire.";
         }
-
         if (Object.keys(erreurs).length > 0) {
             setErreur(erreurs);
             return;
         }
 
         try {
-            // récupérer le vrai utilisateur connecté
             const { data: { user }, error: authError } = await supabase.auth.getUser();
             if (authError || !user) {
                 console.error("Erreur lors de la récupération de l'utilisateur :", authError);
@@ -50,23 +47,27 @@ export default function Commentaire({ realisationId }) {
                 realisation_id: realisationId,
                 client_id: user.id,
                 contenu: contenu.trim(),
-                note: note || 1 
+                note: note || 1
             };
 
-            // insertion dans la table commentaires
-            const { error: insertError } = await supabase
+            // insertion + récupération directe de la ligne créée (avec le join clients)
+            const { data: inserted, error: insertError } = await supabase
                 .from('commentaires')
-                .insert([commentaireData]);
+                .insert([commentaireData])
+                .select('*, clients(prenom, nom)')
+                .single();
 
             if (insertError) {
                 console.error("Erreur lors de l'insertion du commentaire :", insertError);
                 throw insertError;
             }
 
-            // Succès
             setConfirmationMessage("Votre commentaire a été publié avec succès !");
             setContenu('');
             setNote(1);
+
+            // On remonte le commentaire créé au parent, plus besoin de router.refresh()
+            onCommentaireAjoute?.(inserted);
         } catch (error) {
             console.error("Erreur lors de la publication du commentaire :", error);
         }
