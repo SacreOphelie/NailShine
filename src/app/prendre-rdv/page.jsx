@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import '@/styles/rdv.scss';
@@ -11,7 +10,10 @@ import Input from '@/components/Forms/Input';
 import { TriangleAlert, X } from 'lucide-react';
 import Textarea from '@/components/Forms/Textarea';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+
 export const dynamic = 'force-dynamic';
+
 
 // Les horaires disponibles pour chaque jour de la semaine
 const Hours = ["10h", "14h", "16h"];
@@ -424,7 +426,7 @@ export default function PrendreRdv() {
                         <p className="italic">jpg/png</p>
                         {previewUrl && (
                             <div className="preview">
-                                <img src={previewUrl} alt="Aperçu de l'inspiration" className="preview-image"/>
+                                <Image src={previewUrl} alt="Aperçu de l'inspiration" className="preview-image" width={200} height={200}/>
                                 <button onClick={removeInspiration}>
                                     <X size={20} />
                                 </button>
