@@ -65,7 +65,7 @@ export default function Nav(){
                                 Compte
                             </Link>
                             <div className="sous-menu">
-                                <Link href="/mes-rendez-vous" className="nav-link">
+                                <Link href="/compte" className="nav-link">
                                     Mes rendez-vous
                                 </Link>
                                 <div onClick={handleLogout} className="nav-link deco">
@@ -104,7 +104,7 @@ export default function Nav(){
                                 Compte
                             </Link>
                             <div className="sous-menu">
-                                <Link href="/mes-rendez-vous" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+                                <Link href="/compte" className="nav-link" onClick={() => setIsMenuOpen(false)}>
                                     Mes rendez-vous
                                 </Link>
                                 <div onClick={() => {
